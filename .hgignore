@@ -1,0 +1,15 @@
+syntax: glob
+*.orig
+*.rej
+*~
+*.o
+tests/*.err
+.DS_Store
+*.mode1v3
+*.pbxuser
+build
+*.pyc
+.svn
+
+syntax: regexp
+.*\#.*\#$
