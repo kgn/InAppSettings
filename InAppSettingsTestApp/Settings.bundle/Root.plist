@@ -78,7 +78,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Toogle No Flase</string>
+			<string>Toogle No False</string>
 			<key>Key</key>
 			<string>toogle_nofalse</string>
 			<key>DefaultValue</key>

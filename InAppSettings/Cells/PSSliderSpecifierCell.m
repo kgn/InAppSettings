@@ -24,11 +24,15 @@
 - (void)setupCell{
     [super setupCell];
     
+    NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+    NSString *minImagePath = [settingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MinimumValueImage"]];
+    NSString *maxImagePath = [settingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MaximumValueImage"]];
+    
     valueSlider = [[UISlider alloc] initWithFrame:CGRectZero];
     valueSlider.minimumValue = [[self.setting valueForKey:@"MinimumValue"] floatValue];
     valueSlider.maximumValue = [[self.setting valueForKey:@"MaximumValue"] floatValue];
-    valueSlider.minimumValueImage = [UIImage imageNamed:[self.setting valueForKey:@"MinimumValueImage"]];
-    valueSlider.maximumValueImage = [UIImage imageNamed:[self.setting valueForKey:@"MaximumValueImage"]];
+    valueSlider.minimumValueImage = [UIImage imageWithContentsOfFile:minImagePath];
+    valueSlider.maximumValueImage = [UIImage imageWithContentsOfFile:maxImagePath];
     CGRect valueSliderFrame = valueSlider.frame;
     valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f));
     valueSliderFrame.origin.x = InAppSettingCellPadding;
