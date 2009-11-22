@@ -1,0 +1,5 @@
+InAppSettings provides a view controller that will read your applications Setting.bundle, allowing you to have the same preferences in your application and in the system settings.
+
+InAppSettingsTestApp is a simple application for testing that InAppSettings is working correctly.
+
+It's distributed under the MIT License, read the license file for more licensing information.
