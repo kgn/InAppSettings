@@ -24,10 +24,12 @@
 - (void)setupCell{
     [super setupCell];
     
+    //get the abolute path to the images
     NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     NSString *minImagePath = [settingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MinimumValueImage"]];
     NSString *maxImagePath = [settingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MaximumValueImage"]];
     
+    //create the slider
     valueSlider = [[UISlider alloc] initWithFrame:CGRectZero];
     valueSlider.minimumValue = [[self.setting valueForKey:@"MinimumValue"] floatValue];
     valueSlider.maximumValue = [[self.setting valueForKey:@"MaximumValue"] floatValue];

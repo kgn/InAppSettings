@@ -27,7 +27,7 @@
     displayHeaders = [[NSMutableArray alloc] init];
     settings = [[NSMutableDictionary alloc] init];
     
-    //set the first value in the display header to "", while the read header is set to InAppSettingNullHeader
+    //set the first value in the display header to "", while the real header is set to InAppSettingNullHeader
     //this way whats set in the first entry to headers will not be seen
     NSString *currentHeader = InAppSettingNullHeader;
     [headers addObject:currentHeader];
@@ -76,6 +76,7 @@
 
 - (void)dealloc{
     [headers release];
+    [displayHeaders release];
     [settings release];
     [super dealloc];
 }
@@ -113,10 +114,11 @@
     cell = ((InAppSettingsTableCell *)[tableView dequeueReusableCellWithIdentifier:cellType]);
     if (cell == nil) {
         cell = [[[nsclass alloc] initWithSetting:setting reuseIdentifier:cellType] autorelease];
-        //set up the cell here to fix a display issue when the cell leaves and re-enters frame
+        //setup the cells controlls
         [cell setupCell];
     }
     
+    //set the values of the cell, this is broken out for reloading the table
     [cell setValue];
     
     return cell;
@@ -129,6 +131,7 @@
         [self.navigationController pushViewController:multiValueSpecifier animated:YES];
         [multiValueSpecifier release];
     }
+    //TODO: make all other cell unselectable
 }
 
 @end

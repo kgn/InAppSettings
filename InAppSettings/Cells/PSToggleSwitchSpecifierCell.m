@@ -13,6 +13,7 @@
 
 - (BOOL)getBool{
     id value = [self getValue];
+    //the value of PSToggleSwitchSpecifier can be a string or a bool
     if([value isKindOfClass:[NSString class]]){
         if([value isEqualToString:[self.setting valueForKey:@"TrueValue"]]){
             return YES;
@@ -24,6 +25,8 @@
 }
 
 - (void)setBool:(BOOL)newValue{
+    //if there is a true or flase value the user default will be a string
+    //if not it will be a bool
     id value = [NSNumber numberWithBool:newValue];
     if(newValue){
         NSString *trueValue = [self.setting valueForKey:@"TrueValue"];
@@ -55,6 +58,7 @@
     
     [self setTitle];
     
+    //create the switch
     valueSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
     CGRect valueSwitchFrame = valueSwitch.frame;
     valueSwitchFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSwitchFrame.size.height*0.5f));

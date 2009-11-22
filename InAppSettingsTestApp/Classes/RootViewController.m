@@ -11,6 +11,7 @@
 
 @implementation RootViewController
 
+//load the InAppSettings with the settings button is pressed
 - (IBAction)showSettings{
     InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];
     [self.navigationController pushViewController:settings animated:YES];
