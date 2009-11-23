@@ -42,7 +42,6 @@
     valueSlider.frame = valueSliderFrame;
     [valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:valueSlider];
-    [valueSlider release];
 }
 
 - (void)dealloc{

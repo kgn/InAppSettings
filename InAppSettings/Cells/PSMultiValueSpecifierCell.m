@@ -15,7 +15,7 @@
     NSArray *titles = [self.setting valueForKey:@"Titles"];
     NSArray *values = [self.setting valueForKey:@"Values"];
     NSInteger valueIndex = [values indexOfObject:[self getValue]];
-    return [titles objectAtIndex:valueIndex];
+    return NSLocalizedString([titles objectAtIndex:valueIndex], nil);
 }
 
 - (void)setValue{

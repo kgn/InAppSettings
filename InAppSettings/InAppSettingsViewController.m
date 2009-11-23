@@ -17,6 +17,58 @@
     return [self initWithTitle:NSLocalizedString(@"Settings", nil)];
 }
 
+- (BOOL)addSetting:(InAppSetting *)setting{
+    NSString *type = [setting valueForKey:@"Type"];
+    
+    NSString *key = [setting valueForKey:@"Key"];
+    if((!key) || [key isEqualToString:@""]){
+        return NO;
+    }
+    
+    id defaultValue = [setting valueForKey:@"DefaultValue"];
+    if(!defaultValue){
+        return NO;
+    }
+    
+    if([type isEqualToString:@"PSMultiValueSpecifier"]){
+        NSString *title = [setting valueForKey:@"Title"];
+        if(!title){
+            return NO;
+        }
+        NSArray *titles = [setting valueForKey:@"Titles"];
+        if((!titles) || ([titles count] == 0)){
+            return NO;
+        }
+        NSArray *values = [setting valueForKey:@"Values"];
+        if((!values) || ([values count] == 0)){
+            return NO;
+        }
+        if([titles count] != [values count]){
+            return NO;
+        }
+    }
+    
+    else if([type isEqualToString:@"PSSliderSpecifier"]){
+        NSNumber *minValue = [setting valueForKey:@"MinimumValue"];
+        if(!minValue){
+            return NO;
+        }
+        NSNumber *maxValue = [setting valueForKey:@"MaximumValue"];
+        if(!maxValue){
+            return NO;
+        }
+    }
+    
+    else if([type isEqualToString:@"PSToggleSwitchSpecifier"]){
+        NSString *title = [setting valueForKey:@"Title"];
+        if(!title){
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 - (void)viewDidLoad{
     NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
@@ -49,13 +101,8 @@
             [settings setObject:[[NSMutableArray alloc] init] forKey:currentHeader];//ignore this potential leak, this will be released with settings
             addSetting = NO;
         }
-        else if([[setting valueForKey:@"Type"] isEqualToString:@"PSMultiValueSpecifier"]){
-            NSArray *titles = [setting valueForKey:@"Titles"];
-            NSArray *values = [setting valueForKey:@"Values"];
-            //these conditions need to be true to display the PSMultiValueSpecifier
-            if(([titles count] == 0) || ([values count] == 0) || ([titles count] != [values count])){
-                addSetting = NO;
-            }
+        else{
+            addSetting = [self addSetting:setting];
         }
         
         if(addSetting){
@@ -132,6 +179,7 @@
         [multiValueSpecifier release];
     }
     //TODO: make all other cell unselectable
+    //TODO: scroll view to current cell
 }
 
 @end

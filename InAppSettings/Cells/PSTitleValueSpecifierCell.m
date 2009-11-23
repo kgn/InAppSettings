@@ -15,6 +15,8 @@
     
     [self setTitle];
     [self setDetail];
+    
+    //TODO: add support for values and titles
 }
 
 @end

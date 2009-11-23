@@ -16,6 +16,7 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		731339BC10B92F0C00B11E9B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 731339BB10B92F0C00B11E9B /* Settings.bundle */; };
+		738BAD1D10B9FAE900498664 /* PSTextFieldSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 738BAD1C10B9FAE900498664 /* PSTextFieldSpecifierCell.m */; };
 		73979F9810B957FF00FF5532 /* InAppSettingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8610B957FF00FF5532 /* InAppSettingsTableCell.m */; };
 		73979F9910B957FF00FF5532 /* PSMultiValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8810B957FF00FF5532 /* PSMultiValueSpecifierCell.m */; };
 		73979F9A10B957FF00FF5532 /* PSSliderSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8A10B957FF00FF5532 /* PSSliderSpecifierCell.m */; };
@@ -41,6 +42,8 @@
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		731339BB10B92F0C00B11E9B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		738BAD1B10B9FAE900498664 /* PSTextFieldSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTextFieldSpecifierCell.h; sourceTree = "<group>"; };
+		738BAD1C10B9FAE900498664 /* PSTextFieldSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTextFieldSpecifierCell.m; sourceTree = "<group>"; };
 		73979F8510B957FF00FF5532 /* InAppSettingsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsTableCell.h; sourceTree = "<group>"; };
 		73979F8610B957FF00FF5532 /* InAppSettingsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsTableCell.m; sourceTree = "<group>"; };
 		73979F8710B957FF00FF5532 /* PSMultiValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierCell.h; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				73979F8C10B957FF00FF5532 /* PSTitleValueSpecifierCell.m */,
 				73979F8D10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.h */,
 				73979F8E10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m */,
+				738BAD1B10B9FAE900498664 /* PSTextFieldSpecifierCell.h */,
+				738BAD1C10B9FAE900498664 /* PSTextFieldSpecifierCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				73979F9E10B957FF00FF5532 /* InAppSettingsSuperViewController.m in Sources */,
 				73979F9F10B957FF00FF5532 /* InAppSettingsViewController.m in Sources */,
 				73979FA010B957FF00FF5532 /* PSMultiValueSpecifierTable.m in Sources */,
+				738BAD1D10B9FAE900498664 /* PSTextFieldSpecifierCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,15 +10,151 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Text Entry</string>
+			<string>AC=D</string>
 			<key>Key</key>
-			<string>textEntry_key</string>
+			<string>textEntry_capword</string>
 			<key>DefaultValue</key>
-			<string>Simple Text</string>
+			<string>Cap Words</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
 			<string>Alphabet</string>
+			<key>AutoCapitalizationType</key>
+			<string>Words</string>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Cap Sentences, AC=YES</string>
+			<key>Key</key>
+			<string>textEntry_capsentance</string>
+			<key>DefaultValue</key>
+			<string>Cap Sentences</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>AutoCapitalizationType</key>
+			<string>Sentences</string>
+			<key>AutocorrectionType</key>
+			<string>Yes</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>CAPS, AC=NO</string>
+			<key>Key</key>
+			<string>textEntry_allcaps</string>
+			<key>DefaultValue</key>
+			<string>ALL CAPS</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>AutoCapitalizationType</key>
+			<string>AllCharacters</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>No Auto Caps or Correction</string>
+			<key>Key</key>
+			<string>textEntry_noautocorrect</string>
+			<key>DefaultValue</key>
+			<string>No AutoCapitalizationType</string>
+			<key>IsSecure</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Secure</string>
+			<key>Key</key>
+			<string>textEntry_secure</string>
+			<key>DefaultValue</key>
+			<string>Secure</string>
+			<key>IsSecure</key>
+			<true/>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>AutocorrectionType</key>
+			<string>no</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>NumbersAndPunctuation</string>
+			<key>Key</key>
+			<string>textEntry_NumbersAndPunctuation</string>
+			<key>DefaultValue</key>
+			<string>12.6</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>NumbersAndPunctuation</string>
+			<key>AutoCapitalizationType</key>
+			<string>Sentences</string>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>NumberPad</string>
+			<key>Key</key>
+			<string>textEntry_NumberPad</string>
+			<key>DefaultValue</key>
+			<string>12</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+			<key>AutoCapitalizationType</key>
+			<string>Sentences</string>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>URL</string>
+			<key>Key</key>
+			<string>textEntry_URL</string>
+			<key>DefaultValue</key>
+			<string>www.InScopeApps.com</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>URL</string>
+			<key>AutoCapitalizationType</key>
+			<string>Sentences</string>
+			<key>AutocorrectionType</key>
+			<string>Default</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>EmailAddress</string>
+			<key>Key</key>
+			<string>textEntry_EmailAddress</string>
+			<key>DefaultValue</key>
+			<string>mail@InScopeApps.com</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>EmailAddress</string>
 			<key>AutoCapitalizationType</key>
 			<string>Sentences</string>
 			<key>AutocorrectionType</key>

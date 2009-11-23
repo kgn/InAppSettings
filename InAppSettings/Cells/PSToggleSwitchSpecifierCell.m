@@ -11,31 +11,33 @@
 
 @implementation PSToggleSwitchSpecifierCell
 
+//    The value associated with the preference when the toggle switch 
+//    is in the ON position. The value type for this key can be any 
+//    scalar type, including Boolean, String, Number, Date, or Data. 
+//    If this key is not present, the default value type is a Boolean.
+
 - (BOOL)getBool{
     id value = [self getValue];
-    //the value of PSToggleSwitchSpecifier can be a string or a bool
-    if([value isKindOfClass:[NSString class]]){
-        if([value isEqualToString:[self.setting valueForKey:@"TrueValue"]]){
-            return YES;
-        }
-        return NO;
+    if([value isKindOfClass:[NSNumber class]]){
+        //TODO: just cause its an NSNumber does not mean its a BOOL...
+        return [[self getValue] boolValue];
     }
-    
-    return [[self getValue] boolValue];
+    if([value isEqual:[self.setting valueForKey:@"TrueValue"]]){
+        return YES;
+    }
+    return NO;
 }
 
 - (void)setBool:(BOOL)newValue{
-    //if there is a true or flase value the user default will be a string
-    //if not it will be a bool
     id value = [NSNumber numberWithBool:newValue];
     if(newValue){
-        NSString *trueValue = [self.setting valueForKey:@"TrueValue"];
+        id trueValue = [self.setting valueForKey:@"TrueValue"];
         if(trueValue){
             value = trueValue;
         }
     }
     else{
-        NSString *falseValue = [self.setting valueForKey:@"FalseValue"];
+        id falseValue = [self.setting valueForKey:@"FalseValue"];
         if(falseValue){
             value = falseValue;
         }
@@ -66,7 +68,6 @@
     valueSwitch.frame = valueSwitchFrame;
     [valueSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventValueChanged];
     [self.contentView addSubview:valueSwitch];
-    [valueSwitch release];
 }
 
 - (void)dealloc{

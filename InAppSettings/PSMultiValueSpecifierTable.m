@@ -68,8 +68,8 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
 	
-    NSString *cellTitle = [[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row];
-    id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
+    NSString *cellTitle = NSLocalizedString([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], nil);
+    NSString *cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     cell.textLabel.text = cellTitle;
 	if([cellValue isEqualToString:[self getValue]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -84,7 +84,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
+    NSString *cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     [self setValue:cellValue];
     //TODO: make this behave like the settings, animate selection
     [self.tableView reloadData];
