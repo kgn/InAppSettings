@@ -2,18 +2,18 @@
 //  InAppSettingsTestAppAppDelegate.h
 //  InAppSettingsTestApp
 //
-//  Created by David Keegan on 11/21/09.
+//  Created by David Keegan on 11/24/09.
 //  Copyright InScopeApps{+} 2009. All rights reserved.
 //
 
-@interface InAppSettingsTestAppAppDelegate : NSObject <UIApplicationDelegate> {
-    
+#import <UIKit/UIKit.h>
+
+@interface InAppSettingsTestAppAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     UIWindow *window;
-    UINavigationController *navigationController;
+    UITabBarController *tabBarController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @end
-

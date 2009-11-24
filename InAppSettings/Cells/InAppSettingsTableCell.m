@@ -56,7 +56,7 @@
 
 - (id)initWithSetting:(InAppSetting *)inputSetting reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
-    if (self != nil) {
+    if (self != nil){
         self.setting = inputSetting;
     }
     return self;

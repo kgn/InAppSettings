@@ -34,7 +34,7 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary{
     self = [super init];
-    if (self != nil) {
+    if (self != nil){
         if(dictionary){
             settingDictionary = [dictionary retain];
         }

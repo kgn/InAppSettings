@@ -6,8 +6,7 @@
 //  Copyright InScopeApps{+} 2009. All rights reserved.
 //
 
-@interface RootViewController : UITableViewController {
-}
+@interface RootViewController : UIViewController {}
 
 - (IBAction)showSettings;
 

@@ -13,8 +13,12 @@
 
 @implementation InAppSettingsViewController
 
-- (id)init{
-    return [self initWithTitle:NSLocalizedString(@"Settings", nil)];
+- (id)initWithStyle:(UITableViewStyle)style{
+    return [super initWithStyle:UITableViewStyleGrouped];
+}
+
+- (id)initWithCoder:(NSCoder *)coder{
+    return [super initWithStyle:UITableViewStyleGrouped];
 }
 
 - (BOOL)addSetting:(InAppSetting *)setting{
@@ -69,12 +73,14 @@
     return YES;
 }
 
-- (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath {
+- (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath{
     NSString *header = [headers objectAtIndex:indexPath.section];
     return [[settings objectForKey:header] objectAtIndex:indexPath.row];
 }
 
 - (void)viewDidLoad{
+    self.title = NSLocalizedString(@"Settings", nil);
+    
     NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
     NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];

@@ -19,7 +19,7 @@
 
 - (id)initWithSetting:(InAppSetting *)inputSetting{
     self = [super init];
-    if (self != nil) {
+    if (self != nil){
         self.setting = inputSetting;
     }
     return self;
@@ -64,7 +64,7 @@
     static NSString *CellIdentifier = @"PSMultiValueSpecifierTableCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (cell == nil){
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
 	
