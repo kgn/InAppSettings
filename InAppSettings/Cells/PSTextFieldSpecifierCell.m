@@ -38,6 +38,7 @@
 }
 
 - (UITextAutocapitalizationType)getAutocapitalizationType{
+    //this works, but the real settings don't seem to respect these values eventhough they are in the docs
     NSString *autoCapitalizationType = [self.setting valueForKey:@"AutoCapitalizationType"];
     if([autoCapitalizationType isEqualToString:@"Words"]){
         return UITextAutocapitalizationTypeWords;
@@ -81,7 +82,7 @@
     
     [self setTitle];
     //for some reason self.textLabel.frame.size.width or sizeWithFont:self.textLabel.font does not work...
-    CGSize titleSize = [self.textLabel.text sizeWithFont:[UIFont boldSystemFontOfSize:17.0f]];
+    CGSize titleSize = [self.textLabel.text sizeWithFont:[UIFont boldSystemFontOfSize:InAppSettingFontSize]];
     
     //create text field
     textField =[[UITextField alloc] initWithFrame:CGRectZero];

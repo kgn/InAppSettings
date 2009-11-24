@@ -10,10 +10,13 @@
 #import "InAppSettingsTableCell.h"
 
 @interface InAppSettingsViewController : UITableViewController {
+    NSString *file;
     IBOutlet InAppSettingsTableCell *cell;
     NSMutableArray *headers, *displayHeaders;
     NSMutableDictionary *settings;
 }
+
+@property (nonatomic, copy) NSString *file;
 
 - (void)controlEditingDidBeginAction:(UIControl *)control;
 

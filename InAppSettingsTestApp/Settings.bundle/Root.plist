@@ -361,6 +361,14 @@
 				<string>Green</string>
 			</array>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Child Pane</string>
+			<key>File</key>
+			<string>ChildPane</string>
+		</dict>
 	</array>
 </dict>
 </plist>

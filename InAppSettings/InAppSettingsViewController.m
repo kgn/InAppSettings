@@ -13,6 +13,8 @@
 
 @implementation InAppSettingsViewController
 
+@synthesize file;
+
 - (id)initWithStyle:(UITableViewStyle)style{
     return [super initWithStyle:UITableViewStyleGrouped];
 }
@@ -21,20 +23,33 @@
     return [super initWithStyle:UITableViewStyleGrouped];
 }
 
+- (id)initWithFile:(NSString *)inputFile{
+    self = [super init];
+    if (self != nil) {
+        self.file = inputFile;
+    }
+    return self;
+}
+
+- (void)setTitle:(NSString *)newTitle{
+    [super setTitle:NSLocalizedString(newTitle, nil)];
+}
+
 - (BOOL)addSetting:(InAppSetting *)setting{
     NSString *type = [setting getType];
     
-    NSString *key = [setting valueForKey:@"Key"];
-    if((!key) || [key isEqualToString:@""]){
-        return NO;
-    }
-    
-    id defaultValue = [setting valueForKey:@"DefaultValue"];
-    if(!defaultValue){
-        return NO;
-    }
-    
+    //TODO: make helper functions for Title, Key, DefaultValue
     if([type isEqualToString:@"PSMultiValueSpecifier"]){
+        NSString *key = [setting valueForKey:@"Key"];
+        if((!key) || [key isEqualToString:@""]){
+            return NO;
+        }
+        
+        id defaultValue = [setting valueForKey:@"DefaultValue"];
+        if(!defaultValue){
+            return NO;
+        }
+        
         NSString *title = [setting valueForKey:@"Title"];
         if(!title){
             return NO;
@@ -53,6 +68,16 @@
     }
     
     else if([type isEqualToString:@"PSSliderSpecifier"]){
+        NSString *key = [setting valueForKey:@"Key"];
+        if((!key) || [key isEqualToString:@""]){
+            return NO;
+        }
+        
+        id defaultValue = [setting valueForKey:@"DefaultValue"];
+        if(!defaultValue){
+            return NO;
+        }
+        
         NSNumber *minValue = [setting valueForKey:@"MinimumValue"];
         if(!minValue){
             return NO;
@@ -64,8 +89,32 @@
     }
     
     else if([type isEqualToString:@"PSToggleSwitchSpecifier"]){
+        NSString *key = [setting valueForKey:@"Key"];
+        if((!key) || [key isEqualToString:@""]){
+            return NO;
+        }
+        
+        id defaultValue = [setting valueForKey:@"DefaultValue"];
+        if(!defaultValue){
+            return NO;
+        }
+        
         NSString *title = [setting valueForKey:@"Title"];
         if(!title){
+            return NO;
+        }
+    }
+    
+    else if([type isEqualToString:@"PSChildPaneSpecifier"]){
+        NSString *title = [setting valueForKey:@"Title"];
+        if(!title){
+            NSLog(@"NO Title");
+            return NO;
+        }
+        //TODO: make sure file exists
+        NSString *plistFile = [setting valueForKey:@"File"];
+        if(!plistFile){
+            NSLog(@"No file");
             return NO;
         }
     }
@@ -73,17 +122,20 @@
     return YES;
 }
 
-- (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *header = [headers objectAtIndex:indexPath.section];
-    return [[settings objectForKey:header] objectAtIndex:indexPath.row];
-}
-
 - (void)viewDidLoad{
-    self.title = NSLocalizedString(@"Settings", nil);
-    
+    //load settigns plist
+    //TODO: make sure the file exists
+    if(!self.file){
+        self.file = @"Root.plist";
+    }
     NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
-    NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
+    NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:self.file];
     NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
+    
+    //if the title is nil set it to Settings
+    if(!self.title){
+        self.title = @"Settings";
+    }
     
     //create an array for headers(PSGroupSpecifier) and a dictonary to hold arrays of settings
     headers = [[NSMutableArray alloc] init];
@@ -133,6 +185,7 @@
 }
 
 - (void)dealloc{
+    [file release];
     [headers release];
     [displayHeaders release];
     [settings release];
@@ -140,6 +193,11 @@
 }
 
 #pragma mark Table view methods
+
+- (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *header = [headers objectAtIndex:indexPath.section];
+    return [[settings objectForKey:header] objectAtIndex:indexPath.row];
+}
 
 - (void)controlEditingDidBeginAction:(UIControl *)control{
     //scroll the table view to the cell that is being edited
@@ -200,11 +258,19 @@
         [self.navigationController pushViewController:multiValueSpecifier animated:YES];
         [multiValueSpecifier release];
     }
+    else if([setting isType:@"PSChildPaneSpecifier"]){
+        NSString *plistFile = [[setting valueForKey:@"File"] stringByAppendingPathExtension:@"plist"];
+        InAppSettingsViewController *childPane = [[InAppSettingsViewController alloc] initWithFile:plistFile];
+        childPane.title = [setting valueForKey:@"Title"];
+        [self.navigationController pushViewController:childPane animated:YES];
+        [childPane release];
+    }
+
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSetting *setting = [self settingAtIndexPath:indexPath];
-    if([setting isType:@"PSMultiValueSpecifier"]){
+    if([setting isType:@"PSMultiValueSpecifier"] || [setting isType:@"PSChildPaneSpecifier"]){
         return indexPath;
     }
     return nil;
