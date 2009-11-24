@@ -2,46 +2,28 @@
 //  InAppSettingsTestAppAppDelegate.m
 //  InAppSettingsTestApp
 //
-//  Created by David Keegan on 11/21/09.
+//  Created by David Keegan on 11/24/09.
 //  Copyright InScopeApps{+} 2009. All rights reserved.
 //
 
 #import "InAppSettingsTestAppAppDelegate.h"
-#import "RootViewController.h"
 
 
 @implementation InAppSettingsTestAppAppDelegate
 
 @synthesize window;
-@synthesize navigationController;
+@synthesize tabBarController;
 
 
-#pragma mark -
-#pragma mark Application lifecycle
-
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
-    // Override point for customization after app launch    
-	
-	[window addSubview:[navigationController view]];
-    [window makeKeyAndVisible];
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+    [window addSubview:tabBarController.view];
 }
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
-}
-
-
-#pragma mark -
-#pragma mark Memory management
 
 - (void)dealloc {
-	[navigationController release];
-	[window release];
-	[super dealloc];
+    [tabBarController release];
+    [window release];
+    [super dealloc];
 }
-
 
 @end
 

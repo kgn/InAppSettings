@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InAppSettingsSuperViewController.h"
+#import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsViewController : InAppSettingsSuperViewController {
+@interface InAppSettingsViewController : UITableViewController {
+    IBOutlet InAppSettingsTableCell *cell;
     NSMutableArray *headers, *displayHeaders;
     NSMutableDictionary *settings;
 }

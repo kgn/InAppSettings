@@ -14,7 +14,6 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
-		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		731339BC10B92F0C00B11E9B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 731339BB10B92F0C00B11E9B /* Settings.bundle */; };
 		738BAD1D10B9FAE900498664 /* PSTextFieldSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 738BAD1C10B9FAE900498664 /* PSTextFieldSpecifierCell.m */; };
 		73979F9810B957FF00FF5532 /* InAppSettingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8610B957FF00FF5532 /* InAppSettingsTableCell.m */; };
@@ -23,7 +22,6 @@
 		73979F9B10B957FF00FF5532 /* PSTitleValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8C10B957FF00FF5532 /* PSTitleValueSpecifierCell.m */; };
 		73979F9C10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8E10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m */; };
 		73979F9D10B957FF00FF5532 /* InAppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F9010B957FF00FF5532 /* InAppSetting.m */; };
-		73979F9E10B957FF00FF5532 /* InAppSettingsSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F9310B957FF00FF5532 /* InAppSettingsSuperViewController.m */; };
 		73979F9F10B957FF00FF5532 /* InAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F9510B957FF00FF5532 /* InAppSettingsViewController.m */; };
 		73979FA010B957FF00FF5532 /* PSMultiValueSpecifierTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F9710B957FF00FF5532 /* PSMultiValueSpecifierTable.m */; };
 /* End PBXBuildFile section */
@@ -39,7 +37,6 @@
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		731339BB10B92F0C00B11E9B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		738BAD1B10B9FAE900498664 /* PSTextFieldSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTextFieldSpecifierCell.h; sourceTree = "<group>"; };
@@ -57,8 +54,6 @@
 		73979F8F10B957FF00FF5532 /* InAppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSetting.h; sourceTree = "<group>"; };
 		73979F9010B957FF00FF5532 /* InAppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSetting.m; sourceTree = "<group>"; };
 		73979F9110B957FF00FF5532 /* InAppSettingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingConstants.h; sourceTree = "<group>"; };
-		73979F9210B957FF00FF5532 /* InAppSettingsSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsSuperViewController.h; sourceTree = "<group>"; };
-		73979F9310B957FF00FF5532 /* InAppSettingsSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsSuperViewController.m; sourceTree = "<group>"; };
 		73979F9410B957FF00FF5532 /* InAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsViewController.h; sourceTree = "<group>"; };
 		73979F9510B957FF00FF5532 /* InAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsViewController.m; sourceTree = "<group>"; };
 		73979F9610B957FF00FF5532 /* PSMultiValueSpecifierTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierTable.h; sourceTree = "<group>"; };
@@ -125,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				731339BB10B92F0C00B11E9B /* Settings.bundle */,
-				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* InAppSettingsTestApp-Info.plist */,
 			);
@@ -148,8 +142,6 @@
 				73979F8F10B957FF00FF5532 /* InAppSetting.h */,
 				73979F9010B957FF00FF5532 /* InAppSetting.m */,
 				73979F9110B957FF00FF5532 /* InAppSettingConstants.h */,
-				73979F9210B957FF00FF5532 /* InAppSettingsSuperViewController.h */,
-				73979F9310B957FF00FF5532 /* InAppSettingsSuperViewController.m */,
 				73979F9410B957FF00FF5532 /* InAppSettingsViewController.h */,
 				73979F9510B957FF00FF5532 /* InAppSettingsViewController.m */,
 				73979F9610B957FF00FF5532 /* PSMultiValueSpecifierTable.h */,
@@ -229,7 +221,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				731339BC10B92F0C00B11E9B /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,7 +241,6 @@
 				73979F9B10B957FF00FF5532 /* PSTitleValueSpecifierCell.m in Sources */,
 				73979F9C10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m in Sources */,
 				73979F9D10B957FF00FF5532 /* InAppSetting.m in Sources */,
-				73979F9E10B957FF00FF5532 /* InAppSettingsSuperViewController.m in Sources */,
 				73979F9F10B957FF00FF5532 /* InAppSettingsViewController.m in Sources */,
 				73979FA010B957FF00FF5532 /* PSMultiValueSpecifierTable.m in Sources */,
 				738BAD1D10B9FAE900498664 /* PSTextFieldSpecifierCell.m in Sources */,
