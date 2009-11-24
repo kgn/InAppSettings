@@ -69,6 +69,11 @@
     return YES;
 }
 
+- (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *header = [headers objectAtIndex:indexPath.section];
+    return [[settings objectForKey:header] objectAtIndex:indexPath.row];
+}
+
 - (void)viewDidLoad{
     NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
@@ -121,6 +126,13 @@
     [self.tableView reloadData];
 }
 
+
+- (void)controlInteractionBegan:(UIControl *)control {
+    [[self tableView] scrollToRowAtIndexPath:[[self tableView] indexPathForCell:(UITableViewCell *)[[control superview] superview]] 
+                            atScrollPosition:UITableViewScrollPositionTop 
+                                    animated:YES];
+}
+
 - (void)dealloc{
     [headers release];
     [displayHeaders release];
@@ -143,11 +155,6 @@
     return [[settings objectForKey:header] count];
 }
 
-- (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *header = [headers objectAtIndex:indexPath.section];
-    return [[settings objectForKey:header] objectAtIndex:indexPath.row];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     InAppSetting *setting = [self settingAtIndexPath:indexPath];
     
@@ -168,6 +175,13 @@
     //set the values of the cell, this is broken out for reloading the table
     [cell setValue];
     
+    for (UIView *subview in [[cell contentView] subviews]) {
+        if ([subview respondsToSelector:@selector(addTarget:action:forControlEvents:)]) {
+            UIControl *control = (UIControl *)subview;
+            [control addTarget:self action:@selector(controlInteractionBegan:) forControlEvents:UIControlEventEditingDidBegin|UIControlEventTouchDown];
+        }
+    }
+    
     return cell;
 }
 
@@ -178,8 +192,14 @@
         [self.navigationController pushViewController:multiValueSpecifier animated:YES];
         [multiValueSpecifier release];
     }
-    //TODO: make all other cell unselectable
-    //TODO: scroll view to current cell
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    InAppSetting *setting = [self settingAtIndexPath:indexPath];
+    if([[setting valueForKey:@"Type"] isEqualToString:@"PSMultiValueSpecifier"]){
+        return indexPath;
+    }
+    return nil;
 }
 
 @end
