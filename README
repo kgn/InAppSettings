@@ -2,4 +2,10 @@ InAppSettings provides a view controller that will read your applications Settin
 
 InAppSettingsTestApp is a simple application for testing that InAppSettings is working correctly.
 
-It's distributed under the MIT License, read the license file for more licensing information.
+InAppSettings is distributed under the MIT License, read the license file for more licensing information.
+
+By:
+David Keegan
+
+With contributions from:
+shayne

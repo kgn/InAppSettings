@@ -12,7 +12,11 @@
     NSDictionary *settingDictionary;
 }
 
+- (NSString *)getType;
+- (BOOL)isType:(NSString *)type;
 - (id)valueForKey:(NSString *)key;
+- (NSString *)cellName;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

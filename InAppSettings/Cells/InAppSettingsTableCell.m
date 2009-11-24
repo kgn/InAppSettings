@@ -44,6 +44,10 @@
     //implement this per cell type
 }
 
+- (UIControl *)getValueInput{
+    return nil;
+}
+
 - (void)setValue:(id)newValue{
     [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:@"Key"]];
 }

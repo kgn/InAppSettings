@@ -10,8 +10,20 @@
 
 @implementation InAppSetting
 
+- (NSString *)getType{
+    return [self valueForKey:@"Type"];
+}
+
+- (BOOL)isType:(NSString *)type{
+    return [[self getType] isEqualToString:type];
+}
+
 - (id)valueForKey:(NSString *)key{
     return [settingDictionary objectForKey:key];
+}
+
+- (NSString *)cellName{
+    return [NSString stringWithFormat:@"%@Cell", [self getType]];
 }
 
 #pragma mark init/dealloc

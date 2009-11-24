@@ -14,4 +14,6 @@
     NSMutableDictionary *settings;
 }
 
+- (void)controlEditingDidBeginAction:(UIControl *)control;
+
 @end

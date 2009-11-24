@@ -23,6 +23,7 @@
 - (id)getValue;
 - (void)setValue;
 - (void)setValue:(id)newValue;
+- (UIControl *)getValueInput;
 
 - (void)setupCell;
 - (id)initWithSetting:(InAppSetting *)inputSetting reuseIdentifier:(NSString *)reuseIdentifier;

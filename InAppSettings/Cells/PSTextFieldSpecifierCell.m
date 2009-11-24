@@ -72,6 +72,10 @@
     textField.text = [self getValue];
 }
 
+- (UIControl *)getValueInput{
+    return textField;
+}
+
 - (void)setupCell{
     [super setupCell];
     
