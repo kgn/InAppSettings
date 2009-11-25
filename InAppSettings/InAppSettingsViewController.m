@@ -15,6 +15,88 @@
 
 @synthesize file;
 
+#pragma mark validate plist data
+
+- (BOOL)addSetting:(InAppSetting *)setting{
+    NSString *type = [setting getType];
+    if([type isEqualToString:@"PSMultiValueSpecifier"]){
+        if(![setting hasKey]){
+            return NO;
+        }
+        
+        if(![setting hasDefaultValue]){
+            return NO;
+        }
+        
+        if(![setting hasTitle]){
+            return NO;
+        }
+        
+        NSArray *titles = [setting valueForKey:@"Titles"];
+        if((!titles) || ([titles count] == 0)){
+            return NO;
+        }
+        
+        NSArray *values = [setting valueForKey:@"Values"];
+        if((!values) || ([values count] == 0)){
+            return NO;
+        }
+        
+        if([titles count] != [values count]){
+            return NO;
+        }
+    }
+    
+    else if([type isEqualToString:@"PSSliderSpecifier"]){
+        if(![setting hasKey]){
+            return NO;
+        }
+        
+        if(![setting hasDefaultValue]){
+            return NO;
+        }
+        
+        NSNumber *minValue = [setting valueForKey:@"MinimumValue"];
+        if(!minValue){
+            return NO;
+        }
+        
+        NSNumber *maxValue = [setting valueForKey:@"MaximumValue"];
+        if(!maxValue){
+            return NO;
+        }
+    }
+    
+    else if([type isEqualToString:@"PSToggleSwitchSpecifier"]){
+        if(![setting hasKey]){
+            return NO;
+        }
+        
+        if(![setting hasDefaultValue]){
+            return NO;
+        }
+        
+        if(![setting hasTitle]){
+            return NO;
+        }
+    }
+    
+    else if([type isEqualToString:@"PSChildPaneSpecifier"]){
+        if(![setting hasTitle]){
+            return NO;
+        }
+        
+        NSString *plistFile = [setting valueForKey:@"File"];
+        if(!plistFile){
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+#pragma mark setup view
+
 - (id)initWithStyle:(UITableViewStyle)style{
     return [super initWithStyle:UITableViewStyleGrouped];
 }
@@ -35,107 +117,21 @@
     [super setTitle:NSLocalizedString(newTitle, nil)];
 }
 
-- (BOOL)addSetting:(InAppSetting *)setting{
-    NSString *type = [setting getType];
-    
-    //TODO: make helper functions for Title, Key, DefaultValue
-    if([type isEqualToString:@"PSMultiValueSpecifier"]){
-        NSString *key = [setting valueForKey:@"Key"];
-        if((!key) || [key isEqualToString:@""]){
-            return NO;
-        }
-        
-        id defaultValue = [setting valueForKey:@"DefaultValue"];
-        if(!defaultValue){
-            return NO;
-        }
-        
-        NSString *title = [setting valueForKey:@"Title"];
-        if(!title){
-            return NO;
-        }
-        NSArray *titles = [setting valueForKey:@"Titles"];
-        if((!titles) || ([titles count] == 0)){
-            return NO;
-        }
-        NSArray *values = [setting valueForKey:@"Values"];
-        if((!values) || ([values count] == 0)){
-            return NO;
-        }
-        if([titles count] != [values count]){
-            return NO;
-        }
-    }
-    
-    else if([type isEqualToString:@"PSSliderSpecifier"]){
-        NSString *key = [setting valueForKey:@"Key"];
-        if((!key) || [key isEqualToString:@""]){
-            return NO;
-        }
-        
-        id defaultValue = [setting valueForKey:@"DefaultValue"];
-        if(!defaultValue){
-            return NO;
-        }
-        
-        NSNumber *minValue = [setting valueForKey:@"MinimumValue"];
-        if(!minValue){
-            return NO;
-        }
-        NSNumber *maxValue = [setting valueForKey:@"MaximumValue"];
-        if(!maxValue){
-            return NO;
-        }
-    }
-    
-    else if([type isEqualToString:@"PSToggleSwitchSpecifier"]){
-        NSString *key = [setting valueForKey:@"Key"];
-        if((!key) || [key isEqualToString:@""]){
-            return NO;
-        }
-        
-        id defaultValue = [setting valueForKey:@"DefaultValue"];
-        if(!defaultValue){
-            return NO;
-        }
-        
-        NSString *title = [setting valueForKey:@"Title"];
-        if(!title){
-            return NO;
-        }
-    }
-    
-    else if([type isEqualToString:@"PSChildPaneSpecifier"]){
-        NSString *title = [setting valueForKey:@"Title"];
-        if(!title){
-            NSLog(@"NO Title");
-            return NO;
-        }
-        //TODO: make sure file exists
-        NSString *plistFile = [setting valueForKey:@"File"];
-        if(!plistFile){
-            NSLog(@"No file");
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
 - (void)viewDidLoad{
-    //load settigns plist
-    //TODO: make sure the file exists
-    if(!self.file){
-        self.file = @"Root.plist";
-    }
-    NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
-    NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:self.file];
-    NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
-    
     //if the title is nil set it to Settings
     if(!self.title){
         self.title = @"Settings";
     }
+    
+    //load settigns plist
+    if(!self.file){
+        self.file = @"Root.plist";
+    }
+    
+    //load plist
+    NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
+    NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:self.file];
+    NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
     
     //create an array for headers(PSGroupSpecifier) and a dictonary to hold arrays of settings
     headers = [[NSMutableArray alloc] init];

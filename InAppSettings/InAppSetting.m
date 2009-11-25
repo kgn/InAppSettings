@@ -26,6 +26,21 @@
     return [NSString stringWithFormat:@"%@Cell", [self getType]];
 }
 
+#pragma mark validation
+
+- (BOOL)hasTitle{
+    return ([self valueForKey:@"Title"]) ? YES:NO;
+}
+
+- (BOOL)hasKey{
+    NSString *key = [self valueForKey:@"Key"];
+    return (key && (![key isEqualToString:@""]));
+}
+
+- (BOOL)hasDefaultValue{
+    return ([self valueForKey:@"DefaultValue"]) ? YES:NO;
+}
+
 #pragma mark init/dealloc
 
 - (id)init{

@@ -17,6 +17,10 @@
 - (id)valueForKey:(NSString *)key;
 - (NSString *)cellName;
 
+- (BOOL)hasTitle;
+- (BOOL)hasKey;
+- (BOOL)hasDefaultValue;
+
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
