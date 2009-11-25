@@ -181,6 +181,105 @@
 			<string>PSTitleValueSpecifier</string>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string>Titles-Value</string>
+			<key>Key</key>
+			<string>readOnly2_titleValue</string>
+			<key>DefaultValue</key>
+			<integer>2</integer>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Item 1</string>
+				<string>Item 2</string>
+				<string>Item 3</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Out of Range</string>
+			<key>Key</key>
+			<string>readOnly2_titleValueOUtrange</string>
+			<key>DefaultValue</key>
+			<integer>6</integer>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Item 1</string>
+				<string>Item 2</string>
+				<string>Item 3</string>
+			</array>
+		</dict>
+		
+		<dict>
+			<key>Title</key>
+			<string>Not Enough Titles</string>
+			<key>Key</key>
+			<string>readOnly2_titleValuenotenoughtitles</string>
+			<key>DefaultValue</key>
+			<integer>2</integer>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Item 1</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Not Enough, Valid Default</string>
+			<key>Key</key>
+			<string>readOnly2_titleValuenotenoughtitlesvaluddefault</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Item 1</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>No values</string>
+			<key>Key</key>
+			<string>readOnly2_noValues</string>
+			<key>DefaultValue</key>
+			<integer>2</integer>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Titles</key>
+			<array>
+				<string>Item 1</string>
+			</array>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
@@ -199,6 +298,44 @@
 			<string>YES</string>
 			<key>FalseValue</key>
 			<string>NO</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Real Numbers</string>
+			<key>Key</key>
+			<string>toogle_realnumbers</string>
+			<key>DefaultValue</key>
+			<real>1.23</real>
+			<key>TrueValue</key>
+			<real>1.23</real>
+			<key>FalseValue</key>
+			<real>4.56</real>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Real Numbers True</string>
+			<key>Key</key>
+			<string>toogle_realnumberstrue</string>
+			<key>DefaultValue</key>
+			<real>1.23</real>
+			<key>TrueValue</key>
+			<real>1.23</real>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Real Numbers False</string>
+			<key>Key</key>
+			<string>toogle_realnumbersfalse</string>
+			<key>DefaultValue</key>
+			<real>1.23</real>
+			<key>FalseValue</key>
+			<real>1.23</real>
 		</dict>
 		<dict>
 			<key>Type</key>

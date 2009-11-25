@@ -38,7 +38,7 @@
 
 #pragma mark Value
 
-- (NSString *)getValue{
+- (id)getValue{
     id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting valueForKey:@"Key"]];
     if(value == nil){
         value = [self.setting valueForKey:@"DefaultValue"];
@@ -46,7 +46,7 @@
     return value;
 }
 
-- (void)setValue:(NSString *)newValue{
+- (void)setValue:(id)newValue{
     [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:@"Key"]];
 }
 
@@ -69,7 +69,7 @@
     }
 	
     NSString *cellTitle = NSLocalizedString([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], nil);
-    NSString *cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
+    id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     cell.textLabel.text = cellTitle;
 	if([cellValue isEqualToString:[self getValue]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -88,7 +88,7 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
+    id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     [self setValue:cellValue];
     [self.tableView reloadData];
     return indexPath;

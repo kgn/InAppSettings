@@ -10,13 +10,34 @@
 
 @implementation PSTitleValueSpecifierCell
 
+- (NSString *)getValueTitle{
+    NSArray *titles = [self.setting valueForKey:@"Titles"];
+    NSArray *values = [self.setting valueForKey:@"Values"];
+    if(titles || values){
+        if(([titles count] == 0) || ([values count] == 0) || ([titles count] != [values count])){
+            return nil;
+        }
+        NSInteger valueIndex = [values indexOfObject:[self getValue]];
+        if((valueIndex >= 0) && (valueIndex < (NSInteger)[titles count])){
+            return [titles objectAtIndex:valueIndex];
+        }
+        
+        return nil;
+    }
+    
+    return [self getValue];
+}
+
+- (void)setValue{
+    [super setValue];
+    
+    [self setDetail:[self getValueTitle]];
+}
+
 - (void)setupCell{
     [super setupCell];
     
     [self setTitle];
-    [self setDetail];
-    
-    //TODO: add support for values and titles
 }
 
 @end

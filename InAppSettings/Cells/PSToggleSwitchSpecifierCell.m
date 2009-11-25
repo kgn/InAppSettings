@@ -18,14 +18,19 @@
 
 - (BOOL)getBool{
     id value = [self getValue];
-    if([value isKindOfClass:[NSNumber class]]){
-        //TODO: just cause its an NSNumber does not mean its a BOOL...
-        return [[self getValue] boolValue];
-    }
-    if([value isEqual:[self.setting valueForKey:@"TrueValue"]]){
+    id trueValue = [self.setting valueForKey:@"TrueValue"];
+    id falseValue = [self.setting valueForKey:@"FalseValue"];
+    
+    if([value isEqual:trueValue]){
         return YES;
     }
-    return NO;
+    
+    if([value isEqual:falseValue]){
+        return NO;
+    }
+    
+    //if there is no true or false values the value has to be a bool
+    return [value boolValue];
 }
 
 - (void)setBool:(BOOL)newValue{

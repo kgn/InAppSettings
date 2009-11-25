@@ -11,4 +11,6 @@
 
 @interface PSTitleValueSpecifierCell : InAppSettingsTableCell {}
 
+- (NSString *)getValueTitle;
+
 @end

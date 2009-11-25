@@ -16,7 +16,7 @@
 @property (nonatomic, retain) InAppSetting *setting;
 
 - (id)initWithSetting:(InAppSetting *)inputSetting;
-- (NSString *)getValue;
-- (void)setValue:(NSString *)newValue;
+- (id)getValue;
+- (void)setValue:(id)newValue;
 
 @end

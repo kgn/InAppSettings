@@ -6,6 +6,8 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
+//TODO: needs a navigation controller to work correctly
+
 #import "InAppSettingsViewController.h"
 #import "InAppSetting.h"
 #import "InAppSettingConstants.h"
@@ -77,6 +79,16 @@
         }
         
         if(![setting hasTitle]){
+            return NO;
+        }
+    }
+    
+    else if([type isEqualToString:@"PSTitleValueSpecifier"]){
+        if(![setting hasKey]){
+            return NO;
+        }
+        
+        if(![setting hasDefaultValue]){
             return NO;
         }
     }
