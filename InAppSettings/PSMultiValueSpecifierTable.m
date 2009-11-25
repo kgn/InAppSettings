@@ -84,10 +84,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     [self setValue:cellValue];
-    //TODO: make this behave like the settings, animate selection
     [self.tableView reloadData];
+    return indexPath;
 }
 
 @end
