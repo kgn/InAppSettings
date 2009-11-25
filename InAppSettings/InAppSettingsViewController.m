@@ -132,20 +132,27 @@
     NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
     NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:self.file];
     NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
+    NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:@"PreferenceSpecifiers"];
     
     //create an array for headers(PSGroupSpecifier) and a dictonary to hold arrays of settings
     headers = [[NSMutableArray alloc] init];
     displayHeaders = [[NSMutableArray alloc] init];
     settings = [[NSMutableDictionary alloc] init];
     
+    //if the first item is not a PSGroupSpecifier create a header to store the settings
+    NSString *currentHeader = InAppSettingNullHeader;
+    InAppSetting *firstSetting = [[InAppSetting alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0]];
+    if(![firstSetting isType:@"PSGroupSpecifier"]){
+        [headers addObject:currentHeader];
+        [displayHeaders addObject:@""];
+        [settings setObject:[[NSMutableArray alloc] init] forKey:currentHeader];//ignore this potential leak, this will be released with settings
+    }
+    [firstSetting release];
+    
     //set the first value in the display header to "", while the real header is set to InAppSettingNullHeader
     //this way whats set in the first entry to headers will not be seen
-    NSString *currentHeader = InAppSettingNullHeader;
-    [headers addObject:currentHeader];
-    [displayHeaders addObject:@""];
-    [settings setObject:[[NSMutableArray alloc] init] forKey:currentHeader];//ignore this potential leak, this will be released with settings
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    for(NSDictionary *eachSetting in [settingsDictionary objectForKey:@"PreferenceSpecifiers"]){
+    for(NSDictionary *eachSetting in preferenceSpecifiers){
         BOOL addSetting = YES;
         InAppSetting *setting = [[InAppSetting alloc] initWithDictionary:eachSetting];
         
