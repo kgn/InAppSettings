@@ -15,16 +15,19 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		731339BC10B92F0C00B11E9B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 731339BB10B92F0C00B11E9B /* Settings.bundle */; };
-		738BAD1D10B9FAE900498664 /* PSTextFieldSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 738BAD1C10B9FAE900498664 /* PSTextFieldSpecifierCell.m */; };
-		73944B1F10BC9EBF000739B7 /* PSChildPaneSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73944B1E10BC9EBF000739B7 /* PSChildPaneSpecifierCell.m */; };
-		73979F9810B957FF00FF5532 /* InAppSettingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8610B957FF00FF5532 /* InAppSettingsTableCell.m */; };
-		73979F9910B957FF00FF5532 /* PSMultiValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8810B957FF00FF5532 /* PSMultiValueSpecifierCell.m */; };
-		73979F9A10B957FF00FF5532 /* PSSliderSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8A10B957FF00FF5532 /* PSSliderSpecifierCell.m */; };
-		73979F9B10B957FF00FF5532 /* PSTitleValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8C10B957FF00FF5532 /* PSTitleValueSpecifierCell.m */; };
-		73979F9C10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F8E10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m */; };
-		73979F9D10B957FF00FF5532 /* InAppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F9010B957FF00FF5532 /* InAppSetting.m */; };
-		73979F9F10B957FF00FF5532 /* InAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F9510B957FF00FF5532 /* InAppSettingsViewController.m */; };
-		73979FA010B957FF00FF5532 /* PSMultiValueSpecifierTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 73979F9710B957FF00FF5532 /* PSMultiValueSpecifierTable.m */; };
+		7366576010BDDC4900C041F5 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7366575F10BDDC4900C041F5 /* 20-gear2.png */; };
+		7366576410BDDD8300C041F5 /* 22-skull-n-crossbones.png in Resources */ = {isa = PBXBuildFile; fileRef = 7366576310BDDD8300C041F5 /* 22-skull-n-crossbones.png */; };
+		736AA3A310BFA41400249911 /* InAppSettingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */; };
+		736AA3A410BFA41400249911 /* PSChildPaneSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39110BFA41400249911 /* PSChildPaneSpecifierCell.m */; };
+		736AA3A510BFA41400249911 /* PSMultiValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39310BFA41400249911 /* PSMultiValueSpecifierCell.m */; };
+		736AA3A610BFA41400249911 /* PSSliderSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39510BFA41400249911 /* PSSliderSpecifierCell.m */; };
+		736AA3A710BFA41400249911 /* PSTextFieldSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39710BFA41400249911 /* PSTextFieldSpecifierCell.m */; };
+		736AA3A810BFA41400249911 /* PSTitleValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39910BFA41400249911 /* PSTitleValueSpecifierCell.m */; };
+		736AA3A910BFA41400249911 /* PSToggleSwitchSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39B10BFA41400249911 /* PSToggleSwitchSpecifierCell.m */; };
+		736AA3AA10BFA41400249911 /* InAppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39D10BFA41400249911 /* InAppSetting.m */; };
+		736AA3AB10BFA41400249911 /* InAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA3A010BFA41400249911 /* InAppSettingsViewController.m */; };
+		736AA3AC10BFA41400249911 /* PSMultiValueSpecifierTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA3A210BFA41400249911 /* PSMultiValueSpecifierTable.m */; };
+		736AA43010BFAA0500249911 /* test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 736AA42F10BFAA0500249911 /* test.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,27 +43,30 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		731339BB10B92F0C00B11E9B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		738BAD1B10B9FAE900498664 /* PSTextFieldSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTextFieldSpecifierCell.h; sourceTree = "<group>"; };
-		738BAD1C10B9FAE900498664 /* PSTextFieldSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTextFieldSpecifierCell.m; sourceTree = "<group>"; };
-		73944B1D10BC9EBF000739B7 /* PSChildPaneSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSChildPaneSpecifierCell.h; sourceTree = "<group>"; };
-		73944B1E10BC9EBF000739B7 /* PSChildPaneSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSChildPaneSpecifierCell.m; sourceTree = "<group>"; };
-		73979F8510B957FF00FF5532 /* InAppSettingsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsTableCell.h; sourceTree = "<group>"; };
-		73979F8610B957FF00FF5532 /* InAppSettingsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsTableCell.m; sourceTree = "<group>"; };
-		73979F8710B957FF00FF5532 /* PSMultiValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierCell.h; sourceTree = "<group>"; };
-		73979F8810B957FF00FF5532 /* PSMultiValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSMultiValueSpecifierCell.m; sourceTree = "<group>"; };
-		73979F8910B957FF00FF5532 /* PSSliderSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSliderSpecifierCell.h; sourceTree = "<group>"; };
-		73979F8A10B957FF00FF5532 /* PSSliderSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSliderSpecifierCell.m; sourceTree = "<group>"; };
-		73979F8B10B957FF00FF5532 /* PSTitleValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTitleValueSpecifierCell.h; sourceTree = "<group>"; };
-		73979F8C10B957FF00FF5532 /* PSTitleValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTitleValueSpecifierCell.m; sourceTree = "<group>"; };
-		73979F8D10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSToggleSwitchSpecifierCell.h; sourceTree = "<group>"; };
-		73979F8E10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSToggleSwitchSpecifierCell.m; sourceTree = "<group>"; };
-		73979F8F10B957FF00FF5532 /* InAppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSetting.h; sourceTree = "<group>"; };
-		73979F9010B957FF00FF5532 /* InAppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSetting.m; sourceTree = "<group>"; };
-		73979F9110B957FF00FF5532 /* InAppSettingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingConstants.h; sourceTree = "<group>"; };
-		73979F9410B957FF00FF5532 /* InAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsViewController.h; sourceTree = "<group>"; };
-		73979F9510B957FF00FF5532 /* InAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsViewController.m; sourceTree = "<group>"; };
-		73979F9610B957FF00FF5532 /* PSMultiValueSpecifierTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierTable.h; sourceTree = "<group>"; };
-		73979F9710B957FF00FF5532 /* PSMultiValueSpecifierTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSMultiValueSpecifierTable.m; sourceTree = "<group>"; };
+		7366575F10BDDC4900C041F5 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
+		7366576310BDDD8300C041F5 /* 22-skull-n-crossbones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "22-skull-n-crossbones.png"; sourceTree = "<group>"; };
+		736AA38E10BFA41400249911 /* InAppSettingsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsTableCell.h; sourceTree = "<group>"; };
+		736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsTableCell.m; sourceTree = "<group>"; };
+		736AA39010BFA41400249911 /* PSChildPaneSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSChildPaneSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39110BFA41400249911 /* PSChildPaneSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSChildPaneSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39210BFA41400249911 /* PSMultiValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39310BFA41400249911 /* PSMultiValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSMultiValueSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39410BFA41400249911 /* PSSliderSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSliderSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39510BFA41400249911 /* PSSliderSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSliderSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39610BFA41400249911 /* PSTextFieldSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTextFieldSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39710BFA41400249911 /* PSTextFieldSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTextFieldSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39810BFA41400249911 /* PSTitleValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTitleValueSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39910BFA41400249911 /* PSTitleValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTitleValueSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39A10BFA41400249911 /* PSToggleSwitchSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSToggleSwitchSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39B10BFA41400249911 /* PSToggleSwitchSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSToggleSwitchSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39C10BFA41400249911 /* InAppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSetting.h; sourceTree = "<group>"; };
+		736AA39D10BFA41400249911 /* InAppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSetting.m; sourceTree = "<group>"; };
+		736AA39E10BFA41400249911 /* InAppSettingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingConstants.h; sourceTree = "<group>"; };
+		736AA39F10BFA41400249911 /* InAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsViewController.h; sourceTree = "<group>"; };
+		736AA3A010BFA41400249911 /* InAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsViewController.m; sourceTree = "<group>"; };
+		736AA3A110BFA41400249911 /* PSMultiValueSpecifierTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierTable.h; sourceTree = "<group>"; };
+		736AA3A210BFA41400249911 /* PSMultiValueSpecifierTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSMultiValueSpecifierTable.m; sourceTree = "<group>"; };
+		736AA42F10BFAA0500249911 /* test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = test.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* InAppSettingsTestApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "InAppSettingsTestApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +106,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				73979F8310B957FF00FF5532 /* InAppSettings */,
+				736AA38C10BFA41400249911 /* InAppSettings */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -122,9 +128,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7366576310BDDD8300C041F5 /* 22-skull-n-crossbones.png */,
+				7366575F10BDDC4900C041F5 /* 20-gear2.png */,
 				731339BB10B92F0C00B11E9B /* Settings.bundle */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* InAppSettingsTestApp-Info.plist */,
+				736AA42F10BFAA0500249911 /* test.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -139,39 +148,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		73979F8310B957FF00FF5532 /* InAppSettings */ = {
+		736AA38C10BFA41400249911 /* InAppSettings */ = {
 			isa = PBXGroup;
 			children = (
-				73979F8F10B957FF00FF5532 /* InAppSetting.h */,
-				73979F9010B957FF00FF5532 /* InAppSetting.m */,
-				73979F9110B957FF00FF5532 /* InAppSettingConstants.h */,
-				73979F9410B957FF00FF5532 /* InAppSettingsViewController.h */,
-				73979F9510B957FF00FF5532 /* InAppSettingsViewController.m */,
-				73979F9610B957FF00FF5532 /* PSMultiValueSpecifierTable.h */,
-				73979F9710B957FF00FF5532 /* PSMultiValueSpecifierTable.m */,
-				73979F8410B957FF00FF5532 /* Cells */,
+				736AA39C10BFA41400249911 /* InAppSetting.h */,
+				736AA39D10BFA41400249911 /* InAppSetting.m */,
+				736AA39E10BFA41400249911 /* InAppSettingConstants.h */,
+				736AA39F10BFA41400249911 /* InAppSettingsViewController.h */,
+				736AA3A010BFA41400249911 /* InAppSettingsViewController.m */,
+				736AA3A110BFA41400249911 /* PSMultiValueSpecifierTable.h */,
+				736AA3A210BFA41400249911 /* PSMultiValueSpecifierTable.m */,
+				736AA38D10BFA41400249911 /* Cells */,
 			);
 			name = InAppSettings;
 			path = ../InAppSettings;
 			sourceTree = SOURCE_ROOT;
 		};
-		73979F8410B957FF00FF5532 /* Cells */ = {
+		736AA38D10BFA41400249911 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				73979F8510B957FF00FF5532 /* InAppSettingsTableCell.h */,
-				73979F8610B957FF00FF5532 /* InAppSettingsTableCell.m */,
-				73979F8710B957FF00FF5532 /* PSMultiValueSpecifierCell.h */,
-				73979F8810B957FF00FF5532 /* PSMultiValueSpecifierCell.m */,
-				73979F8910B957FF00FF5532 /* PSSliderSpecifierCell.h */,
-				73979F8A10B957FF00FF5532 /* PSSliderSpecifierCell.m */,
-				73979F8B10B957FF00FF5532 /* PSTitleValueSpecifierCell.h */,
-				73979F8C10B957FF00FF5532 /* PSTitleValueSpecifierCell.m */,
-				73979F8D10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.h */,
-				73979F8E10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m */,
-				738BAD1B10B9FAE900498664 /* PSTextFieldSpecifierCell.h */,
-				738BAD1C10B9FAE900498664 /* PSTextFieldSpecifierCell.m */,
-				73944B1D10BC9EBF000739B7 /* PSChildPaneSpecifierCell.h */,
-				73944B1E10BC9EBF000739B7 /* PSChildPaneSpecifierCell.m */,
+				736AA38E10BFA41400249911 /* InAppSettingsTableCell.h */,
+				736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */,
+				736AA39010BFA41400249911 /* PSChildPaneSpecifierCell.h */,
+				736AA39110BFA41400249911 /* PSChildPaneSpecifierCell.m */,
+				736AA39210BFA41400249911 /* PSMultiValueSpecifierCell.h */,
+				736AA39310BFA41400249911 /* PSMultiValueSpecifierCell.m */,
+				736AA39410BFA41400249911 /* PSSliderSpecifierCell.h */,
+				736AA39510BFA41400249911 /* PSSliderSpecifierCell.m */,
+				736AA39610BFA41400249911 /* PSTextFieldSpecifierCell.h */,
+				736AA39710BFA41400249911 /* PSTextFieldSpecifierCell.m */,
+				736AA39810BFA41400249911 /* PSTitleValueSpecifierCell.h */,
+				736AA39910BFA41400249911 /* PSTitleValueSpecifierCell.m */,
+				736AA39A10BFA41400249911 /* PSToggleSwitchSpecifierCell.h */,
+				736AA39B10BFA41400249911 /* PSToggleSwitchSpecifierCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -227,6 +236,9 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				731339BC10B92F0C00B11E9B /* Settings.bundle in Resources */,
+				7366576010BDDC4900C041F5 /* 20-gear2.png in Resources */,
+				7366576410BDDD8300C041F5 /* 22-skull-n-crossbones.png in Resources */,
+				736AA43010BFAA0500249911 /* test.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,16 +252,16 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* InAppSettingsTestAppAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
-				73979F9810B957FF00FF5532 /* InAppSettingsTableCell.m in Sources */,
-				73979F9910B957FF00FF5532 /* PSMultiValueSpecifierCell.m in Sources */,
-				73979F9A10B957FF00FF5532 /* PSSliderSpecifierCell.m in Sources */,
-				73979F9B10B957FF00FF5532 /* PSTitleValueSpecifierCell.m in Sources */,
-				73979F9C10B957FF00FF5532 /* PSToggleSwitchSpecifierCell.m in Sources */,
-				73979F9D10B957FF00FF5532 /* InAppSetting.m in Sources */,
-				73979F9F10B957FF00FF5532 /* InAppSettingsViewController.m in Sources */,
-				73979FA010B957FF00FF5532 /* PSMultiValueSpecifierTable.m in Sources */,
-				738BAD1D10B9FAE900498664 /* PSTextFieldSpecifierCell.m in Sources */,
-				73944B1F10BC9EBF000739B7 /* PSChildPaneSpecifierCell.m in Sources */,
+				736AA3A310BFA41400249911 /* InAppSettingsTableCell.m in Sources */,
+				736AA3A410BFA41400249911 /* PSChildPaneSpecifierCell.m in Sources */,
+				736AA3A510BFA41400249911 /* PSMultiValueSpecifierCell.m in Sources */,
+				736AA3A610BFA41400249911 /* PSSliderSpecifierCell.m in Sources */,
+				736AA3A710BFA41400249911 /* PSTextFieldSpecifierCell.m in Sources */,
+				736AA3A810BFA41400249911 /* PSTitleValueSpecifierCell.m in Sources */,
+				736AA3A910BFA41400249911 /* PSToggleSwitchSpecifierCell.m in Sources */,
+				736AA3AA10BFA41400249911 /* InAppSetting.m in Sources */,
+				736AA3AB10BFA41400249911 /* InAppSettingsViewController.m in Sources */,
+				736AA3AC10BFA41400249911 /* PSMultiValueSpecifierTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="106"/>
+			<integer value="133"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -55,7 +55,11 @@
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUINavigationController" key="IBUISelectedViewController" id="601366280">
 					<object class="IBUITabBarItem" key="IBUITabBarItem" id="758824086">
-						<string key="IBUITitle">Item</string>
+						<string key="IBUITitle">Settings</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">20-gear2.png</string>
+						</object>
 						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
@@ -83,7 +87,11 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUINavigationController" id="876016658">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="475267005">
-							<string key="IBUITitle">Item</string>
+							<string key="IBUITitle">Root</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">22-skull-n-crossbones.png</string>
+							</object>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
@@ -100,7 +108,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIViewController" id="329778111">
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="122398751">
-									<string key="IBUITitle">Root View Controller</string>
+									<string key="IBUITitle">Root</string>
 									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="253265363">
 										<string key="IBUITitle">Settings</string>
 										<int key="IBUIStyle">1</int>
@@ -320,7 +328,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
-					<string>{{577, 331}, {320, 480}}</string>
+					<string>{{482, 331}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -363,7 +371,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">137</int>
+			<int key="maxID">142</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

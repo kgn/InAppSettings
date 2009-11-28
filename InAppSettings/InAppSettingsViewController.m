@@ -113,10 +113,6 @@
     return [super initWithStyle:UITableViewStyleGrouped];
 }
 
-- (id)initWithCoder:(NSCoder *)coder{
-    return [super initWithStyle:UITableViewStyleGrouped];
-}
-
 - (id)initWithFile:(NSString *)inputFile{
     self = [super init];
     if (self != nil) {
@@ -125,14 +121,17 @@
     return self;
 }
 
-- (void)setTitle:(NSString *)newTitle{
-    [super setTitle:NSLocalizedString(newTitle, nil)];
-}
-
 - (void)viewDidLoad{
+    //if the table is not group styled make a new one that is
+    //this does not seem to leak or add to the ref count...
+    if(self.tableView.style != UITableViewStyleGrouped){
+        CGRect tableViewFrame = self.tableView.frame;
+        self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
+    }
+    
     //if the title is nil set it to Settings
     if(!self.title){
-        self.title = @"Settings";
+        self.title = NSLocalizedString(@"Settings", nil);
     }
     
     //load settigns plist
