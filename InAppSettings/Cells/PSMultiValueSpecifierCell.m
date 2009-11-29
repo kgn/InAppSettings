@@ -31,7 +31,7 @@
     [super setupCell];
     
     [self setTitle];
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [self setDisclosure:YES];
 }
 
 @end

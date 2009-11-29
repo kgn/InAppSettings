@@ -38,7 +38,7 @@
     CGRect valueSliderFrame = valueSlider.frame;
     valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f));
     valueSliderFrame.origin.x = InAppSettingCellPadding;
-    valueSliderFrame.size.width = self.contentView.frame.size.width-(InAppSettingCellPadding*4);
+    valueSliderFrame.size.width = InAppSettingTableWidth-(InAppSettingCellPadding*4);
     valueSlider.frame = valueSliderFrame;
     [valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:valueSlider];

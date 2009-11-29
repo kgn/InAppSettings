@@ -11,6 +11,7 @@
 
 @interface InAppSettingsTableCell : UITableViewCell {
     InAppSetting *setting;
+    UILabel *titleLabel, *valueLabel;
 }
 
 @property (nonatomic, retain) InAppSetting *setting;
@@ -19,6 +20,7 @@
 - (void)setDetail;
 - (void)setTitle:(NSString *)title;
 - (void)setDetail:(NSString *)detail;
+- (void)setDisclosure:(BOOL)disclosure;
 
 - (id)getValue;
 - (void)setValue;

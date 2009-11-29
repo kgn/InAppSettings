@@ -81,8 +81,8 @@
     [super setupCell];
     
     [self setTitle];
-    //for some reason self.textLabel.frame.size.width or sizeWithFont:self.textLabel.font does not work...
-    CGSize titleSize = [self.textLabel.text sizeWithFont:[UIFont boldSystemFontOfSize:InAppSettingFontSize]];
+    
+    CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font];
     
     //create text field
     textField =[[UITextField alloc] initWithFrame:CGRectZero];
@@ -101,7 +101,7 @@
         textFieldFrame.origin.x = InAppSettingCellTextFieldMinX;
     }
     textFieldFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f));
-    textFieldFrame.size.width = (CGFloat)round((self.contentView.frame.size.width-(InAppSettingCellPadding*3))-textFieldFrame.origin.x);
+    textFieldFrame.size.width = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*3))-textFieldFrame.origin.x);
     textFieldFrame.size.height = titleSize.height;
     textField.frame = textFieldFrame;
     

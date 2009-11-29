@@ -69,7 +69,7 @@
     valueSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
     CGRect valueSwitchFrame = valueSwitch.frame;
     valueSwitchFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSwitchFrame.size.height*0.5f));
-    valueSwitchFrame.origin.x = (CGFloat)round((self.contentView.frame.size.width-(InAppSettingCellPadding*3))-valueSwitchFrame.size.width);
+    valueSwitchFrame.origin.x = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*3))-valueSwitchFrame.size.width);
     valueSwitch.frame = valueSwitchFrame;
     [valueSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventValueChanged];
     [self.contentView addSubview:valueSwitch];
