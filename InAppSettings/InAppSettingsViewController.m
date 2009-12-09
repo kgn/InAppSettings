@@ -6,8 +6,6 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-//TODO: needs a navigation controller to work correctly
-
 #import "InAppSettingsViewController.h"
 #import "InAppSetting.h"
 #import "InAppSettingConstants.h"
@@ -123,7 +121,6 @@
 
 - (void)viewDidLoad{
     //if the table is not group styled make a new one that is
-    //this does not seem to leak or add to the ref count...
     if(self.tableView.style != UITableViewStyleGrouped){
         CGRect tableViewFrame = self.tableView.frame;
         self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
