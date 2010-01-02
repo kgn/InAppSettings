@@ -104,14 +104,14 @@
     //setup title label
     titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.font = InAppSettingBoldFont;
-    //titleLabel.backgroundColor = [UIColor redColor];
+    titleLabel.highlightedTextColor = [UIColor whiteColor];
     [self.contentView addSubview:titleLabel];
     
     //setup value label
     valueLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     valueLabel.font = InAppSettingNormalFont;
     valueLabel.textColor = InAppSettingBlue;
-    //valueLabel.backgroundColor = [UIColor greenColor];
+    valueLabel.highlightedTextColor = [UIColor whiteColor];
     [self.contentView addSubview:valueLabel];
 }
 

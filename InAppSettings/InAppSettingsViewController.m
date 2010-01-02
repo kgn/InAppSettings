@@ -113,7 +113,7 @@
 
 - (id)initWithFile:(NSString *)inputFile{
     self = [super init];
-    if (self != nil) {
+    if (self != nil){
         self.file = inputFile;
     }
     return self;
