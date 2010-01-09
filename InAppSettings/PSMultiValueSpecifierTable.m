@@ -71,7 +71,7 @@
     NSString *cellTitle = NSLocalizedString([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], nil);
     id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     cell.textLabel.text = cellTitle;
-	if([cellValue isEqualToString:[self getValue]]){
+	if([cellValue isEqual:[self getValue]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         cell.textLabel.textColor = InAppSettingBlue;
     }
