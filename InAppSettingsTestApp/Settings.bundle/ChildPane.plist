@@ -10,7 +10,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>New Pane</string>
+			<string>New Pane - With a long group specifier string</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -45,7 +45,7 @@
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Space</string>
-    	</dict>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
