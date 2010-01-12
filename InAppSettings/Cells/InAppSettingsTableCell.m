@@ -93,7 +93,12 @@
 - (id)initWithSetting:(InAppSetting *)inputSetting reuseIdentifier:(NSString *)reuseIdentifier{
     //the docs say UITableViewCellStyleValue1 is used for settings, 
     //but it doesn't look 100% the same so we will just draw our own UILabels
+    #if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_2_2
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    #else
+    self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier];
+    #endif
+
     if (self != nil){
         self.setting = inputSetting;
     }
