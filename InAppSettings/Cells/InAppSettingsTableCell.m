@@ -24,7 +24,7 @@
 }
 
 - (void)setTitle:(NSString *)title{
-    titleLabel.text = NSLocalizedString(title, nil);
+    titleLabel.text = InAppSettingLocalize(title);
     
     CGFloat maxTitleWidth = InAppSettingTableWidth-(InAppSettingCellPadding*4);
     CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font];
@@ -39,7 +39,7 @@
 }
 
 - (void)setDetail:(NSString *)detail{
-    valueLabel.text = NSLocalizedString(detail, nil);
+    valueLabel.text = InAppSettingLocalize(detail);
 
     NSUInteger disclosure = 0;
     if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
@@ -52,7 +52,11 @@
     }
     CGRect valueFrame = valueLabel.frame;
     valueFrame.size = valueSize;
-    valueFrame.origin.x = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*(3+disclosure)))-valueFrame.size.width);
+    if([self.setting isType:@"PSMultiValueSpecifier"] && [[self.setting localizedTitle] length] == 0){
+        valueFrame.origin.x = InAppSettingCellPadding;
+    }else{
+        valueFrame.origin.x = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*(3+disclosure)))-valueFrame.size.width);
+    }
     valueFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSize.height*0.5f))-InAppSettingOffsetY;
     valueLabel.frame = valueFrame;
 }
@@ -110,6 +114,7 @@
     titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titleLabel.font = InAppSettingBoldFont;
     titleLabel.highlightedTextColor = [UIColor whiteColor];
+//    titleLabel.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:titleLabel];
     
     //setup value label
@@ -117,6 +122,7 @@
     valueLabel.font = InAppSettingNormalFont;
     valueLabel.textColor = InAppSettingBlue;
     valueLabel.highlightedTextColor = [UIColor whiteColor];
+//    valueLabel.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:valueLabel];
 }
 

@@ -27,8 +27,8 @@
         if(![setting hasDefaultValue]){
             return NO;
         }
-        
-        if(![setting hasTitle]){
+         
+        if(![setting hasTitle] || [[setting valueForKey:@"Title"] length] == 0){
             return NO;
         }
         
@@ -133,12 +133,12 @@
     
     //load settigns plist
     if(!self.file){
-        self.file = @"Root.plist";
+        self.file = @"Root";
     }
     
     //load plist
-    NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
-    NSString *settingsRootPlist = [settingsBundlePath stringByAppendingPathComponent:self.file];
+    NSString *plistFile = [self.file stringByAppendingPathExtension:@"plist"];
+    NSString *settingsRootPlist = [InAppSettingBundlePath stringByAppendingPathComponent:plistFile];
     NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
     NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:@"PreferenceSpecifiers"];
     
@@ -169,7 +169,7 @@
             addSetting = NO;
         }
         else if([setting isType:@"PSGroupSpecifier"]){
-            currentHeader = [setting valueForKey:@"Title"];
+            currentHeader = [setting localizedTitle];
             [headers addObject:currentHeader];
             [displayHeaders addObject:currentHeader];
             [settings setObject:[[NSMutableArray alloc] init] forKey:currentHeader];//ignore this potential leak, this will be released with settings
@@ -270,9 +270,8 @@
         [multiValueSpecifier release];
     }
     else if([setting isType:@"PSChildPaneSpecifier"]){
-        NSString *plistFile = [[setting valueForKey:@"File"] stringByAppendingPathExtension:@"plist"];
-        InAppSettingsViewController *childPane = [[InAppSettingsViewController alloc] initWithFile:plistFile];
-        childPane.title = [setting valueForKey:@"Title"];
+        InAppSettingsViewController *childPane = [[InAppSettingsViewController alloc] initWithFile:[setting valueForKey:@"File"]];
+        childPane.title = [setting localizedTitle];
         [self.navigationController pushViewController:childPane animated:YES];
         [childPane release];
     }

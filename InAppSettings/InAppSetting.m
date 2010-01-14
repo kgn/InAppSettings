@@ -7,6 +7,7 @@
 //
 
 #import "InAppSetting.h"
+#import "InAppSettingConstants.h"
 
 @implementation InAppSetting
 
@@ -20,6 +21,10 @@
 
 - (id)valueForKey:(NSString *)key{
     return [settingDictionary objectForKey:key];
+}
+
+- (NSString *)localizedTitle{
+    return InAppSettingLocalize([self valueForKey:@"Title"]);
 }
 
 - (NSString *)cellName{

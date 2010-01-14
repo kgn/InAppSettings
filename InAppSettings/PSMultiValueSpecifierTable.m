@@ -28,7 +28,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    self.title = NSLocalizedString([self.setting valueForKey:@"Title"], nil);
+    self.title = [self.setting localizedTitle];
 }
 
 - (void)dealloc{
@@ -72,7 +72,7 @@
         #endif
     }
 	
-    NSString *cellTitle = NSLocalizedString([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], nil);
+    NSString *cellTitle = InAppSettingLocalize([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row]);
     id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     #if InAppSettingUseNewCells
     cell.textLabel.text = cellTitle;

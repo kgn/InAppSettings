@@ -431,6 +431,48 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
+			<string>NOLABEL</string>
+			<key>Key</key>
+			<string>no_title</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+			<key>Values</key>
+			<array>
+				<string>1</string>
+				<string>2</string>
+				<string>3</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Landscape</string>
+				<string>Portrait</string>
+				<string>Both</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string></string>
+			<key>Key</key>
+			<string>no_localized_title</string>
+			<key>DefaultValue</key>
+			<string>1</string>
+			<key>Values</key>
+			<array>
+				<string>1</string>
+				<string>2</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Localize</string>
+				<string>English</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
 			<string>empty</string>
 			<key>Key</key>
 			<string>colors_empty</string>
