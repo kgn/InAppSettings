@@ -15,3 +15,6 @@
 #define InAppSettingFontSize 17.0f
 #define InAppSettingBoldFont [UIFont boldSystemFontOfSize:InAppSettingFontSize]
 #define InAppSettingNormalFont [UIFont systemFontOfSize:InAppSettingFontSize]
+
+//test what cell init code should be used
+#define InAppSettingUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0

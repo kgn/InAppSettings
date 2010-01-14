@@ -65,7 +65,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
-        #if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_2_2
+        #if InAppSettingUseNewCells
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         #else
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
@@ -74,14 +74,14 @@
 	
     NSString *cellTitle = NSLocalizedString([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], nil);
     id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
-    #if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_2_2
+    #if InAppSettingUseNewCells
     cell.textLabel.text = cellTitle;
     #else
     cell.text = cellTitle;
     #endif
 	if([cellValue isEqual:[self getValue]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        #if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_2_2
+        #if InAppSettingUseNewCells
         cell.textLabel.textColor = InAppSettingBlue;
         #else
         cell.textColor = InAppSettingBlue;
@@ -89,7 +89,7 @@
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryNone;
-        #if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_2_2
+        #if InAppSettingUseNewCells
         cell.textLabel.textColor = [UIColor blackColor];
         #else
         cell.textColor = [UIColor blackColor];

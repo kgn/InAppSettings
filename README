@@ -1,4 +1,6 @@
-InAppSettings provides a view controller that will read your applications Setting.bundle, allowing you to have the same preferences in your application and in the system settings.
+InAppSettings provides a view controller that displays the application's Settings.bundle as it appears in the iPhone settings. Allowing the same preferences in app and in the iPhone settings.
+
+InAppSettings works under any version of the iPhone or iPod Touch OS.
 
 InAppSettingsTestApp is a simple application for testing that InAppSettings is working correctly.
 
@@ -9,5 +11,25 @@ David Keegan
 
 With contributions from:
 Shayne Sweeney
+Hendrik Kueck
 
-Icons by Joseph Wain - http://glyphish.com/
+InAppSettingsTestApp icons by Joseph Wain - http://glyphish.com/
+
+
+How to Add InAppSettings to Your App
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. Drag InAppSettings into your project in Xcode.
+2. InAppSettings is just a view controller called InAppSettingsViewController, you can use it just like you would any other view controller.
+
+For example:
+- (IBAction)showSettings{
+    InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];
+    [self.navigationController pushViewController:settings animated:YES];
+    [settings release];
+}
+
+Or InAppSettings can be called from a nib by changing the class type of a UIViewController to InAppSettingsViewController.
+
+InAppSettingsTestApp implements InAppSettings both ways.
+
+Please note that in order for subviews of InAppSettings to work InAppSettingsViewController must be added to a navigation controller.
