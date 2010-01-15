@@ -72,7 +72,7 @@
         #endif
     }
 	
-    NSString *cellTitle = InAppSettingLocalize([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row]);
+    NSString *cellTitle = InAppSettingLocalize([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], self.setting.stringsTable);
     id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
     #if InAppSettingUseNewCells
     cell.textLabel.text = cellTitle;

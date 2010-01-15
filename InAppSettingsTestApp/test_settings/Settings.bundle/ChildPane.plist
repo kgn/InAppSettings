@@ -10,15 +10,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>New Pane - With a long group specifier string</string>
+			<string>LONGSTRING</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Cap Sentences, AC=YES</string>
+			<string>TEXTENTRY</string>
 			<key>Key</key>
-			<string>textEntry_capsentance</string>
+			<string>textEntry_capsentanceC</string>
 			<key>DefaultValue</key>
 			<string>Cap Sentences</string>
 			<key>IsSecure</key>
@@ -32,11 +32,11 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Read Only</string>
+			<string>READONLY</string>
 			<key>Key</key>
-			<string>readOnly2_key</string>
+			<string>readOnly2_keyC</string>
 			<key>DefaultValue</key>
-			<string>Read Only Value</string>
+			<string>READONLYVALUE</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Space</string>
+			<string>SPACE</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -52,7 +52,7 @@
 			<key>Title</key>
 			<string>Toogle String</string>
 			<key>Key</key>
-			<string>toogle_string</string>
+			<string>toogle_stringC</string>
 			<key>DefaultValue</key>
 			<string>YES</string>
 			<key>TrueValue</key>
@@ -64,7 +64,7 @@
 			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
-			<string>slider_key</string>
+			<string>slider_keyC</string>
 			<key>DefaultValue</key>
 			<integer>50</integer>
 			<key>MinimumValue</key>
@@ -76,9 +76,9 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Colors</string>
+			<string>COLOR</string>
 			<key>Key</key>
-			<string>colors_key</string>
+			<string>colors_keyC</string>
 			<key>DefaultValue</key>
 			<string>1</string>
 			<key>Values</key>

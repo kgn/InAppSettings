@@ -141,19 +141,20 @@
     NSString *settingsRootPlist = [InAppSettingBundlePath stringByAppendingPathComponent:plistFile];
     NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
     NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:@"PreferenceSpecifiers"];
+    NSString *stringsTable = [settingsDictionary objectForKey:@"StringsTable"];
     
     //create an array for headers(PSGroupSpecifier) and a dictonary to hold arrays of settings
     headers = [[NSMutableArray alloc] init];
     displayHeaders = [[NSMutableArray alloc] init];
-    settings = [[NSMutableDictionary alloc] init];
+    settings = [[NSMutableArray alloc] init];
     
     //if the first item is not a PSGroupSpecifier create a header to store the settings
     NSString *currentHeader = InAppSettingNullHeader;
-    InAppSetting *firstSetting = [[InAppSetting alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0]];
+    InAppSetting *firstSetting = [[InAppSetting alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0] andStringsTable:stringsTable];
     if(![firstSetting isType:@"PSGroupSpecifier"]){
         [headers addObject:currentHeader];
         [displayHeaders addObject:@""];
-        [settings setObject:[[NSMutableArray alloc] init] forKey:currentHeader];//ignore this potential leak, this will be released with settings
+        [settings addObject:[[NSMutableArray alloc] init]];//ignore this potential leak, this will be released with settings
     }
     [firstSetting release];
     
@@ -162,26 +163,27 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     for(NSDictionary *eachSetting in preferenceSpecifiers){
         BOOL addSetting = YES;
-        InAppSetting *setting = [[InAppSetting alloc] initWithDictionary:eachSetting];
+        InAppSetting *setting = [[InAppSetting alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
         
         //type is required
         if(![setting getType]){
             addSetting = NO;
-        }
-        else if([setting isType:@"PSGroupSpecifier"]){
+        }else if([setting isType:@"PSGroupSpecifier"]){
             currentHeader = [setting localizedTitle];
             [headers addObject:currentHeader];
             [displayHeaders addObject:currentHeader];
-            [settings setObject:[[NSMutableArray alloc] init] forKey:currentHeader];//ignore this potential leak, this will be released with settings
+            [settings addObject:[[NSMutableArray alloc] init]];//ignore this potential leak, this will be released with settings
             addSetting = NO;
-        }
-        else{
+        }else{
             addSetting = [self addSetting:setting];
         }
         
         if(addSetting){
-            NSMutableArray *currentArray = [settings objectForKey:currentHeader];
-            [currentArray addObject:setting];
+            NSInteger currentHeaderIndex = [headers indexOfObject:currentHeader];
+            if((currentHeaderIndex >= 0) && (currentHeaderIndex < (NSInteger)[headers count])){
+                NSMutableArray *currentArray = [settings objectAtIndex:currentHeaderIndex];
+                [currentArray addObject:setting];
+            }
         }
         [setting release];
     }
@@ -206,8 +208,7 @@
 #pragma mark Table view methods
 
 - (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *header = [headers objectAtIndex:indexPath.section];
-    return [[settings objectForKey:header] objectAtIndex:indexPath.row];
+    return [[settings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 }
 
 - (void)controlEditingDidBeginAction:(UIControl *)control{
@@ -227,8 +228,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSString *header = [headers objectAtIndex:section];
-    return [[settings objectForKey:header] count];
+    return [[settings objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -24,7 +24,7 @@
 }
 
 - (void)setTitle:(NSString *)title{
-    titleLabel.text = InAppSettingLocalize(title);
+    titleLabel.text = InAppSettingLocalize(title, self.setting.stringsTable);
     
     CGFloat maxTitleWidth = InAppSettingTableWidth-(InAppSettingCellPadding*4);
     CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font];
@@ -39,7 +39,8 @@
 }
 
 - (void)setDetail:(NSString *)detail{
-    valueLabel.text = InAppSettingLocalize(detail);
+    //the detail is not localized
+    valueLabel.text = detail;
 
     NSUInteger disclosure = 0;
     if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){

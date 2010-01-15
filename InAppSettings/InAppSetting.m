@@ -11,6 +11,8 @@
 
 @implementation InAppSetting
 
+@synthesize stringsTable;
+
 - (NSString *)getType{
     return [self valueForKey:@"Type"];
 }
@@ -24,7 +26,7 @@
 }
 
 - (NSString *)localizedTitle{
-    return InAppSettingLocalize([self valueForKey:@"Title"]);
+    return InAppSettingLocalize([self valueForKey:@"Title"], self.stringsTable);
 }
 
 - (NSString *)cellName{
@@ -49,13 +51,14 @@
 #pragma mark init/dealloc
 
 - (id)init{
-    return [self initWithDictionary:nil];
+    return [self initWithDictionary:nil andStringsTable:nil];
 }
 
-- (id)initWithDictionary:(NSDictionary *)dictionary{
+- (id)initWithDictionary:(NSDictionary *)dictionary andStringsTable:(NSString *)table{
     self = [super init];
     if (self != nil){
         if(dictionary){
+            self.stringsTable = table;
             settingDictionary = [dictionary retain];
         }
     }
@@ -63,6 +66,7 @@
 }
 
 - (void)dealloc{
+    [stringsTable release];
     [settingDictionary release];
     [super dealloc];
 }

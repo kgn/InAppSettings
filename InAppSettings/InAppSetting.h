@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface InAppSetting : NSObject {
+    NSString *stringsTable;
     NSDictionary *settingDictionary;
 }
+
+@property (nonatomic, copy) NSString *stringsTable;
 
 - (NSString *)getType;
 - (BOOL)isType:(NSString *)type;
@@ -22,6 +25,6 @@
 - (BOOL)hasKey;
 - (BOOL)hasDefaultValue;
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (id)initWithDictionary:(NSDictionary *)dictionary andStringsTable:(NSString *)table;
 
 @end

@@ -12,8 +12,7 @@
 @interface InAppSettingsViewController : UITableViewController {
     NSString *file;
     IBOutlet InAppSettingsTableCell *cell;
-    NSMutableArray *headers, *displayHeaders;
-    NSMutableDictionary *settings;
+    NSMutableArray *headers, *displayHeaders, *settings;
 }
 
 @property (nonatomic, copy) NSString *file;
