@@ -11,10 +11,15 @@
 
 @implementation PSChildPaneSpecifierCell
 
+- (void)setUIValues{
+    [super setUIValues];
+    
+    [self setTitle];
+}
+
 - (void)setupCell{
     [super setupCell];
     
-    [self setTitle];
     [self setDisclosure:YES];
 }
 

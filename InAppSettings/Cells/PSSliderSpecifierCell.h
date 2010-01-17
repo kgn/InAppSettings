@@ -13,6 +13,8 @@
     UISlider *valueSlider;
 }
 
+@property (nonatomic, retain) UISlider *valueSlider;
+
 - (void)slideAction;
 
 @end

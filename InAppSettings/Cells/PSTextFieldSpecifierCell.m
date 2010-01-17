@@ -11,6 +11,8 @@
 
 @implementation PSTextFieldSpecifierCell
 
+@synthesize textField;
+
 - (BOOL)isSecure{
     NSNumber *isSecure = [self.setting valueForKey:@"IsSecure"];
     if(!isSecure){
@@ -64,38 +66,16 @@
 }
 
 - (void)textChangeAction{
-    [self setValue:textField.text];
+    [self setValue:self.textField.text];
 }
 
-- (void)setValue{
-    [super setValue];
-    
-    textField.text = [self getValue];
-}
-
-- (UIControl *)getValueInput{
-    return textField;
-}
-
-- (void)setupCell{
-    [super setupCell];
+- (void)setUIValues{
+    [super setUIValues];
     
     [self setTitle];
     
+    CGRect textFieldFrame = self.textField.frame;
     CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font];
-    
-    //create text field
-    textField =[[UITextField alloc] initWithFrame:CGRectZero];
-    textField.textColor = InAppSettingBlue;
-    textField.adjustsFontSizeToFitWidth = YES;
-    
-    //keyboard traits
-    textField.secureTextEntry = [self isSecure];
-    textField.keyboardType = [self getKeyboardType];
-    textField.autocapitalizationType = [self getAutocapitalizationType];
-    textField.autocorrectionType = [self getAutocorrectionType];
-    
-    CGRect textFieldFrame = textField.frame;
     textFieldFrame.origin.x = (CGFloat)round(titleSize.width+(InAppSettingCellPadding*2));
     if(textFieldFrame.origin.x < InAppSettingCellTextFieldMinX){
         textFieldFrame.origin.x = InAppSettingCellTextFieldMinX;
@@ -103,10 +83,30 @@
     textFieldFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f));
     textFieldFrame.size.width = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*3))-textFieldFrame.origin.x);
     textFieldFrame.size.height = titleSize.height;
-    textField.frame = textFieldFrame;
+    self.textField.frame = textFieldFrame;
+    self.textField.text = [self getValue];
+}
+
+- (UIControl *)getValueInput{
+    return self.textField;
+}
+
+- (void)setupCell{
+    [super setupCell];
     
-    [textField addTarget:self action:@selector(textChangeAction) forControlEvents:UIControlEventEditingChanged];
-    [self.contentView addSubview:textField];
+    //create text field
+    self.textField =[[UITextField alloc] initWithFrame:CGRectZero];
+    self.textField.textColor = InAppSettingBlue;
+    self.textField.adjustsFontSizeToFitWidth = YES;
+    
+    //keyboard traits
+    self.textField.secureTextEntry = [self isSecure];
+    self.textField.keyboardType = [self getKeyboardType];
+    self.textField.autocapitalizationType = [self getAutocapitalizationType];
+    self.textField.autocorrectionType = [self getAutocorrectionType];
+    
+    [self.textField addTarget:self action:@selector(textChangeAction) forControlEvents:UIControlEventEditingChanged];
+    [self.contentView addSubview:self.textField];
 }
 
 - (void)dealloc{

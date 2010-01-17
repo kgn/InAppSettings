@@ -11,37 +11,40 @@
 
 @implementation PSSliderSpecifierCell
 
+@synthesize valueSlider;
+
 - (void)slideAction{
-    [self setValue:[NSNumber numberWithFloat:[valueSlider value]]];
+    [self setValue:[NSNumber numberWithFloat:[self.valueSlider value]]];
 }
 
-- (void)setValue{
-    [super setValue];
+- (void)setUIValues{
+    [super setUIValues];
+
+    //get the abolute path to the images
+    NSString *minImagePath = [InAppSettingBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MinimumValueImage"]];
+    NSString *maxImagePath = [InAppSettingBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MaximumValueImage"]];
     
-    valueSlider.value = [[self getValue] floatValue];
+    //setup the slider
+    self.valueSlider.minimumValue = [[self.setting valueForKey:@"MinimumValue"] floatValue];
+    self.valueSlider.maximumValue = [[self.setting valueForKey:@"MaximumValue"] floatValue];
+    self.valueSlider.minimumValueImage = [UIImage imageWithContentsOfFile:minImagePath];
+    self.valueSlider.maximumValueImage = [UIImage imageWithContentsOfFile:maxImagePath];
+    CGRect valueSliderFrame = self.valueSlider.frame;
+    valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f));
+    valueSliderFrame.origin.x = InAppSettingCellPadding;
+    valueSliderFrame.size.width = InAppSettingTableWidth-(InAppSettingCellPadding*4);
+    self.valueSlider.frame = valueSliderFrame;
+    
+    self.valueSlider.value = [[self getValue] floatValue];
 }
 
 - (void)setupCell{
     [super setupCell];
     
-    //get the abolute path to the images
-    NSString *settingsBundlePath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"];
-    NSString *minImagePath = [settingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MinimumValueImage"]];
-    NSString *maxImagePath = [settingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MaximumValueImage"]];
-    
     //create the slider
-    valueSlider = [[UISlider alloc] initWithFrame:CGRectZero];
-    valueSlider.minimumValue = [[self.setting valueForKey:@"MinimumValue"] floatValue];
-    valueSlider.maximumValue = [[self.setting valueForKey:@"MaximumValue"] floatValue];
-    valueSlider.minimumValueImage = [UIImage imageWithContentsOfFile:minImagePath];
-    valueSlider.maximumValueImage = [UIImage imageWithContentsOfFile:maxImagePath];
-    CGRect valueSliderFrame = valueSlider.frame;
-    valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f));
-    valueSliderFrame.origin.x = InAppSettingCellPadding;
-    valueSliderFrame.size.width = InAppSettingTableWidth-(InAppSettingCellPadding*4);
-    valueSlider.frame = valueSliderFrame;
-    [valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:valueSlider];
+    self.valueSlider = [[UISlider alloc] initWithFrame:CGRectZero];
+    [self.valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.valueSlider];
 }
 
 - (void)dealloc{

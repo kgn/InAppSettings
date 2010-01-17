@@ -21,16 +21,16 @@
     return nil;
 }
 
-- (void)setValue{
-    [super setValue];
+- (void)setUIValues{
+    [super setUIValues];
     
+    [self setTitle];
     [self setDetail:[self getValueTitle]];
 }
 
 - (void)setupCell{
     [super setupCell];
     
-    [self setTitle];
     [self setDisclosure:YES];
 }
 

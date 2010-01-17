@@ -13,6 +13,8 @@
     UITextField *textField;
 }
 
+@property (nonatomic, retain) UITextField *textField;
+
 - (BOOL)isSecure;
 - (UIKeyboardType)getKeyboardType;
 - (UITextAutocapitalizationType)getAutocapitalizationType;

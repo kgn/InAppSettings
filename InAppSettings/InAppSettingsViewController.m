@@ -244,7 +244,7 @@
     
     cell = ((InAppSettingsTableCell *)[tableView dequeueReusableCellWithIdentifier:cellType]);
     if (cell == nil){
-        cell = [[[nsclass alloc] initWithSetting:setting reuseIdentifier:cellType] autorelease];
+        cell = [[[nsclass alloc] initWithReuseIdentifier:cellType] autorelease];
         //setup the cells controlls
         [cell setupCell];
         
@@ -257,7 +257,8 @@
     }
     
     //set the values of the cell, this is separated from setupCell for reloading the table
-    [cell setValue];
+    cell.setting = setting;
+    [cell setUIValues];
     
     return cell;
 }

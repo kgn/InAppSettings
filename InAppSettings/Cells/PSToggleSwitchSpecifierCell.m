@@ -11,6 +11,8 @@
 
 @implementation PSToggleSwitchSpecifierCell
 
+@synthesize valueSwitch;
+
 //    The value associated with the preference when the toggle switch 
 //    is in the ON position. The value type for this key can be any 
 //    scalar type, including Boolean, String, Number, Date, or Data. 
@@ -51,28 +53,27 @@
 }
 
 - (void)switchAction{
-    [self setBool:[valueSwitch isOn]];
+    [self setBool:[self.valueSwitch isOn]];
 }
 
-- (void)setValue{
-    [super setValue];
+- (void)setUIValues{
+    [super setUIValues];
     
-    valueSwitch.on = [self getBool];
+    [self setTitle];
+    self.valueSwitch.on = [self getBool];
 }
 
 - (void)setupCell{
     [super setupCell];
     
-    [self setTitle];
-    
     //create the switch
-    valueSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
-    CGRect valueSwitchFrame = valueSwitch.frame;
+    self.valueSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+    CGRect valueSwitchFrame = self.valueSwitch.frame;
     valueSwitchFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSwitchFrame.size.height*0.5f));
     valueSwitchFrame.origin.x = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*3))-valueSwitchFrame.size.width);
-    valueSwitch.frame = valueSwitchFrame;
-    [valueSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventValueChanged];
-    [self.contentView addSubview:valueSwitch];
+    self.valueSwitch.frame = valueSwitchFrame;
+    [self.valueSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventValueChanged];
+    [self.contentView addSubview:self.valueSwitch];
 }
 
 - (void)dealloc{

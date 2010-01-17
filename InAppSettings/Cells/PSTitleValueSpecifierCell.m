@@ -28,16 +28,11 @@
     return [self getValue];
 }
 
-- (void)setValue{
-    [super setValue];
-    
-    [self setDetail:[self getValueTitle]];
-}
-
-- (void)setupCell{
-    [super setupCell];
+- (void)setUIValues{
+    [super setUIValues];
     
     [self setTitle];
+    [self setDetail:[self getValueTitle]];
 }
 
 @end

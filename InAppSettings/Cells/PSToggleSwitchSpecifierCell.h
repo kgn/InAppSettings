@@ -13,6 +13,8 @@
     UISwitch *valueSwitch;
 }
 
+@property (nonatomic, retain) UISwitch *valueSwitch;
+
 - (BOOL)getBool;
 - (void)setBool:(BOOL)newValue;
 - (void)switchAction;

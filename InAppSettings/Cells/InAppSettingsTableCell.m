@@ -81,10 +81,6 @@
     return value;
 }
 
-- (void)setValue{
-    //implement this per cell type
-}
-
 - (UIControl *)getValueInput{
     return nil;
 }
@@ -95,7 +91,7 @@
 
 #pragma mark -
 
-- (id)initWithSetting:(InAppSetting *)inputSetting reuseIdentifier:(NSString *)reuseIdentifier{
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     //the docs say UITableViewCellStyleValue1 is used for settings, 
     //but it doesn't look 100% the same so we will just draw our own UILabels
     #if InAppSettingUseNewCells
@@ -103,11 +99,14 @@
     #else
     self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier];
     #endif
-
-    if (self != nil){
-        self.setting = inputSetting;
-    }
+    
     return self;
+}
+
+#pragma mark implement in cell
+
+- (void)setUIValues{
+    //implement this per cell type
 }
 
 - (void)setupCell{

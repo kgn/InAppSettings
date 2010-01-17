@@ -23,11 +23,11 @@
 - (void)setDisclosure:(BOOL)disclosure;
 
 - (id)getValue;
-- (void)setValue;
 - (void)setValue:(id)newValue;
 - (UIControl *)getValueInput;
 
 - (void)setupCell;
-- (id)initWithSetting:(InAppSetting *)inputSetting reuseIdentifier:(NSString *)reuseIdentifier;
+- (void)setUIValues;
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 
 @end
