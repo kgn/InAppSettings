@@ -154,7 +154,7 @@
     if(![firstSetting isType:@"PSGroupSpecifier"]){
         [headers addObject:currentHeader];
         [displayHeaders addObject:@""];
-        [settings addObject:[[NSMutableArray alloc] init]];//ignore this potential leak, this will be released with settings
+        [settings addObject:[NSMutableArray array]];
     }
     [firstSetting release];
     
@@ -172,7 +172,7 @@
             currentHeader = [setting localizedTitle];
             [headers addObject:currentHeader];
             [displayHeaders addObject:currentHeader];
-            [settings addObject:[[NSMutableArray alloc] init]];//ignore this potential leak, this will be released with settings
+            [settings addObject:[NSMutableArray array]];
             addSetting = NO;
         }else{
             addSetting = [self addSetting:setting];

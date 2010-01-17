@@ -1,9 +1,11 @@
+
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 °                 InAppSettings                 °
                 °  http://bitbucket.org/keegan3d/inappsettings  °
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-InAppSettings provides a view controller that displays the application's Settings.bundle as it appears in the iPhone settings. Allowing the same preferences in app and in the iPhone settings.
+InAppSettings provides a view controller that displays the application's Settings.bundle as it 
+appears in the iPhone settings. Allowing the same preferences in app and in the iPhone settings.
 
 By:
 David Keegan
@@ -23,12 +25,14 @@ Features
 
 License
 ~~~~~~~
-InAppSettings is distributed under the MIT License, read the license file for more licensing information.
+InAppSettings is distributed under the MIT License, read the license file 
+for more licensing information.
 
 How to Add InAppSettings to Your App
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 1. Drag InAppSettings into your project in Xcode.
-2. InAppSettings is just a view controller called InAppSettingsViewController, you can use it just like you would any other view controller.
+2. InAppSettings is just a view controller called InAppSettingsViewController, 
+    you can use it just like you would any other view controller.
 
 example:
 - (IBAction)showSettings{
@@ -37,11 +41,13 @@ example:
     [settings release];
 }
 
-Or InAppSettings can be called from a nib by changing the class type of a UIViewController to InAppSettingsViewController.
+Or InAppSettings can be called from a nib by changing the class type of a 
+UIViewController to InAppSettingsViewController.
 
 InAppSettingsTestApp implements InAppSettings both ways.
 
-Please note that in order for subviews of InAppSettings to work InAppSettingsViewController must be added to a navigation controller.
+Please note that in order for subviews of InAppSettings to work InAppSettingsViewController 
+must be added to a navigation controller.
 
 InAppSettingsTestApp
 ~~~~~~~~~~~~~~~~~~~~
