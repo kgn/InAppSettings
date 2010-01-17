@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface PSTextFieldSpecifierCell : InAppSettingsTableCell {
+@interface PSTextFieldSpecifierCell : InAppSettingsTableCell <UITextFieldDelegate> {
     UITextField *textField;
 }
 

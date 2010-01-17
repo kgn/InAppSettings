@@ -9,14 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsViewController : UITableViewController {
+@interface InAppSettingsViewController : UITableViewController <InAppSettingsTableCellDelegate> {
     NSString *file;
-    IBOutlet InAppSettingsTableCell *cell;
     NSMutableArray *headers, *displayHeaders, *settings;
 }
 
 @property (nonatomic, copy) NSString *file;
-
-- (void)controlEditingDidBeginAction:(UIControl *)control;
 
 @end

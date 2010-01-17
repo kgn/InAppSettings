@@ -205,18 +205,21 @@
     [super dealloc];
 }
 
+#pragma mark text field cell delegate
+
+- (void)textFieldSpecifierCellBecameFirstResponder:(id)textFieldCell{
+    [self.tableView 
+        scrollToRowAtIndexPath:[self.tableView indexPathForCell:textFieldCell] 
+        atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+}
+
+- (void)textFieldSpecifierCellResignedFirstResponder:(id)textFieldCell{
+}
+
 #pragma mark Table view methods
 
 - (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath{
     return [[settings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-}
-
-- (void)controlEditingDidBeginAction:(UIControl *)control{
-    //scroll the table view to the cell that is being edited
-    //TODO: the cell does not animate to the middle of the table view when the keyboard is becoming active
-    //TODO: find a better way to get the cell, what if the nesting changes?
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)[[control superview] superview]];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -242,22 +245,16 @@
         nsclass = NSClassFromString(cellType);
     }
     
-    cell = ((InAppSettingsTableCell *)[tableView dequeueReusableCellWithIdentifier:cellType]);
+    InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[tableView dequeueReusableCellWithIdentifier:cellType]);
     if (cell == nil){
         cell = [[[nsclass alloc] initWithReuseIdentifier:cellType] autorelease];
         //setup the cells controlls
         [cell setupCell];
-        
-        //if the cell is a PSTextFieldSpecifier setup an action to center the table view on the cell
-        if([setting isType:@"PSTextFieldSpecifier"]){
-            [[cell getValueInput] addTarget:self 
-                                     action:@selector(controlEditingDidBeginAction:) 
-                           forControlEvents:UIControlEventEditingDidBegin];
-        }
     }
     
     //set the values of the cell, this is separated from setupCell for reloading the table
     cell.setting = setting;
+    cell.delegate = self;
     [cell setUIValues];
     
     return cell;
@@ -269,20 +266,21 @@
         PSMultiValueSpecifierTable *multiValueSpecifier = [[PSMultiValueSpecifierTable alloc] initWithSetting:setting];
         [self.navigationController pushViewController:multiValueSpecifier animated:YES];
         [multiValueSpecifier release];
-    }
-    else if([setting isType:@"PSChildPaneSpecifier"]){
+    }else if([setting isType:@"PSChildPaneSpecifier"]){
         InAppSettingsViewController *childPane = [[InAppSettingsViewController alloc] initWithFile:[setting valueForKey:@"File"]];
         childPane.title = [setting localizedTitle];
         [self.navigationController pushViewController:childPane animated:YES];
         [childPane release];
     }
-
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSetting *setting = [self settingAtIndexPath:indexPath];
     if([setting isType:@"PSMultiValueSpecifier"] || [setting isType:@"PSChildPaneSpecifier"]){
         return indexPath;
+    }else if([setting isType:@"PSTextFieldSpecifier"]){
+        InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[self.tableView cellForRowAtIndexPath:indexPath]);
+        [cell.valueInput becomeFirstResponder];
     }
     return nil;
 }

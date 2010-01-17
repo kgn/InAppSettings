@@ -13,6 +13,8 @@
 
 @synthesize textField;
 
+#pragma mark helper methods
+
 - (BOOL)isSecure{
     NSNumber *isSecure = [self.setting valueForKey:@"IsSecure"];
     if(!isSecure){
@@ -69,6 +71,20 @@
     [self setValue:self.textField.text];
 }
 
+#pragma mark text field delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
+    [self.delegate textFieldSpecifierCellBecameFirstResponder:self];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)cellTextField{
+    [cellTextField resignFirstResponder];
+    [self.delegate textFieldSpecifierCellResignedFirstResponder:self];
+    return YES;
+}
+
+#pragma mark cell controlls
+
 - (void)setUIValues{
     [super setUIValues];
     
@@ -85,10 +101,10 @@
     textFieldFrame.size.height = titleSize.height;
     self.textField.frame = textFieldFrame;
     self.textField.text = [self getValue];
-}
-
-- (UIControl *)getValueInput{
-    return self.textField;
+    
+    //these are set here so they are set per cell
+    self.textField.delegate = self;
+    self.valueInput = self.textField;
 }
 
 - (void)setupCell{
@@ -104,6 +120,9 @@
     self.textField.keyboardType = [self getKeyboardType];
     self.textField.autocapitalizationType = [self getAutocapitalizationType];
     self.textField.autocorrectionType = [self getAutocorrectionType];
+    //THIS IS NOT THE BEHAVIOR OF THE SETTINGS APP
+    //but we need a way to dismiss the keyboard
+    self.textField.returnKeyType = UIReturnKeyDone;
     
     [self.textField addTarget:self action:@selector(textChangeAction) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:self.textField];
