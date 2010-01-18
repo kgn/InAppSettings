@@ -13,15 +13,17 @@ David Keegan
 With contributions from:
 Shayne Sweeney
 Hendrik Kueck
+Peter Greis
 
 InAppSettingsTestApp toolbar icons by Joseph Wain - http://glyphish.com/
 
 Features
 ~~~~~~~~
 · Easy to use in code and/or in Interface Builder.
-· Support for all versions of the iPhone or iPod Touch OS.
+· Supports iPhone and iPod Touch OS 2.0+.
 · Provides the same look and functionality of the Settings app.
 · Supports settings localization.
+· Sample project that demonstrates how to use InAppSettings from code and Interface Builder.
 
 License
 ~~~~~~~
