@@ -71,19 +71,12 @@
     [self setValue:self.textField.text];
 }
 
-#pragma mark text field delegate
-
-- (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
-    [self.delegate textFieldSpecifierCellBecameFirstResponder:self];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)cellTextField{
-    [cellTextField resignFirstResponder];
-    [self.delegate textFieldSpecifierCellResignedFirstResponder:self];
-    return YES;
-}
-
 #pragma mark cell controlls
+
+- (void)setValueDelegate:(id)delegate{
+    self.textField.delegate = delegate;
+    [super setValueDelegate:delegate];
+}
 
 - (void)setUIValues{
     [super setUIValues];
@@ -102,8 +95,14 @@
     self.textField.frame = textFieldFrame;
     self.textField.text = [self getValue];
     
+    //keyboard traits
+    self.textField.secureTextEntry = [self isSecure];
+    self.textField.keyboardType = [self getKeyboardType];
+    self.textField.autocapitalizationType = [self getAutocapitalizationType];
+    self.textField.autocorrectionType = [self getAutocorrectionType];
+    
     //these are set here so they are set per cell
-    self.textField.delegate = self;
+    //self.textField.delegate = self;
     self.valueInput = self.textField;
 }
 
@@ -115,11 +114,6 @@
     self.textField.textColor = InAppSettingBlue;
     self.textField.adjustsFontSizeToFitWidth = YES;
     
-    //keyboard traits
-    self.textField.secureTextEntry = [self isSecure];
-    self.textField.keyboardType = [self getKeyboardType];
-    self.textField.autocapitalizationType = [self getAutocapitalizationType];
-    self.textField.autocorrectionType = [self getAutocorrectionType];
     //THIS IS NOT THE BEHAVIOR OF THE SETTINGS APP
     //but we need a way to dismiss the keyboard
     self.textField.returnKeyType = UIReturnKeyDone;

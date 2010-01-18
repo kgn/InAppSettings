@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsViewController : UITableViewController <InAppSettingsTableCellDelegate> {
+@interface InAppSettingsViewController : UITableViewController <UITextFieldDelegate> {
     NSString *file;
+    UIControl *firstResponder;
     NSMutableArray *headers, *displayHeaders, *settings;
 }
 
 @property (nonatomic, copy) NSString *file;
+@property (nonatomic, assign) UIControl *firstResponder;
+@property (nonatomic, retain) NSMutableArray *headers, *displayHeaders, *settings;
 
 @end

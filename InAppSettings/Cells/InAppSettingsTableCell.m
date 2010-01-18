@@ -14,7 +14,6 @@
 @synthesize setting;
 @synthesize titleLabel, valueLabel;
 @synthesize valueInput;
-@synthesize delegate;
 
 #pragma mark Cell lables
 
@@ -88,6 +87,10 @@
     [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:@"Key"]];
 }
 
+- (void)setValueDelegate:(id)delegate{
+    //implement in cell
+}
+
 #pragma mark -
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier{
@@ -129,7 +132,6 @@
     [setting release];
     [titleLabel release];
     [valueLabel release];
-    self.delegate = nil;
     self.valueInput = nil;
     [super dealloc];
 }

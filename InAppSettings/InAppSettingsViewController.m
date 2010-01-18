@@ -14,6 +14,8 @@
 @implementation InAppSettingsViewController
 
 @synthesize file;
+@synthesize firstResponder;
+@synthesize headers, displayHeaders, settings;
 
 #pragma mark validate plist data
 
@@ -144,17 +146,17 @@
     NSString *stringsTable = [settingsDictionary objectForKey:@"StringsTable"];
     
     //create an array for headers(PSGroupSpecifier) and a dictonary to hold arrays of settings
-    headers = [[NSMutableArray alloc] init];
-    displayHeaders = [[NSMutableArray alloc] init];
-    settings = [[NSMutableArray alloc] init];
+    self.headers = [[NSMutableArray alloc] init];
+    self.displayHeaders = [[NSMutableArray alloc] init];
+    self.settings = [[NSMutableArray alloc] init];
     
     //if the first item is not a PSGroupSpecifier create a header to store the settings
     NSString *currentHeader = InAppSettingNullHeader;
     InAppSetting *firstSetting = [[InAppSetting alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0] andStringsTable:stringsTable];
     if(![firstSetting isType:@"PSGroupSpecifier"]){
-        [headers addObject:currentHeader];
-        [displayHeaders addObject:@""];
-        [settings addObject:[NSMutableArray array]];
+        [self.headers addObject:currentHeader];
+        [self.displayHeaders addObject:@""];
+        [self.settings addObject:[NSMutableArray array]];
     }
     [firstSetting release];
     
@@ -170,18 +172,18 @@
             addSetting = NO;
         }else if([setting isType:@"PSGroupSpecifier"]){
             currentHeader = [setting localizedTitle];
-            [headers addObject:currentHeader];
-            [displayHeaders addObject:currentHeader];
-            [settings addObject:[NSMutableArray array]];
+            [self.headers addObject:currentHeader];
+            [self.displayHeaders addObject:currentHeader];
+            [self.settings addObject:[NSMutableArray array]];
             addSetting = NO;
         }else{
             addSetting = [self addSetting:setting];
         }
         
         if(addSetting){
-            NSInteger currentHeaderIndex = [headers indexOfObject:currentHeader];
-            if((currentHeaderIndex >= 0) && (currentHeaderIndex < (NSInteger)[headers count])){
-                NSMutableArray *currentArray = [settings objectAtIndex:currentHeaderIndex];
+            NSInteger currentHeaderIndex = [self.headers indexOfObject:currentHeader];
+            if((currentHeaderIndex >= 0) && (currentHeaderIndex < (NSInteger)[self.headers count])){
+                NSMutableArray *currentArray = [self.settings objectAtIndex:currentHeaderIndex];
                 [currentArray addObject:setting];
             }
         }
@@ -191,10 +193,9 @@
     [settingsDictionary release];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
+- (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
+    [super viewWillAppear:animated];
 }
 
 - (void)dealloc{
@@ -202,36 +203,38 @@
     [headers release];
     [displayHeaders release];
     [settings release];
+    self.firstResponder = nil;
     [super dealloc];
 }
 
 #pragma mark text field cell delegate
 
-- (void)textFieldSpecifierCellBecameFirstResponder:(id)textFieldCell{
-    [self.tableView 
-        scrollToRowAtIndexPath:[self.tableView indexPathForCell:textFieldCell] 
-        atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+- (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
+    self.firstResponder = cellTextField;
 }
 
-- (void)textFieldSpecifierCellResignedFirstResponder:(id)textFieldCell{
+- (BOOL)textFieldShouldReturn:(UITextField *)cellTextField{
+    [cellTextField resignFirstResponder];
+    self.firstResponder = nil;
+    return YES;
 }
 
 #pragma mark Table view methods
 
 - (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath{
-    return [[settings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    return [[self.settings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [headers count];
+    return [self.headers count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [displayHeaders objectAtIndex:section];
+    return [self.displayHeaders objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[settings objectAtIndex:section] count];
+    return [[self.settings objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -254,7 +257,7 @@
     
     //set the values of the cell, this is separated from setupCell for reloading the table
     cell.setting = setting;
-    cell.delegate = self;
+    [cell setValueDelegate:self];
     [cell setUIValues];
     
     return cell;
@@ -277,6 +280,7 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSetting *setting = [self settingAtIndexPath:indexPath];
     if([setting isType:@"PSMultiValueSpecifier"] || [setting isType:@"PSChildPaneSpecifier"]){
+        [self.firstResponder resignFirstResponder];
         return indexPath;
     }else if([setting isType:@"PSTextFieldSpecifier"]){
         InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[self.tableView cellForRowAtIndexPath:indexPath]);
