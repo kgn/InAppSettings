@@ -32,6 +32,7 @@
     [super setupCell];
     
     [self setDisclosure:YES];
+    self.canSelectCell = YES;
 }
 
 @end

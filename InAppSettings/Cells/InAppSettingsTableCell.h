@@ -13,11 +13,13 @@
     InAppSetting *setting;
     UILabel *titleLabel, *valueLabel;
     UIControl *valueInput;
+    BOOL canSelectCell;
 }
 
 @property (nonatomic, retain) InAppSetting *setting;
 @property (nonatomic, retain) UILabel *titleLabel, *valueLabel;
 @property (nonatomic, assign) UIControl *valueInput;
+@property (nonatomic, assign) BOOL canSelectCell;
 
 - (void)setTitle;
 - (void)setDetail;

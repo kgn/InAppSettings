@@ -194,6 +194,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    //TODO: fix the table positioning from the keyboad #10
+    //this code does not work, but it looks like its on the right track
+//    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
+    
     [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
@@ -278,13 +283,11 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    InAppSetting *setting = [self settingAtIndexPath:indexPath];
-    if([setting isType:@"PSMultiValueSpecifier"] || [setting isType:@"PSChildPaneSpecifier"]){
-        [self.firstResponder resignFirstResponder];
-        return indexPath;
-    }else if([setting isType:@"PSTextFieldSpecifier"]){
-        InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[self.tableView cellForRowAtIndexPath:indexPath]);
+    InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[self.tableView cellForRowAtIndexPath:indexPath]);
+    if([cell.setting isType:@"PSTextFieldSpecifier"]){
         [cell.valueInput becomeFirstResponder];
+    }else if(cell.canSelectCell){
+        return indexPath;
     }
     return nil;
 }

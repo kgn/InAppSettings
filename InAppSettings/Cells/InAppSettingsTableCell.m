@@ -14,6 +14,7 @@
 @synthesize setting;
 @synthesize titleLabel, valueLabel;
 @synthesize valueInput;
+@synthesize canSelectCell;
 
 #pragma mark Cell lables
 
@@ -73,6 +74,15 @@
     }
 }
 
+- (void)setCanSelectCell:(BOOL)value{
+    if(value){
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
+    }else{
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    canSelectCell = value;
+}
+
 #pragma mark Value
 
 - (id)getValue{
@@ -101,6 +111,10 @@
     #else
     self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier];
     #endif
+    
+    if(self != nil){
+        self.canSelectCell = NO;
+    }
     
     return self;
 }
