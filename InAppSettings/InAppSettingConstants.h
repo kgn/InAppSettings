@@ -6,6 +6,7 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
+#define InAppSettingRootFile @"Root"
 #define InAppSettingNullHeader @"InAppSettingNullHeader"
 #define InAppSettingCellPadding 10.0f
 #define InAppSettingCellTextFieldMinX 115.0f
@@ -19,7 +20,11 @@
 
 #define InAppSettingBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
 #define InAppSettingLocalize(stringKey, tableKey) \
-    [[NSBundle bundleWithPath:InAppSettingBundlePath] localizedStringForKey:stringKey value:stringKey table:tableKey]
+[[NSBundle bundleWithPath:InAppSettingBundlePath] localizedStringForKey:stringKey value:stringKey table:tableKey]
 
-//test what cell init code should be used
+// test what cell init code should be used
 #define InAppSettingUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+
+// if you dont want to display the 'Powered by' footer set this to NO
+#define InAppSettingDisplayPowered YES 
+#define InAppSettingPoweredBy @"Powered by InAppSettings"

@@ -135,7 +135,7 @@
     
     //load settigns plist
     if(!self.file){
-        self.file = @"Root";
+        self.file = InAppSettingRootFile;
     }
     
     //load plist
@@ -203,6 +203,11 @@
     [super viewWillAppear:animated];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.firstResponder resignFirstResponder];
+    [super viewWillDisappear:animated];
+}
+
 - (void)dealloc{
     [file release];
     [headers release];
@@ -215,6 +220,9 @@
 #pragma mark text field cell delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
+    //TODO: find a better way to get the cell
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)[[cellTextField superview] superview]];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     self.firstResponder = cellTextField;
 }
 
@@ -240,6 +248,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [[self.settings objectAtIndex:section] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    if(InAppSettingDisplayPowered && [self.file isEqualToString:InAppSettingRootFile] && section == (NSInteger)[self.headers count]-1){
+        return InAppSettingPoweredBy;
+    }
+    
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
