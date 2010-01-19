@@ -11,7 +11,7 @@
 #import "InAppSettingConstants.h"
 #import "PSMultiValueSpecifierTable.h"
 
-@implementation InAppSettingsNavagationController
+@implementation InAppSettingsModalViewController
 
 - (id)init{
     InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];

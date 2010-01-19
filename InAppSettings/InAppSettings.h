@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsNavagationController : UIViewController {}
+@interface InAppSettingsModalViewController : UIViewController {}
 
 @end
 

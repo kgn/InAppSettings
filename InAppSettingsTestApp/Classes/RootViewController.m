@@ -20,7 +20,7 @@
 
 //present InAppSettings as a modal view
 - (IBAction)presentSettings{
-    InAppSettingsNavagationController *settings = [[InAppSettingsNavagationController alloc] init];
+    InAppSettingsModalViewController *settings = [[InAppSettingsModalViewController alloc] init];
     [self presentModalViewController:settings animated:YES];
     [settings release];
 }
