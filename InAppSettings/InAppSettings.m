@@ -6,29 +6,22 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "InAppSettingsViewController.h"
+#import "InAppSettings.h"
 #import "InAppSetting.h"
 #import "InAppSettingConstants.h"
 #import "PSMultiValueSpecifierTable.h"
 
-// custom UIBarButtonItem to store its parent navigation controller
-@implementation InAppSettingsModalDoneButton
+@implementation InAppSettingsNavagationController
 
-@synthesize parentNavigationController;
-
-- (id)initWithTarget:(id)target action:(SEL)action{
-    return [super initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:action];
-}
-
-- (void)dealloc{
-    self.parentNavigationController = nil;
-    [super dealloc];
+- (id)init{
+    InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];
+    self = [[UINavigationController alloc] initWithRootViewController:settings];
+    [settings addDoneButton];
+    [settings release];
+    return self;
 }
 
 @end
-
-#pragma mark -
-#pragma mark InAppSettingsViewController
 
 @implementation InAppSettingsViewController
 
@@ -127,6 +120,22 @@
     return YES;
 }
 
+#pragma mark modal view
+
+//load the InAppSettings with the settings button is pressed
+- (void)dismissModalView{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)addDoneButton{
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] 
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+                                   target:self 
+                                   action:@selector(dismissModalView)];
+    self.navigationItem.rightBarButtonItem = doneButton;
+    [doneButton release];
+}
+
 #pragma mark setup view
 
 - (id)initWithFile:(NSString *)inputFile{
@@ -135,13 +144,6 @@
         self.file = inputFile;
     }
     return self;
-}
-
-- (void)addDoneButtonWithTarget:(id)target action:(SEL)action{
-    InAppSettingsModalDoneButton *doneButton = [[InAppSettingsModalDoneButton alloc] initWithTarget:target action:action];
-    doneButton.parentNavigationController = self.navigationController;
-    self.navigationItem.rightBarButtonItem = doneButton;
-    [doneButton release];
 }
 
 - (void)viewDidLoad{

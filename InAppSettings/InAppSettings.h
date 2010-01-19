@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-// custom UIBarButtonItem to store its parent navigation controller
-@interface InAppSettingsModalDoneButton : UIBarButtonItem {
-    UINavigationController *parentNavigationController;
-}
-
-@property (nonatomic, assign) UINavigationController *parentNavigationController;
+@interface InAppSettingsNavagationController : UIViewController {}
 
 @end
 
@@ -30,7 +25,9 @@
 @property (nonatomic, retain) NSMutableArray *headers, *displayHeaders, *settings;
 @property (nonatomic, assign) BOOL displayKeyboard;
 
-- (void)addDoneButtonWithTarget:(id)target action:(SEL)action;
+// modal view
+- (void)dismissModalView;
+- (void)addDoneButton;
 
 //keyboard notification
 - (void)registerForKeyboardNotifications;

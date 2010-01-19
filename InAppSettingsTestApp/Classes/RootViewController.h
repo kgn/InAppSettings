@@ -10,7 +10,6 @@
 
 - (IBAction)showSettings;
 
-- (void)dismissSettings:(id)sender;
 - (IBAction)presentSettings;
 
 @end
