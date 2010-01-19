@@ -6,10 +6,10 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "PSSliderSpecifierCell.h"
+#import "InAppSettingsPSSliderSpecifierCell.h"
 #import "InAppSettingsConstants.h"
 
-@implementation PSSliderSpecifierCell
+@implementation InAppSettingsPSSliderSpecifierCell
 
 @synthesize valueSlider;
 

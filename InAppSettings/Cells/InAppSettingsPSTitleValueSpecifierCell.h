@@ -1,5 +1,5 @@
 //
-//  PSToggleSwitchSpecifier.h
+//  PSTitleValueSpecifierCell.h
 //  InAppSettingsTestApp
 //
 //  Created by David Keegan on 11/21/09.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface PSMultiValueSpecifierCell : InAppSettingsTableCell {}
+@interface InAppSettingsPSTitleValueSpecifierCell : InAppSettingsTableCell {}
 
 - (NSString *)getValueTitle;
 

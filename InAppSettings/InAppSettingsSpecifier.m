@@ -6,10 +6,10 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "InAppSetting.h"
+#import "InAppSettingsSpecifier.h"
 #import "InAppSettingsConstants.h"
 
-@implementation InAppSetting
+@implementation InAppSettingsSpecifier
 
 @synthesize stringsTable;
 
@@ -30,7 +30,7 @@
 }
 
 - (NSString *)cellName{
-    return [NSString stringWithFormat:@"%@Cell", [self getType]];
+    return [NSString stringWithFormat:@"%@%@Cell", InAppSettingsProjectName, [self getType]];
 }
 
 #pragma mark validation

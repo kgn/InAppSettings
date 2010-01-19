@@ -17,15 +17,15 @@
 		7307FAA1110061CC000F65B6 /* 84-lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 7307FAA0110061CC000F65B6 /* 84-lightbulb.png */; };
 		7366576010BDDC4900C041F5 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7366575F10BDDC4900C041F5 /* 20-gear2.png */; };
 		736AA3A310BFA41400249911 /* InAppSettingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */; };
-		736AA3A410BFA41400249911 /* PSChildPaneSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39110BFA41400249911 /* PSChildPaneSpecifierCell.m */; };
-		736AA3A510BFA41400249911 /* PSMultiValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39310BFA41400249911 /* PSMultiValueSpecifierCell.m */; };
-		736AA3A610BFA41400249911 /* PSSliderSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39510BFA41400249911 /* PSSliderSpecifierCell.m */; };
-		736AA3A710BFA41400249911 /* PSTextFieldSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39710BFA41400249911 /* PSTextFieldSpecifierCell.m */; };
-		736AA3A810BFA41400249911 /* PSTitleValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39910BFA41400249911 /* PSTitleValueSpecifierCell.m */; };
-		736AA3A910BFA41400249911 /* PSToggleSwitchSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39B10BFA41400249911 /* PSToggleSwitchSpecifierCell.m */; };
-		736AA3AA10BFA41400249911 /* InAppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39D10BFA41400249911 /* InAppSetting.m */; };
+		736AA3A410BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39110BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.m */; };
+		736AA3A510BFA41400249911 /* InAppSettingsPSMultiValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39310BFA41400249911 /* InAppSettingsPSMultiValueSpecifierCell.m */; };
+		736AA3A610BFA41400249911 /* InAppSettingsPSSliderSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39510BFA41400249911 /* InAppSettingsPSSliderSpecifierCell.m */; };
+		736AA3A710BFA41400249911 /* InAppSettingsPSTextFieldSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39710BFA41400249911 /* InAppSettingsPSTextFieldSpecifierCell.m */; };
+		736AA3A810BFA41400249911 /* InAppSettingsPSTitleValueSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39910BFA41400249911 /* InAppSettingsPSTitleValueSpecifierCell.m */; };
+		736AA3A910BFA41400249911 /* InAppSettingsPSToggleSwitchSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39B10BFA41400249911 /* InAppSettingsPSToggleSwitchSpecifierCell.m */; };
+		736AA3AA10BFA41400249911 /* InAppSettingsSpecifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39D10BFA41400249911 /* InAppSettingsSpecifier.m */; };
 		736AA3AB10BFA41400249911 /* InAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA3A010BFA41400249911 /* InAppSettings.m */; };
-		736AA3AC10BFA41400249911 /* PSMultiValueSpecifierTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA3A210BFA41400249911 /* PSMultiValueSpecifierTable.m */; };
+		736AA3AC10BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA3A210BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m */; };
 		737F5E9E110321170009F3C9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 737F5E9D110321170009F3C9 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
@@ -45,25 +45,25 @@
 		7366575F10BDDC4900C041F5 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
 		736AA38E10BFA41400249911 /* InAppSettingsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsTableCell.h; sourceTree = "<group>"; };
 		736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsTableCell.m; sourceTree = "<group>"; };
-		736AA39010BFA41400249911 /* PSChildPaneSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSChildPaneSpecifierCell.h; sourceTree = "<group>"; };
-		736AA39110BFA41400249911 /* PSChildPaneSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSChildPaneSpecifierCell.m; sourceTree = "<group>"; };
-		736AA39210BFA41400249911 /* PSMultiValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierCell.h; sourceTree = "<group>"; };
-		736AA39310BFA41400249911 /* PSMultiValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSMultiValueSpecifierCell.m; sourceTree = "<group>"; };
-		736AA39410BFA41400249911 /* PSSliderSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSliderSpecifierCell.h; sourceTree = "<group>"; };
-		736AA39510BFA41400249911 /* PSSliderSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSliderSpecifierCell.m; sourceTree = "<group>"; };
-		736AA39610BFA41400249911 /* PSTextFieldSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTextFieldSpecifierCell.h; sourceTree = "<group>"; };
-		736AA39710BFA41400249911 /* PSTextFieldSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTextFieldSpecifierCell.m; sourceTree = "<group>"; };
-		736AA39810BFA41400249911 /* PSTitleValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTitleValueSpecifierCell.h; sourceTree = "<group>"; };
-		736AA39910BFA41400249911 /* PSTitleValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTitleValueSpecifierCell.m; sourceTree = "<group>"; };
-		736AA39A10BFA41400249911 /* PSToggleSwitchSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSToggleSwitchSpecifierCell.h; sourceTree = "<group>"; };
-		736AA39B10BFA41400249911 /* PSToggleSwitchSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSToggleSwitchSpecifierCell.m; sourceTree = "<group>"; };
-		736AA39C10BFA41400249911 /* InAppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSetting.h; sourceTree = "<group>"; };
-		736AA39D10BFA41400249911 /* InAppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSetting.m; sourceTree = "<group>"; };
+		736AA39010BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSChildPaneSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39110BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSChildPaneSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39210BFA41400249911 /* InAppSettingsPSMultiValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSMultiValueSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39310BFA41400249911 /* InAppSettingsPSMultiValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSMultiValueSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39410BFA41400249911 /* InAppSettingsPSSliderSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSSliderSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39510BFA41400249911 /* InAppSettingsPSSliderSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSSliderSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39610BFA41400249911 /* InAppSettingsPSTextFieldSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSTextFieldSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39710BFA41400249911 /* InAppSettingsPSTextFieldSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSTextFieldSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39810BFA41400249911 /* InAppSettingsPSTitleValueSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSTitleValueSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39910BFA41400249911 /* InAppSettingsPSTitleValueSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSTitleValueSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39A10BFA41400249911 /* InAppSettingsPSToggleSwitchSpecifierCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSToggleSwitchSpecifierCell.h; sourceTree = "<group>"; };
+		736AA39B10BFA41400249911 /* InAppSettingsPSToggleSwitchSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSToggleSwitchSpecifierCell.m; sourceTree = "<group>"; };
+		736AA39C10BFA41400249911 /* InAppSettingsSpecifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsSpecifier.h; sourceTree = "<group>"; };
+		736AA39D10BFA41400249911 /* InAppSettingsSpecifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsSpecifier.m; sourceTree = "<group>"; };
 		736AA39E10BFA41400249911 /* InAppSettingsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsConstants.h; sourceTree = "<group>"; };
 		736AA39F10BFA41400249911 /* InAppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettings.h; sourceTree = "<group>"; };
 		736AA3A010BFA41400249911 /* InAppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettings.m; sourceTree = "<group>"; };
-		736AA3A110BFA41400249911 /* PSMultiValueSpecifierTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierTable.h; sourceTree = "<group>"; };
-		736AA3A210BFA41400249911 /* PSMultiValueSpecifierTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSMultiValueSpecifierTable.m; sourceTree = "<group>"; };
+		736AA3A110BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSMultiValueSpecifierTable.h; sourceTree = "<group>"; };
+		736AA3A210BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSMultiValueSpecifierTable.m; sourceTree = "<group>"; };
 		737F5E9D110321170009F3C9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = test_settings/Settings.bundle; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* InAppSettingsTestApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "InAppSettingsTestApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,13 +148,13 @@
 		736AA38C10BFA41400249911 /* InAppSettings */ = {
 			isa = PBXGroup;
 			children = (
-				736AA39C10BFA41400249911 /* InAppSetting.h */,
-				736AA39D10BFA41400249911 /* InAppSetting.m */,
 				736AA39F10BFA41400249911 /* InAppSettings.h */,
 				736AA3A010BFA41400249911 /* InAppSettings.m */,
+				736AA39C10BFA41400249911 /* InAppSettingsSpecifier.h */,
+				736AA39D10BFA41400249911 /* InAppSettingsSpecifier.m */,
 				736AA39E10BFA41400249911 /* InAppSettingsConstants.h */,
-				736AA3A110BFA41400249911 /* PSMultiValueSpecifierTable.h */,
-				736AA3A210BFA41400249911 /* PSMultiValueSpecifierTable.m */,
+				736AA3A110BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.h */,
+				736AA3A210BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m */,
 				736AA38D10BFA41400249911 /* Cells */,
 			);
 			name = InAppSettings;
@@ -166,18 +166,18 @@
 			children = (
 				736AA38E10BFA41400249911 /* InAppSettingsTableCell.h */,
 				736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */,
-				736AA39010BFA41400249911 /* PSChildPaneSpecifierCell.h */,
-				736AA39110BFA41400249911 /* PSChildPaneSpecifierCell.m */,
-				736AA39210BFA41400249911 /* PSMultiValueSpecifierCell.h */,
-				736AA39310BFA41400249911 /* PSMultiValueSpecifierCell.m */,
-				736AA39410BFA41400249911 /* PSSliderSpecifierCell.h */,
-				736AA39510BFA41400249911 /* PSSliderSpecifierCell.m */,
-				736AA39610BFA41400249911 /* PSTextFieldSpecifierCell.h */,
-				736AA39710BFA41400249911 /* PSTextFieldSpecifierCell.m */,
-				736AA39810BFA41400249911 /* PSTitleValueSpecifierCell.h */,
-				736AA39910BFA41400249911 /* PSTitleValueSpecifierCell.m */,
-				736AA39A10BFA41400249911 /* PSToggleSwitchSpecifierCell.h */,
-				736AA39B10BFA41400249911 /* PSToggleSwitchSpecifierCell.m */,
+				736AA39010BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.h */,
+				736AA39110BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.m */,
+				736AA39210BFA41400249911 /* InAppSettingsPSMultiValueSpecifierCell.h */,
+				736AA39310BFA41400249911 /* InAppSettingsPSMultiValueSpecifierCell.m */,
+				736AA39410BFA41400249911 /* InAppSettingsPSSliderSpecifierCell.h */,
+				736AA39510BFA41400249911 /* InAppSettingsPSSliderSpecifierCell.m */,
+				736AA39610BFA41400249911 /* InAppSettingsPSTextFieldSpecifierCell.h */,
+				736AA39710BFA41400249911 /* InAppSettingsPSTextFieldSpecifierCell.m */,
+				736AA39810BFA41400249911 /* InAppSettingsPSTitleValueSpecifierCell.h */,
+				736AA39910BFA41400249911 /* InAppSettingsPSTitleValueSpecifierCell.m */,
+				736AA39A10BFA41400249911 /* InAppSettingsPSToggleSwitchSpecifierCell.h */,
+				736AA39B10BFA41400249911 /* InAppSettingsPSToggleSwitchSpecifierCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -249,15 +249,15 @@
 				1D3623260D0F684500981E51 /* InAppSettingsTestAppAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				736AA3A310BFA41400249911 /* InAppSettingsTableCell.m in Sources */,
-				736AA3A410BFA41400249911 /* PSChildPaneSpecifierCell.m in Sources */,
-				736AA3A510BFA41400249911 /* PSMultiValueSpecifierCell.m in Sources */,
-				736AA3A610BFA41400249911 /* PSSliderSpecifierCell.m in Sources */,
-				736AA3A710BFA41400249911 /* PSTextFieldSpecifierCell.m in Sources */,
-				736AA3A810BFA41400249911 /* PSTitleValueSpecifierCell.m in Sources */,
-				736AA3A910BFA41400249911 /* PSToggleSwitchSpecifierCell.m in Sources */,
-				736AA3AA10BFA41400249911 /* InAppSetting.m in Sources */,
+				736AA3A410BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.m in Sources */,
+				736AA3A510BFA41400249911 /* InAppSettingsPSMultiValueSpecifierCell.m in Sources */,
+				736AA3A610BFA41400249911 /* InAppSettingsPSSliderSpecifierCell.m in Sources */,
+				736AA3A710BFA41400249911 /* InAppSettingsPSTextFieldSpecifierCell.m in Sources */,
+				736AA3A810BFA41400249911 /* InAppSettingsPSTitleValueSpecifierCell.m in Sources */,
+				736AA3A910BFA41400249911 /* InAppSettingsPSToggleSwitchSpecifierCell.m in Sources */,
+				736AA3AA10BFA41400249911 /* InAppSettingsSpecifier.m in Sources */,
 				736AA3AB10BFA41400249911 /* InAppSettings.m in Sources */,
-				736AA3AC10BFA41400249911 /* PSMultiValueSpecifierTable.m in Sources */,
+				736AA3AC10BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

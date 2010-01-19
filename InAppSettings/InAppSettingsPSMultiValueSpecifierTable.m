@@ -6,10 +6,10 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "PSMultiValueSpecifierTable.h"
+#import "InAppSettingsPSMultiValueSpecifierTable.h"
 #import "InAppSettingsConstants.h"
 
-@implementation PSMultiValueSpecifierTable
+@implementation InAppSettingsPSMultiValueSpecifierTable
 
 @synthesize setting;
 
@@ -17,7 +17,7 @@
     return [super initWithStyle:UITableViewStyleGrouped];
 }
 
-- (id)initWithSetting:(InAppSetting *)inputSetting{
+- (id)initWithSetting:(InAppSettingsSpecifier *)inputSetting{
     self = [super init];
     if (self != nil){
         self.setting = inputSetting;

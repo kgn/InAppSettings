@@ -6,10 +6,10 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "PSTitleValueSpecifierCell.h"
+#import "InAppSettingsPSTitleValueSpecifierCell.h"
 #import "InAppSettingsConstants.h"
 
-@implementation PSTitleValueSpecifierCell
+@implementation InAppSettingsPSTitleValueSpecifierCell
 
 - (NSString *)getValueTitle{
     NSArray *titles = [self.setting valueForKey:InAppSettingsSpecifierTitles];

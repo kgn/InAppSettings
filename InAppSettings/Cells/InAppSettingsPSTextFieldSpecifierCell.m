@@ -6,10 +6,10 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "PSTextFieldSpecifierCell.h"
+#import "InAppSettingsPSTextFieldSpecifierCell.h"
 #import "InAppSettingsConstants.h"
 
-@implementation PSTextFieldSpecifierCell
+@implementation InAppSettingsPSTextFieldSpecifierCell
 
 @synthesize textField;
 

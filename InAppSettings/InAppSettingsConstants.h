@@ -6,6 +6,8 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
+#define InAppSettingsProjectName @"InAppSettings"
+
 #define InAppSettingsRootFile @"Root"
 #define InAppSettingsNullHeader @"InAppSettingsNullHeader"
 #define InAppSettingsCellPadding 10.0f
@@ -52,4 +54,4 @@
 #define InAppSettingsDisplayPowered YES 
 
 // please don't change this value
-#define InAppSettingsPoweredBy @"Powered by InAppSettings"
+#define InAppSettingsPoweredBy [NSString stringWithFormat:@"Powered by %@", InAppSettingsProjectName]

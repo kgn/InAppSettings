@@ -9,14 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface PSToggleSwitchSpecifierCell : InAppSettingsTableCell {
-    UISwitch *valueSwitch;
+@interface InAppSettingsPSSliderSpecifierCell : InAppSettingsTableCell {
+    UISlider *valueSlider;
 }
 
-@property (nonatomic, retain) UISwitch *valueSwitch;
+@property (nonatomic, retain) UISlider *valueSlider;
 
-- (BOOL)getBool;
-- (void)setBool:(BOOL)newValue;
-- (void)switchAction;
+- (void)slideAction;
 
 @end

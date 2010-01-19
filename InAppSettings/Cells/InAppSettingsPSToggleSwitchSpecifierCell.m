@@ -6,10 +6,10 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "PSToggleSwitchSpecifierCell.h"
+#import "InAppSettingsPSToggleSwitchSpecifierCell.h"
 #import "InAppSettingsConstants.h"
 
-@implementation PSToggleSwitchSpecifierCell
+@implementation InAppSettingsPSToggleSwitchSpecifierCell
 
 @synthesize valueSwitch;
 

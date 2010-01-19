@@ -1,5 +1,5 @@
 //
-//  PSTitleValueSpecifierCell.h
+//  PSChildPaneSpecifierCell.h
 //  InAppSettingsTestApp
 //
 //  Created by David Keegan on 11/21/09.
@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface PSTitleValueSpecifierCell : InAppSettingsTableCell {}
-
-- (NSString *)getValueTitle;
+@interface InAppSettingsPSChildPaneSpecifierCell : InAppSettingsTableCell {}
 
 @end

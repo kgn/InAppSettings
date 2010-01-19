@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface InAppSetting : NSObject {
+@interface InAppSettingsSpecifier : NSObject {
     NSString *stringsTable;
     NSDictionary *settingDictionary;
 }

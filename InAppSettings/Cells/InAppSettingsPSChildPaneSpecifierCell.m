@@ -6,10 +6,10 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#import "PSChildPaneSpecifierCell.h"
+#import "InAppSettingsPSChildPaneSpecifierCell.h"
 #import "InAppSettingsConstants.h"
 
-@implementation PSChildPaneSpecifierCell
+@implementation InAppSettingsPSChildPaneSpecifierCell
 
 - (void)setUIValues{
     [super setUIValues];

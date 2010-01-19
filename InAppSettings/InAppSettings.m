@@ -7,9 +7,9 @@
 //
 
 #import "InAppSettings.h"
-#import "InAppSetting.h"
+#import "InAppSettingsSpecifier.h"
 #import "InAppSettingsConstants.h"
-#import "PSMultiValueSpecifierTable.h"
+#import "InAppSettingsPSMultiValueSpecifierTable.h"
 
 @implementation InAppSettingsModalViewController
 
@@ -87,7 +87,7 @@
     
     //if the first item is not a PSGroupSpecifier create a header to store the settings
     NSString *currentHeader = InAppSettingsNullHeader;
-    InAppSetting *firstSetting = [[InAppSetting alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0] andStringsTable:stringsTable];
+    InAppSettingsSpecifier *firstSetting = [[InAppSettingsSpecifier alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0] andStringsTable:stringsTable];
     if(![firstSetting isType:InAppSettingsPSGroupSpecifier]){
         [self.headers addObject:currentHeader];
         [self.displayHeaders addObject:@""];
@@ -100,7 +100,7 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     for(NSDictionary *eachSetting in preferenceSpecifiers){
         BOOL shouldAddSetting = YES;
-        InAppSetting *setting = [[InAppSetting alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
+        InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
         
         //type is required
         if(![setting getType]){
@@ -213,7 +213,7 @@
 
 #pragma mark Table view methods
 
-- (InAppSetting *)settingAtIndexPath:(NSIndexPath *)indexPath{
+- (InAppSettingsSpecifier *)settingAtIndexPath:(NSIndexPath *)indexPath{
     return [[self.settings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 }
 
@@ -238,7 +238,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    InAppSetting *setting = [self settingAtIndexPath:indexPath];
+    InAppSettingsSpecifier *setting = [self settingAtIndexPath:indexPath];
     
     //get the NSClass for a specifier, if there is none use the base class InAppSettingsTableCell
     NSString *cellType = [setting cellName];
@@ -264,9 +264,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    InAppSetting *setting = [self settingAtIndexPath:indexPath];
+    InAppSettingsSpecifier *setting = [self settingAtIndexPath:indexPath];
     if([setting isType:InAppSettingsPSMultiValueSpecifier]){
-        PSMultiValueSpecifierTable *multiValueSpecifier = [[PSMultiValueSpecifierTable alloc] initWithSetting:setting];
+        InAppSettingsPSMultiValueSpecifierTable *multiValueSpecifier = [[InAppSettingsPSMultiValueSpecifierTable alloc] initWithSetting:setting];
         [self.navigationController pushViewController:multiValueSpecifier animated:YES];
         [multiValueSpecifier release];
     }else if([setting isType:InAppSettingsPSChildPaneSpecifier]){
