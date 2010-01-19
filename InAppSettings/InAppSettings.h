@@ -16,14 +16,14 @@
 @interface InAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     NSString *file;
     UITableView *settingsTableView;
+    UIControl *firstResponder;
     NSMutableArray *headers, *displayHeaders, *settings;
-    BOOL displayKeyboard;
 }
 
 @property (nonatomic, copy) NSString *file;
 @property (nonatomic, retain) UITableView *settingsTableView;
+@property (nonatomic, assign) UIControl *firstResponder;
 @property (nonatomic, retain) NSMutableArray *headers, *displayHeaders, *settings;
-@property (nonatomic, assign) BOOL displayKeyboard;
 
 // modal view
 - (void)dismissModalView;

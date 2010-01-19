@@ -27,8 +27,8 @@
 
 @synthesize file;
 @synthesize settingsTableView;
+@synthesize firstResponder;
 @synthesize headers, displayHeaders, settings;
-@synthesize displayKeyboard;
 
 #pragma mark modal view
 
@@ -128,22 +128,27 @@
     [settingsDictionary release];
     
     //setup keyboard notification
-    self.displayKeyboard = NO;
+    self.firstResponder = nil;
     [self registerForKeyboardNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.displayKeyboard = NO;
+    self.firstResponder = nil;
+    
+    self.settingsTableView.contentInset = UIEdgeInsetsZero;
+    self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+    
     [self.settingsTableView reloadData];
     [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    self.displayKeyboard = NO;
+    self.firstResponder = nil;
     [super viewWillDisappear:animated];
 }
 
 - (void)dealloc{
+    self.firstResponder = nil;
     [file release];
     [settingsTableView release];
     [headers release];
@@ -155,7 +160,7 @@
 #pragma mark text field cell delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
-    self.displayKeyboard = YES;
+    self.firstResponder = cellTextField;
     
     //TODO: find a better way to get the cell
     NSIndexPath *indexPath = [self.settingsTableView indexPathForCell:(UITableViewCell *)[[cellTextField superview] superview]];
@@ -163,7 +168,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)cellTextField{
-    self.displayKeyboard = NO;
+    self.firstResponder = nil;
     [cellTextField resignFirstResponder];
     return YES;
 }
@@ -181,7 +186,7 @@
 }
 
 - (void)keyboardWillShow:(NSNotification*)notification{
-    if(!self.displayKeyboard){
+    if(self.firstResponder == nil){
         // get the keybaord rect
         CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue];
         
@@ -201,7 +206,7 @@
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification{
-    if(!self.displayKeyboard){
+    if(self.firstResponder == nil){
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:InAppSettingsKeyboardAnimation];
         [UIView setAnimationBeginsFromCurrentState:YES];
@@ -279,9 +284,11 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[tableView cellForRowAtIndexPath:indexPath]);
+    
     if([cell.setting isType:@"PSTextFieldSpecifier"]){
         [cell.valueInput becomeFirstResponder];
     }else if(cell.canSelectCell){
+        [self.firstResponder resignFirstResponder];
         return indexPath;
     }
     return nil;
