@@ -12,20 +12,18 @@
 @interface InAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     NSString *file;
     UITableView *settingsTableView;
-    UIControl *firstResponder;
     NSMutableArray *headers, *displayHeaders, *settings;
-    BOOL keyboardShown;
+    BOOL displayKeyboard;
 }
 
 @property (nonatomic, copy) NSString *file;
 @property (nonatomic, retain) UITableView *settingsTableView;
-@property (nonatomic, assign) UIControl *firstResponder;
 @property (nonatomic, retain) NSMutableArray *headers, *displayHeaders, *settings;
-@property (nonatomic, assign) BOOL keyboardShown;
+@property (nonatomic, assign) BOOL displayKeyboard;
 
 //keyboard notification
 - (void)registerForKeyboardNotifications;
-- (void)keyboardWillShow:(NSNotification*)aNotification;
-- (void)keyboardWillHide:(NSNotification*)aNotification;
+- (void)keyboardWillShow:(NSNotification*)notification;
+- (void)keyboardWillHide:(NSNotification*)notification;
 
 @end

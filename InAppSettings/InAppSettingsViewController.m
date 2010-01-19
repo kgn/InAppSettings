@@ -2,7 +2,7 @@
 //  InAppSettingsViewController.m
 //  InAppSettings
 //
-//  Created by DavNSString *Keegan on 11/21/09.
+//  Created by David Keegan on 11/21/09.
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
@@ -15,13 +15,12 @@
 
 @synthesize file;
 @synthesize settingsTableView;
-@synthesize firstResponder;
 @synthesize headers, displayHeaders, settings;
-@synthesize keyboardShown;
+@synthesize displayKeyboard;
 
 #pragma mark validate plist data
 
-- (BOOL)addSetting:(InAppSetting *)setting{
+- (BOOL)isValidSetting:(InAppSetting *)setting{
     NSString *type = [setting getType];
     if([type isEqualToString:@"PSMultiValueSpecifier"]){
         if(![setting hasKey]){
@@ -163,23 +162,23 @@
     //this way whats set in the first entry to headers will not be seen
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     for(NSDictionary *eachSetting in preferenceSpecifiers){
-        BOOL addSetting = YES;
+        BOOL shouldAddSetting = YES;
         InAppSetting *setting = [[InAppSetting alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
         
         //type is required
         if(![setting getType]){
-            addSetting = NO;
+            shouldAddSetting = NO;
         }else if([setting isType:@"PSGroupSpecifier"]){
             currentHeader = [setting localizedTitle];
             [self.headers addObject:currentHeader];
             [self.displayHeaders addObject:currentHeader];
             [self.settings addObject:[NSMutableArray array]];
-            addSetting = NO;
+            shouldAddSetting = NO;
         }else{
-            addSetting = [self addSetting:setting];
+            shouldAddSetting = [self isValidSetting:setting];
         }
         
-        if(addSetting){
+        if(shouldAddSetting){
             NSInteger currentHeaderIndex = [self.headers indexOfObject:currentHeader];
             if((currentHeaderIndex >= 0) && (currentHeaderIndex < (NSInteger)[self.headers count])){
                 NSMutableArray *currentArray = [self.settings objectAtIndex:currentHeaderIndex];
@@ -192,13 +191,19 @@
     [settingsDictionary release];
     
     //setup keyboard notification
-    self.keyboardShown = NO;
+    self.displayKeyboard = NO;
     [self registerForKeyboardNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.displayKeyboard = NO;
     [self.settingsTableView reloadData];
     [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.displayKeyboard = NO;
+    [super viewWillDisappear:animated];
 }
 
 - (void)dealloc{
@@ -207,23 +212,24 @@
     [headers release];
     [displayHeaders release];
     [settings release];
-    self.firstResponder = nil;
-    self.keyboardShown = NO;
     [super dealloc];
 }
 
 #pragma mark text field cell delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
+    NSLog(@"textFieldDidBeginEditing");
+    self.displayKeyboard = YES;
+    
     //TODO: find a better way to get the cell
-    NSIndexPath *indexPath = [self.settingsTableView indexPathForCell:(UITableViewCell *)[[self.firstResponder superview] superview]];
+    NSIndexPath *indexPath = [self.settingsTableView indexPathForCell:(UITableViewCell *)[[cellTextField superview] superview]];
     [self.settingsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-    self.firstResponder = cellTextField;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)cellTextField{
+    NSLog(@"textFieldShouldReturn");
+    self.displayKeyboard = NO;
     [cellTextField resignFirstResponder];
-    self.firstResponder = nil;
     return YES;
 }
 
@@ -239,19 +245,18 @@
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)keyboardWillShow:(NSNotification*)aNotification{
-    if(!self.keyboardShown){
-        NSDictionary* info = [aNotification userInfo];
+- (void)keyboardWillShow:(NSNotification*)notification{
+    if(!self.displayKeyboard){
+        NSLog(@"%@", notification.name);
         
-        // Get the size of the keyboard.
-        NSValue *aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
-        CGSize keyboardSize = [aValue CGRectValue].size;
+        // get the keybaord rect
+        CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue];
         
-        //determin the bottom inset for the table view
+        // determin the bottom inset for the table view
         UIEdgeInsets settingsTableInset = self.settingsTableView.contentInset;
         CGPoint tableViewScreenSpace = [self.settingsTableView.superview convertPoint:self.settingsTableView.frame.origin toView:nil];
         CGFloat tableViewBottomOffset = InAppSettingTableHeight-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
-        settingsTableInset.bottom = keyboardSize.height-tableViewBottomOffset;
+        settingsTableInset.bottom = keyboardRect.size.height-tableViewBottomOffset;
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:InAppSettingKeyboardAnimation];
@@ -259,19 +264,19 @@
         self.settingsTableView.contentInset = settingsTableInset;
         self.settingsTableView.scrollIndicatorInsets = settingsTableInset;
         [UIView commitAnimations];
-        
-        self.keyboardShown = YES;
     }
 }
 
-- (void)keyboardWillHide:(NSNotification*)aNotification{
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:InAppSettingKeyboardAnimation];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.settingsTableView.contentInset = UIEdgeInsetsZero;
-    self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
-    [UIView commitAnimations];
-    self.keyboardShown = NO;
+- (void)keyboardWillHide:(NSNotification*)notification{
+    if(!self.displayKeyboard){
+        NSLog(@"%@", notification.name);
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:InAppSettingKeyboardAnimation];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.settingsTableView.contentInset = UIEdgeInsetsZero;
+        self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+        [UIView commitAnimations];
+    }
 }
 
 #pragma mark Table view methods
