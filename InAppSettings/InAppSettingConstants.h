@@ -6,27 +6,29 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-#define InAppSettingRootFile @"Root"
-#define InAppSettingNullHeader @"InAppSettingNullHeader"
-#define InAppSettingCellPadding 10.0f
-#define InAppSettingCellTextFieldMinX 115.0f
-#define InAppSettingKeyboardAnimation 0.3f
-#define InAppSettingScreenBounds [[UIScreen mainScreen] bounds]
-#define InAppSettingTableWidth [[UIScreen mainScreen] bounds].size.width
-#define InAppSettingTableHeight [[UIScreen mainScreen] bounds].size.height
-#define InAppSettingOffsetY 1.0f
-#define InAppSettingBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
-#define InAppSettingFontSize 17.0f
-#define InAppSettingBoldFont [UIFont boldSystemFontOfSize:InAppSettingFontSize]
-#define InAppSettingNormalFont [UIFont systemFontOfSize:InAppSettingFontSize]
+#define InAppSettingsRootFile @"Root"
+#define InAppSettingsNullHeader @"InAppSettingsNullHeader"
+#define InAppSettingsCellPadding 10.0f
+#define InAppSettingsCellTextFieldMinX 115.0f
+#define InAppSettingsKeyboardAnimation 0.3f
+#define InAppSettingsScreenBounds [[UIScreen mainScreen] bounds]
+#define InAppSettingsScreenWidth InAppSettingsScreenBounds.size.width
+#define InAppSettingsScreenHeight InAppSettingsScreenBounds.size.height
+#define InAppSettingsOffsetY 1.0f
+#define InAppSettingsBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
+#define InAppSettingsFontSize 17.0f
+#define InAppSettingsBoldFont [UIFont boldSystemFontOfSize:InAppSettingsFontSize]
+#define InAppSettingsNormalFont [UIFont systemFontOfSize:InAppSettingsFontSize]
 
-#define InAppSettingBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
-#define InAppSettingLocalize(stringKey, tableKey) \
-[[NSBundle bundleWithPath:InAppSettingBundlePath] localizedStringForKey:stringKey value:stringKey table:tableKey]
+#define InAppSettingsBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
+#define InAppSettingsLocalize(stringKey, tableKey) \
+    [[NSBundle bundleWithPath:InAppSettingsBundlePath] localizedStringForKey:stringKey value:stringKey table:tableKey]
 
 // test what cell init code should be used
-#define InAppSettingUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+#define InAppSettingsUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
 
 // if you dont want to display the 'Powered by' footer set this to NO
-#define InAppSettingDisplayPowered YES 
-#define InAppSettingPoweredBy @"Powered by InAppSettings"
+#define InAppSettingsDisplayPowered YES 
+
+// please don't change this value
+#define InAppSettingsPoweredBy @"Powered by InAppSettings"

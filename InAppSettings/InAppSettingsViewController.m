@@ -133,12 +133,12 @@
     
     //load settigns plist
     if(!self.file){
-        self.file = InAppSettingRootFile;
+        self.file = InAppSettingsRootFile;
     }
     
     //load plist
     NSString *plistFile = [self.file stringByAppendingPathExtension:@"plist"];
-    NSString *settingsRootPlist = [InAppSettingBundlePath stringByAppendingPathComponent:plistFile];
+    NSString *settingsRootPlist = [InAppSettingsBundlePath stringByAppendingPathComponent:plistFile];
     NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
     NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:@"PreferenceSpecifiers"];
     NSString *stringsTable = [settingsDictionary objectForKey:@"StringsTable"];
@@ -149,7 +149,7 @@
     self.settings = [[NSMutableArray alloc] init];
     
     //if the first item is not a PSGroupSpecifier create a header to store the settings
-    NSString *currentHeader = InAppSettingNullHeader;
+    NSString *currentHeader = InAppSettingsNullHeader;
     InAppSetting *firstSetting = [[InAppSetting alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0] andStringsTable:stringsTable];
     if(![firstSetting isType:@"PSGroupSpecifier"]){
         [self.headers addObject:currentHeader];
@@ -158,7 +158,7 @@
     }
     [firstSetting release];
     
-    //set the first value in the display header to "", while the real header is set to InAppSettingNullHeader
+    //set the first value in the display header to "", while the real header is set to InAppSettingsNullHeader
     //this way whats set in the first entry to headers will not be seen
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     for(NSDictionary *eachSetting in preferenceSpecifiers){
@@ -255,11 +255,11 @@
         // determin the bottom inset for the table view
         UIEdgeInsets settingsTableInset = self.settingsTableView.contentInset;
         CGPoint tableViewScreenSpace = [self.settingsTableView.superview convertPoint:self.settingsTableView.frame.origin toView:nil];
-        CGFloat tableViewBottomOffset = InAppSettingTableHeight-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
+        CGFloat tableViewBottomOffset = InAppSettingsScreenHeight-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
         settingsTableInset.bottom = keyboardRect.size.height-tableViewBottomOffset;
         
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:InAppSettingKeyboardAnimation];
+        [UIView setAnimationDuration:InAppSettingsKeyboardAnimation];
         [UIView setAnimationBeginsFromCurrentState:YES];
         self.settingsTableView.contentInset = settingsTableInset;
         self.settingsTableView.scrollIndicatorInsets = settingsTableInset;
@@ -271,7 +271,7 @@
     if(!self.displayKeyboard){
         NSLog(@"%@", notification.name);
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:InAppSettingKeyboardAnimation];
+        [UIView setAnimationDuration:InAppSettingsKeyboardAnimation];
         [UIView setAnimationBeginsFromCurrentState:YES];
         self.settingsTableView.contentInset = UIEdgeInsetsZero;
         self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
@@ -298,8 +298,8 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
-    if(InAppSettingDisplayPowered && [self.file isEqualToString:InAppSettingRootFile] && section == (NSInteger)[self.headers count]-1){
-        return InAppSettingPoweredBy;
+    if(InAppSettingsDisplayPowered && [self.file isEqualToString:InAppSettingsRootFile] && section == (NSInteger)[self.headers count]-1){
+        return InAppSettingsPoweredBy;
     }
     
     return nil;

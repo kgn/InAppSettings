@@ -27,17 +27,17 @@
 }
 
 - (void)setTitle:(NSString *)title{
-    self.titleLabel.text = InAppSettingLocalize(title, self.setting.stringsTable);
+    self.titleLabel.text = InAppSettingsLocalize(title, self.setting.stringsTable);
     
-    CGFloat maxTitleWidth = InAppSettingTableWidth-(InAppSettingCellPadding*4);
+    CGFloat maxTitleWidth = InAppSettingsScreenWidth-(InAppSettingsCellPadding*4);
     CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
     if(titleSize.width > maxTitleWidth){
         titleSize.width = maxTitleWidth;
     }
     CGRect titleFrame = self.titleLabel.frame;
     titleFrame.size = titleSize;
-    titleFrame.origin.x = InAppSettingCellPadding;
-    titleFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f))-InAppSettingOffsetY;
+    titleFrame.origin.x = InAppSettingsCellPadding;
+    titleFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f))-InAppSettingsOffsetY;
     self.titleLabel.frame = titleFrame;
 }
 
@@ -49,7 +49,7 @@
     if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
         disclosure = 2;
     }
-    CGFloat maxValueWidth = (InAppSettingTableWidth-(InAppSettingCellPadding*(4+disclosure)))-(self.titleLabel.frame.size.width+InAppSettingCellPadding);
+    CGFloat maxValueWidth = (InAppSettingsScreenWidth-(InAppSettingsCellPadding*(4+disclosure)))-(self.titleLabel.frame.size.width+InAppSettingsCellPadding);
     CGSize valueSize = [self.valueLabel.text sizeWithFont:self.valueLabel.font];
     if(valueSize.width > maxValueWidth){
         valueSize.width = maxValueWidth;
@@ -57,11 +57,11 @@
     CGRect valueFrame = self.valueLabel.frame;
     valueFrame.size = valueSize;
     if([self.setting isType:@"PSMultiValueSpecifier"] && [[self.setting localizedTitle] length] == 0){
-        valueFrame.origin.x = InAppSettingCellPadding;
+        valueFrame.origin.x = InAppSettingsCellPadding;
     }else{
-        valueFrame.origin.x = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*(3+disclosure)))-valueFrame.size.width);
+        valueFrame.origin.x = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsCellPadding*(3+disclosure)))-valueFrame.size.width);
     }
-    valueFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSize.height*0.5f))-InAppSettingOffsetY;
+    valueFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSize.height*0.5f))-InAppSettingsOffsetY;
     self.valueLabel.frame = valueFrame;
 }
 
@@ -106,7 +106,7 @@
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     //the docs say UITableViewCellStyleValue1 is used for settings, 
     //but it doesn't look 100% the same so we will just draw our own UILabels
-    #if InAppSettingUseNewCells
+    #if InAppSettingsUseNewCells
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     #else
     self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier];
@@ -128,15 +128,15 @@
 - (void)setupCell{
     //setup title label
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.titleLabel.font = InAppSettingBoldFont;
+    self.titleLabel.font = InAppSettingsBoldFont;
     self.titleLabel.highlightedTextColor = [UIColor whiteColor];
 //    self.titleLabel.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:self.titleLabel];
     
     //setup value label
     self.valueLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.valueLabel.font = InAppSettingNormalFont;
-    self.valueLabel.textColor = InAppSettingBlue;
+    self.valueLabel.font = InAppSettingsNormalFont;
+    self.valueLabel.textColor = InAppSettingsBlue;
     self.valueLabel.highlightedTextColor = [UIColor whiteColor];
 //    self.valueLabel.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.valueLabel];

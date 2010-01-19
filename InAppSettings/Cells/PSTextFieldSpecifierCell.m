@@ -85,12 +85,12 @@
     
     CGRect textFieldFrame = self.textField.frame;
     CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font];
-    textFieldFrame.origin.x = (CGFloat)round(titleSize.width+(InAppSettingCellPadding*2));
-    if(textFieldFrame.origin.x < InAppSettingCellTextFieldMinX){
-        textFieldFrame.origin.x = InAppSettingCellTextFieldMinX;
+    textFieldFrame.origin.x = (CGFloat)round(titleSize.width+(InAppSettingsCellPadding*2));
+    if(textFieldFrame.origin.x < InAppSettingsCellTextFieldMinX){
+        textFieldFrame.origin.x = InAppSettingsCellTextFieldMinX;
     }
-    textFieldFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f));
-    textFieldFrame.size.width = (CGFloat)round((InAppSettingTableWidth-(InAppSettingCellPadding*3))-textFieldFrame.origin.x);
+    textFieldFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f))-InAppSettingsOffsetY;
+    textFieldFrame.size.width = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsCellPadding*3))-textFieldFrame.origin.x);
     textFieldFrame.size.height = titleSize.height;
     self.textField.frame = textFieldFrame;
     self.textField.text = [self getValue];
@@ -111,7 +111,7 @@
     
     //create text field
     self.textField =[[UITextField alloc] initWithFrame:CGRectZero];
-    self.textField.textColor = InAppSettingBlue;
+    self.textField.textColor = InAppSettingsBlue;
     self.textField.adjustsFontSizeToFitWidth = YES;
     
     //THIS IS NOT THE BEHAVIOR OF THE SETTINGS APP

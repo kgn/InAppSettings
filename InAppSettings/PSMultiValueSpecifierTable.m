@@ -65,31 +65,31 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
-        #if InAppSettingUseNewCells
+        #if InAppSettingsUseNewCells
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         #else
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
         #endif
     }
 	
-    NSString *cellTitle = InAppSettingLocalize([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], self.setting.stringsTable);
+    NSString *cellTitle = InAppSettingsLocalize([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], self.setting.stringsTable);
     id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
-    #if InAppSettingUseNewCells
+    #if InAppSettingsUseNewCells
     cell.textLabel.text = cellTitle;
     #else
     cell.text = cellTitle;
     #endif
 	if([cellValue isEqual:[self getValue]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        #if InAppSettingUseNewCells
-        cell.textLabel.textColor = InAppSettingBlue;
+        #if InAppSettingsUseNewCells
+        cell.textLabel.textColor = InAppSettingsBlue;
         #else
-        cell.textColor = InAppSettingBlue;
+        cell.textColor = InAppSettingsBlue;
         #endif
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryNone;
-        #if InAppSettingUseNewCells
+        #if InAppSettingsUseNewCells
         cell.textLabel.textColor = [UIColor blackColor];
         #else
         cell.textColor = [UIColor blackColor];
