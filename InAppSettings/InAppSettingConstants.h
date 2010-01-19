@@ -10,8 +10,10 @@
 #define InAppSettingNullHeader @"InAppSettingNullHeader"
 #define InAppSettingCellPadding 10.0f
 #define InAppSettingCellTextFieldMinX 115.0f
-#define InAppSettingKeyboardHeight 216.0f
-#define InAppSettingTableWidth 320.0f
+#define InAppSettingKeyboardAnimation 0.3f
+#define InAppSettingScreenBounds [[UIScreen mainScreen] bounds]
+#define InAppSettingTableWidth [[UIScreen mainScreen] bounds].size.width
+#define InAppSettingTableHeight [[UIScreen mainScreen] bounds].size.height
 #define InAppSettingOffsetY 1.0f
 #define InAppSettingBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
 #define InAppSettingFontSize 17.0f

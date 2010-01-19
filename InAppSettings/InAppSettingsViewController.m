@@ -14,8 +14,10 @@
 @implementation InAppSettingsViewController
 
 @synthesize file;
+@synthesize settingsTableView;
 @synthesize firstResponder;
 @synthesize headers, displayHeaders, settings;
+@synthesize keyboardShown;
 
 #pragma mark validate plist data
 
@@ -109,10 +111,6 @@
 
 #pragma mark setup view
 
-- (id)initWithStyle:(UITableViewStyle)style{
-    return [super initWithStyle:UITableViewStyleGrouped];
-}
-
 - (id)initWithFile:(NSString *)inputFile{
     self = [super init];
     if (self != nil){
@@ -122,11 +120,12 @@
 }
 
 - (void)viewDidLoad{
-    //if the table is not group styled make a new one that is
-    if(self.tableView.style != UITableViewStyleGrouped){
-        CGRect tableViewFrame = self.tableView.frame;
-        self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStyleGrouped];
-    }
+    //setup the table
+    self.settingsTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.settingsTableView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
+    self.settingsTableView.delegate = self;
+    self.settingsTableView.dataSource = self;
+    [self.view addSubview:self.settingsTableView];
     
     //if the title is nil set it to Settings
     if(!self.title){
@@ -191,29 +190,25 @@
     }
     [pool drain];
     [settingsDictionary release];
+    
+    //setup keyboard notification
+    self.keyboardShown = NO;
+    [self registerForKeyboardNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //TODO: fix the table positioning from the keyboad #10
-    //this code does not work, but it looks like its on the right track
-//    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-    
-    [self.tableView reloadData];
+    [self.settingsTableView reloadData];
     [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [self.firstResponder resignFirstResponder];
-    [super viewWillDisappear:animated];
 }
 
 - (void)dealloc{
     [file release];
+    [settingsTableView release];
     [headers release];
     [displayHeaders release];
     [settings release];
     self.firstResponder = nil;
+    self.keyboardShown = NO;
     [super dealloc];
 }
 
@@ -221,8 +216,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
     //TODO: find a better way to get the cell
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)[[cellTextField superview] superview]];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    NSIndexPath *indexPath = [self.settingsTableView indexPathForCell:(UITableViewCell *)[[self.firstResponder superview] superview]];
+    [self.settingsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     self.firstResponder = cellTextField;
 }
 
@@ -230,6 +225,53 @@
     [cellTextField resignFirstResponder];
     self.firstResponder = nil;
     return YES;
+}
+
+#pragma mark keyboard notification
+
+- (void)registerForKeyboardNotifications{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification*)aNotification{
+    if(!self.keyboardShown){
+        NSDictionary* info = [aNotification userInfo];
+        
+        // Get the size of the keyboard.
+        NSValue *aValue = [info objectForKey:UIKeyboardBoundsUserInfoKey];
+        CGSize keyboardSize = [aValue CGRectValue].size;
+        
+        //determin the bottom inset for the table view
+        UIEdgeInsets settingsTableInset = self.settingsTableView.contentInset;
+        CGPoint tableViewScreenSpace = [self.settingsTableView.superview convertPoint:self.settingsTableView.frame.origin toView:nil];
+        CGFloat tableViewBottomOffset = InAppSettingTableHeight-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
+        settingsTableInset.bottom = keyboardSize.height-tableViewBottomOffset;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:InAppSettingKeyboardAnimation];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        self.settingsTableView.contentInset = settingsTableInset;
+        self.settingsTableView.scrollIndicatorInsets = settingsTableInset;
+        [UIView commitAnimations];
+        
+        self.keyboardShown = YES;
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification*)aNotification{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:InAppSettingKeyboardAnimation];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    self.settingsTableView.contentInset = UIEdgeInsetsZero;
+    self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+    [UIView commitAnimations];
+    self.keyboardShown = NO;
 }
 
 #pragma mark Table view methods
@@ -299,7 +341,7 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[self.tableView cellForRowAtIndexPath:indexPath]);
+    InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[tableView cellForRowAtIndexPath:indexPath]);
     if([cell.setting isType:@"PSTextFieldSpecifier"]){
         [cell.valueInput becomeFirstResponder];
     }else if(cell.canSelectCell){
