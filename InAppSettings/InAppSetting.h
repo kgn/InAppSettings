@@ -24,6 +24,7 @@
 - (BOOL)hasTitle;
 - (BOOL)hasKey;
 - (BOOL)hasDefaultValue;
+- (BOOL)isValid;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary andStringsTable:(NSString *)table;
 

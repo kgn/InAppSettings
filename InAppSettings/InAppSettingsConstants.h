@@ -1,5 +1,5 @@
 //
-//  InAppSettingConstants.h
+//  InAppSettingsConstants.h
 //  InAppSettingsTestApp
 //
 //  Created by David Keegan on 11/21/09.
@@ -23,6 +23,27 @@
 #define InAppSettingsBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
 #define InAppSettingsLocalize(stringKey, tableKey) \
     [[NSBundle bundleWithPath:InAppSettingsBundlePath] localizedStringForKey:stringKey value:stringKey table:tableKey]
+
+// settings strings
+#define InAppSettingsStringsTable @"StringsTable"
+#define InAppSettingsPreferenceSpecifiers @"PreferenceSpecifiers"
+
+#define InAppSettingsPSGroupSpecifier @"PSGroupSpecifier"
+#define InAppSettingsPSSliderSpecifier @"PSSliderSpecifier"
+#define InAppSettingsPSChildPaneSpecifier @"PSChildPaneSpecifier"
+#define InAppSettingsPSTitleValueSpecifier @"PSTitleValueSpecifier"
+#define InAppSettingsPSMultiValueSpecifier @"PSMultiValueSpecifier"
+#define InAppSettingsPSToggleSwitchSpecifier @"PSToggleSwitchSpecifier"
+
+#define InAppSettingsSpecifierKey @"Key"
+#define InAppSettingsSpecifierType @"Type"
+#define InAppSettingsSpecifierFile @"File"
+#define InAppSettingsSpecifierTitle @"Title"
+#define InAppSettingsSpecifierTitles @"Titles"
+#define InAppSettingsSpecifierValues @"Values"
+#define InAppSettingsSpecifierDefaultValue @"DefaultValue"
+#define InAppSettingsSpecifierMinimumValue @"MinimumValue"
+#define InAppSettingsSpecifierMaximumValue @"MaximumValue"
 
 // test what cell init code should be used
 #define InAppSettingsUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0

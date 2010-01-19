@@ -7,12 +7,13 @@
 //
 
 #import "PSTitleValueSpecifierCell.h"
+#import "InAppSettingsConstants.h"
 
 @implementation PSTitleValueSpecifierCell
 
 - (NSString *)getValueTitle{
-    NSArray *titles = [self.setting valueForKey:@"Titles"];
-    NSArray *values = [self.setting valueForKey:@"Values"];
+    NSArray *titles = [self.setting valueForKey:InAppSettingsSpecifierTitles];
+    NSArray *values = [self.setting valueForKey:InAppSettingsSpecifierValues];
     if(titles || values){
         if(([titles count] == 0) || ([values count] == 0) || ([titles count] != [values count])){
             return nil;

@@ -7,7 +7,7 @@
 //
 
 #import "InAppSettingsTableCell.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 
 @implementation InAppSettingsTableCell
 
@@ -19,7 +19,7 @@
 #pragma mark Cell lables
 
 - (void)setTitle{
-    [self setTitle:[self.setting valueForKey:@"Title"]];
+    [self setTitle:[self.setting valueForKey:InAppSettingsSpecifierTitle]];
 }
 
 - (void)setDetail{
@@ -56,7 +56,7 @@
     }
     CGRect valueFrame = self.valueLabel.frame;
     valueFrame.size = valueSize;
-    if([self.setting isType:@"PSMultiValueSpecifier"] && [[self.setting localizedTitle] length] == 0){
+    if([self.setting isType:InAppSettingsPSMultiValueSpecifier] && [[self.setting localizedTitle] length] == 0){
         valueFrame.origin.x = InAppSettingsCellPadding;
     }else{
         valueFrame.origin.x = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsCellPadding*(3+disclosure)))-valueFrame.size.width);
@@ -86,15 +86,15 @@
 #pragma mark Value
 
 - (id)getValue{
-    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting valueForKey:@"Key"]];
+    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
     if(value == nil){
-        value = [self.setting valueForKey:@"DefaultValue"];
+        value = [self.setting valueForKey:InAppSettingsSpecifierDefaultValue];
     }
     return value;
 }
 
 - (void)setValue:(id)newValue{
-    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:@"Key"]];
+    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
 }
 
 - (void)setValueDelegate:(id)delegate{

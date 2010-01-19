@@ -7,7 +7,7 @@
 //
 
 #import "PSSliderSpecifierCell.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 
 @implementation PSSliderSpecifierCell
 
@@ -25,8 +25,8 @@
     NSString *maxImagePath = [InAppSettingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MaximumValueImage"]];
     
     //setup the slider
-    self.valueSlider.minimumValue = [[self.setting valueForKey:@"MinimumValue"] floatValue];
-    self.valueSlider.maximumValue = [[self.setting valueForKey:@"MaximumValue"] floatValue];
+    self.valueSlider.minimumValue = [[self.setting valueForKey:InAppSettingsSpecifierMinimumValue] floatValue];
+    self.valueSlider.maximumValue = [[self.setting valueForKey:InAppSettingsSpecifierMaximumValue] floatValue];
     self.valueSlider.minimumValueImage = [UIImage imageWithContentsOfFile:minImagePath];
     self.valueSlider.maximumValueImage = [UIImage imageWithContentsOfFile:maxImagePath];
     CGRect valueSliderFrame = self.valueSlider.frame;

@@ -8,7 +8,7 @@
 
 #import "InAppSettings.h"
 #import "InAppSetting.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 #import "PSMultiValueSpecifierTable.h"
 
 @implementation InAppSettingsModalViewController
@@ -30,99 +30,8 @@
 @synthesize headers, displayHeaders, settings;
 @synthesize displayKeyboard;
 
-#pragma mark validate plist data
-
-- (BOOL)isValidSetting:(InAppSetting *)setting{
-    NSString *type = [setting getType];
-    if([type isEqualToString:@"PSMultiValueSpecifier"]){
-        if(![setting hasKey]){
-            return NO;
-        }
-        
-        if(![setting hasDefaultValue]){
-            return NO;
-        }
-         
-        if(![setting hasTitle] || [[setting valueForKey:@"Title"] length] == 0){
-            return NO;
-        }
-        
-        NSArray *titles = [setting valueForKey:@"Titles"];
-        if((!titles) || ([titles count] == 0)){
-            return NO;
-        }
-        
-        NSArray *values = [setting valueForKey:@"Values"];
-        if((!values) || ([values count] == 0)){
-            return NO;
-        }
-        
-        if([titles count] != [values count]){
-            return NO;
-        }
-    }
-    
-    else if([type isEqualToString:@"PSSliderSpecifier"]){
-        if(![setting hasKey]){
-            return NO;
-        }
-        
-        if(![setting hasDefaultValue]){
-            return NO;
-        }
-        
-        NSNumber *minValue = [setting valueForKey:@"MinimumValue"];
-        if(!minValue){
-            return NO;
-        }
-        
-        NSNumber *maxValue = [setting valueForKey:@"MaximumValue"];
-        if(!maxValue){
-            return NO;
-        }
-    }
-    
-    else if([type isEqualToString:@"PSToggleSwitchSpecifier"]){
-        if(![setting hasKey]){
-            return NO;
-        }
-        
-        if(![setting hasDefaultValue]){
-            return NO;
-        }
-        
-        if(![setting hasTitle]){
-            return NO;
-        }
-    }
-    
-    else if([type isEqualToString:@"PSTitleValueSpecifier"]){
-        if(![setting hasKey]){
-            return NO;
-        }
-        
-        if(![setting hasDefaultValue]){
-            return NO;
-        }
-    }
-    
-    else if([type isEqualToString:@"PSChildPaneSpecifier"]){
-        if(![setting hasTitle]){
-            return NO;
-        }
-        
-        NSString *plistFile = [setting valueForKey:@"File"];
-        if(!plistFile){
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
 #pragma mark modal view
 
-//load the InAppSettings with the settings button is pressed
 - (void)dismissModalView{
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
@@ -168,8 +77,8 @@
     NSString *plistFile = [self.file stringByAppendingPathExtension:@"plist"];
     NSString *settingsRootPlist = [InAppSettingsBundlePath stringByAppendingPathComponent:plistFile];
     NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
-    NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:@"PreferenceSpecifiers"];
-    NSString *stringsTable = [settingsDictionary objectForKey:@"StringsTable"];
+    NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:InAppSettingsPreferenceSpecifiers];
+    NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
     
     //create an array for headers(PSGroupSpecifier) and a dictonary to hold arrays of settings
     self.headers = [[NSMutableArray alloc] init];
@@ -179,7 +88,7 @@
     //if the first item is not a PSGroupSpecifier create a header to store the settings
     NSString *currentHeader = InAppSettingsNullHeader;
     InAppSetting *firstSetting = [[InAppSetting alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0] andStringsTable:stringsTable];
-    if(![firstSetting isType:@"PSGroupSpecifier"]){
+    if(![firstSetting isType:InAppSettingsPSGroupSpecifier]){
         [self.headers addObject:currentHeader];
         [self.displayHeaders addObject:@""];
         [self.settings addObject:[NSMutableArray array]];
@@ -196,14 +105,14 @@
         //type is required
         if(![setting getType]){
             shouldAddSetting = NO;
-        }else if([setting isType:@"PSGroupSpecifier"]){
+        }else if([setting isType:InAppSettingsPSGroupSpecifier]){
             currentHeader = [setting localizedTitle];
             [self.headers addObject:currentHeader];
             [self.displayHeaders addObject:currentHeader];
             [self.settings addObject:[NSMutableArray array]];
             shouldAddSetting = NO;
         }else{
-            shouldAddSetting = [self isValidSetting:setting];
+            shouldAddSetting = [setting isValid];
         }
         
         if(shouldAddSetting){
@@ -356,12 +265,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSetting *setting = [self settingAtIndexPath:indexPath];
-    if([setting isType:@"PSMultiValueSpecifier"]){
+    if([setting isType:InAppSettingsPSMultiValueSpecifier]){
         PSMultiValueSpecifierTable *multiValueSpecifier = [[PSMultiValueSpecifierTable alloc] initWithSetting:setting];
         [self.navigationController pushViewController:multiValueSpecifier animated:YES];
         [multiValueSpecifier release];
-    }else if([setting isType:@"PSChildPaneSpecifier"]){
-        InAppSettingsViewController *childPane = [[InAppSettingsViewController alloc] initWithFile:[setting valueForKey:@"File"]];
+    }else if([setting isType:InAppSettingsPSChildPaneSpecifier]){
+        InAppSettingsViewController *childPane = [[InAppSettingsViewController alloc] initWithFile:[setting valueForKey:InAppSettingsSpecifierFile]];
         childPane.title = [setting localizedTitle];
         [self.navigationController pushViewController:childPane animated:YES];
         [childPane release];

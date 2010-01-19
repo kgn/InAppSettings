@@ -7,7 +7,7 @@
 //
 
 #import "PSTextFieldSpecifierCell.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 
 @implementation PSTextFieldSpecifierCell
 

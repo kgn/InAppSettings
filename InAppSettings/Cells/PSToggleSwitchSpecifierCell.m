@@ -7,7 +7,7 @@
 //
 
 #import "PSToggleSwitchSpecifierCell.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 
 @implementation PSToggleSwitchSpecifierCell
 

@@ -7,7 +7,7 @@
 //
 
 #import "PSMultiValueSpecifierTable.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 
 @implementation PSMultiValueSpecifierTable
 
@@ -39,15 +39,15 @@
 #pragma mark Value
 
 - (id)getValue{
-    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting valueForKey:@"Key"]];
+    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
     if(value == nil){
-        value = [self.setting valueForKey:@"DefaultValue"];
+        value = [self.setting valueForKey:InAppSettingsSpecifierDefaultValue];
     }
     return value;
 }
 
 - (void)setValue:(id)newValue{
-    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:@"Key"]];
+    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
 }
 
 #pragma mark Table view methods
@@ -57,7 +57,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[self.setting valueForKey:@"Values"] count];
+    return [[self.setting valueForKey:InAppSettingsSpecifierValues] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -72,8 +72,8 @@
         #endif
     }
 	
-    NSString *cellTitle = InAppSettingsLocalize([[self.setting valueForKey:@"Titles"] objectAtIndex:indexPath.row], self.setting.stringsTable);
-    id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
+    NSString *cellTitle = InAppSettingsLocalize([[self.setting valueForKey:InAppSettingsSpecifierTitles] objectAtIndex:indexPath.row], self.setting.stringsTable);
+    id cellValue = [[self.setting valueForKey:InAppSettingsSpecifierValues] objectAtIndex:indexPath.row];
     #if InAppSettingsUseNewCells
     cell.textLabel.text = cellTitle;
     #else
@@ -104,7 +104,7 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    id cellValue = [[self.setting valueForKey:@"Values"] objectAtIndex:indexPath.row];
+    id cellValue = [[self.setting valueForKey:InAppSettingsSpecifierValues] objectAtIndex:indexPath.row];
     [self setValue:cellValue];
     [self.tableView reloadData];
     return indexPath;

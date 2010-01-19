@@ -4,8 +4,18 @@
                 °  http://bitbucket.org/keegan3d/inappsettings  °
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-InAppSettings provides a view controller that displays the application's Settings.bundle as it 
-appears in the iPhone settings. Allowing the same preferences in app and in the iPhone settings.
+InAppSettings is an open source iPhone and iPod touch framework for displaying an in app 
+version of the settings from the Settings.bundle. 
+
+There has been a lot of debate over whether an app's settings should be in the app or in 
+the Settings app. InAppSettings is an open source framework determined to remedy this 
+situation once and for all by easily allowing developers to have the same settings in the 
+Settings app in in their app.
+
+InAppSettings uses the same Settings.bundle so there is no duplication of files or work. 
+Simply add InAppSettings to the app's project and call the InAppSettingsViewController from 
+code or Interface Builder and you're done! The InAppSettings wiki contains a full guide, 
+including example code, for adding InAppSettings to an iPhone or iPod touch app. 
 
 By:
 David Keegan
@@ -14,42 +24,58 @@ With contributions from:
 Shayne Sweeney
 Hendrik Kueck
 Peter Greis
+Kurt Arnlund
 
 InAppSettingsTestApp toolbar icons by Joseph Wain - http://glyphish.com/
 
 Features
 ~~~~~~~~
-· Easy to use in code and/or in Interface Builder.
+· 100% re-implementation of the look and functionality of the Settings app.
+· Easily add InAppSettings to any navigation controller from code and Interface Builder, 
+    InAppSettings can also be displayed as a modal view.
 · Supports iPhone and iPod Touch OS 2.0+.
 · Provides the same look and functionality of the Settings app.
-· Supports settings localization.
+· Support for settings localization.
 · Sample project that demonstrates how to use InAppSettings from code and Interface Builder.
 
 License
 ~~~~~~~
-InAppSettings is distributed under the MIT License, read the license file 
-for more licensing information.
+InAppSettings is distributed under the MIT License, read the license file for more 
+licensing information.
 
 How to Add InAppSettings to Your App
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 1. Drag InAppSettings into your project in Xcode.
-2. InAppSettings is just a view controller called InAppSettingsViewController, 
-    you can use it just like you would any other view controller.
+2. Import InAppSettings.
 
-example:
+#import "InAppSettings.h"
+    
+3. InAppSettings has two view controllers:
+    · InAppSettingsViewController - should be used within an existing UINavigationController.
+    · InAppSettingsModalViewConrtoller - creates its own navigation controller, with 'done' 
+        button, for modal views.
+
+Example code for InAppSettingsViewController:
 - (IBAction)showSettings{
     InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];
     [self.navigationController pushViewController:settings animated:YES];
     [settings release];
 }
 
-Or InAppSettings can be called from a nib by changing the class type of a 
-UIViewController to InAppSettingsViewController.
+Example code for InAppSettingsModalViewController:
+- (IBAction)presentSettings{
+    InAppSettingsModalViewController *settings = [[InAppSettingsModalViewController alloc] init];
+    [self presentModalViewController:settings animated:YES];
+    [settings release];
+}
 
-InAppSettingsTestApp implements InAppSettings both ways.
+InAppSettings can also be used in Interface Builder by changing the class type of a UIViewController 
+to InAppSettingsViewController.
 
-Please note that in order for subviews of InAppSettings to work InAppSettingsViewController 
-must be added to a navigation controller.
+InAppSettingsModalViewController should not be used in Interface Builder.
+
+InAppSettingsTestApp implements InAppSettingsViewController both ways, and shows how to use 
+InAppSettingsModalViewController.
 
 InAppSettingsTestApp
 ~~~~~~~~~~~~~~~~~~~~

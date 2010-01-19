@@ -59,7 +59,7 @@
 		736AA39B10BFA41400249911 /* PSToggleSwitchSpecifierCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSToggleSwitchSpecifierCell.m; sourceTree = "<group>"; };
 		736AA39C10BFA41400249911 /* InAppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSetting.h; sourceTree = "<group>"; };
 		736AA39D10BFA41400249911 /* InAppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSetting.m; sourceTree = "<group>"; };
-		736AA39E10BFA41400249911 /* InAppSettingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingConstants.h; sourceTree = "<group>"; };
+		736AA39E10BFA41400249911 /* InAppSettingsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsConstants.h; sourceTree = "<group>"; };
 		736AA39F10BFA41400249911 /* InAppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettings.h; sourceTree = "<group>"; };
 		736AA3A010BFA41400249911 /* InAppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettings.m; sourceTree = "<group>"; };
 		736AA3A110BFA41400249911 /* PSMultiValueSpecifierTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMultiValueSpecifierTable.h; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 				736AA39D10BFA41400249911 /* InAppSetting.m */,
 				736AA39F10BFA41400249911 /* InAppSettings.h */,
 				736AA3A010BFA41400249911 /* InAppSettings.m */,
-				736AA39E10BFA41400249911 /* InAppSettingConstants.h */,
+				736AA39E10BFA41400249911 /* InAppSettingsConstants.h */,
 				736AA3A110BFA41400249911 /* PSMultiValueSpecifierTable.h */,
 				736AA3A210BFA41400249911 /* PSMultiValueSpecifierTable.m */,
 				736AA38D10BFA41400249911 /* Cells */,

@@ -7,13 +7,13 @@
 //
 
 #import "PSMultiValueSpecifierCell.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 
 @implementation PSMultiValueSpecifierCell
 
 - (NSString *)getValueTitle{
-    NSArray *titles = [self.setting valueForKey:@"Titles"];
-    NSArray *values = [self.setting valueForKey:@"Values"];
+    NSArray *titles = [self.setting valueForKey:InAppSettingsSpecifierTitles];
+    NSArray *values = [self.setting valueForKey:InAppSettingsSpecifierValues];
     NSInteger valueIndex = [values indexOfObject:[self getValue]];
     if((valueIndex >= 0) && (valueIndex < (NSInteger)[titles count])){
         return [titles objectAtIndex:valueIndex]; 

@@ -7,7 +7,7 @@
 //
 
 #import "PSChildPaneSpecifierCell.h"
-#import "InAppSettingConstants.h"
+#import "InAppSettingsConstants.h"
 
 @implementation PSChildPaneSpecifierCell
 
