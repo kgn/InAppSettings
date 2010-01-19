@@ -11,6 +11,25 @@
 #import "InAppSettingConstants.h"
 #import "PSMultiValueSpecifierTable.h"
 
+// custom UIBarButtonItem to store its parent navigation controller
+@implementation InAppSettingsModalDoneButton
+
+@synthesize parentNavigationController;
+
+- (id)initWithTarget:(id)target action:(SEL)action{
+    return [super initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:target action:action];
+}
+
+- (void)dealloc{
+    self.parentNavigationController = nil;
+    [super dealloc];
+}
+
+@end
+
+#pragma mark -
+#pragma mark InAppSettingsViewController
+
 @implementation InAppSettingsViewController
 
 @synthesize file;
@@ -118,6 +137,13 @@
     return self;
 }
 
+- (void)addDoneButtonWithTarget:(id)target action:(SEL)action{
+    InAppSettingsModalDoneButton *doneButton = [[InAppSettingsModalDoneButton alloc] initWithTarget:target action:action];
+    doneButton.parentNavigationController = self.navigationController;
+    self.navigationItem.rightBarButtonItem = doneButton;
+    [doneButton release];
+}
+
 - (void)viewDidLoad{
     //setup the table
     self.settingsTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -218,7 +244,6 @@
 #pragma mark text field cell delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
-    NSLog(@"textFieldDidBeginEditing");
     self.displayKeyboard = YES;
     
     //TODO: find a better way to get the cell
@@ -227,7 +252,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)cellTextField{
-    NSLog(@"textFieldShouldReturn");
     self.displayKeyboard = NO;
     [cellTextField resignFirstResponder];
     return YES;
@@ -247,8 +271,6 @@
 
 - (void)keyboardWillShow:(NSNotification*)notification{
     if(!self.displayKeyboard){
-        NSLog(@"%@", notification.name);
-        
         // get the keybaord rect
         CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue];
         
@@ -269,7 +291,6 @@
 
 - (void)keyboardWillHide:(NSNotification*)notification{
     if(!self.displayKeyboard){
-        NSLog(@"%@", notification.name);
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:InAppSettingsKeyboardAnimation];
         [UIView setAnimationBeginsFromCurrentState:YES];
