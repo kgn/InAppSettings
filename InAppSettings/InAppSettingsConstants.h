@@ -23,6 +23,8 @@
 #define InAppSettingsNormalFont [UIFont systemFontOfSize:InAppSettingsFontSize]
 
 #define InAppSettingsBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
+#define InAppSettingsFullPlistPath(file) \
+    [InAppSettingsBundlePath stringByAppendingPathComponent:[file stringByAppendingPathExtension:@"plist"]]
 #define InAppSettingsLocalize(stringKey, tableKey) \
     [[NSBundle bundleWithPath:InAppSettingsBundlePath] localizedStringForKey:stringKey value:stringKey table:tableKey]
 
@@ -33,6 +35,7 @@
 #define InAppSettingsPSGroupSpecifier @"PSGroupSpecifier"
 #define InAppSettingsPSSliderSpecifier @"PSSliderSpecifier"
 #define InAppSettingsPSChildPaneSpecifier @"PSChildPaneSpecifier"
+#define InAppSettingsPSTextFieldSpecifier @"PSTextFieldSpecifier"
 #define InAppSettingsPSTitleValueSpecifier @"PSTitleValueSpecifier"
 #define InAppSettingsPSMultiValueSpecifier @"PSMultiValueSpecifier"
 #define InAppSettingsPSToggleSwitchSpecifier @"PSToggleSwitchSpecifier"

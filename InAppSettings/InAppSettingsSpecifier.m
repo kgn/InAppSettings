@@ -49,8 +49,15 @@
 }
 
 - (BOOL)isValid{
-    NSString *type = [self getType];
-    if([type isEqualToString:InAppSettingsPSMultiValueSpecifier]){
+    if(![self getType]){
+        return NO;
+    }
+    
+    if([self isType:InAppSettingsPSGroupSpecifier]){
+        return YES;
+    }
+    
+    if([self isType:InAppSettingsPSMultiValueSpecifier]){
         if(![self hasKey]){
             return NO;
         }
@@ -59,6 +66,7 @@
             return NO;
         }
         
+        //check the localized and un-locatlized values
         if(![self hasTitle] || [[self valueForKey:InAppSettingsSpecifierTitle] length] == 0){
             return NO;
         }
@@ -76,9 +84,11 @@
         if([titles count] != [values count]){
             return NO;
         }
+        
+        return YES;
     }
     
-    else if([type isEqualToString:InAppSettingsPSSliderSpecifier]){
+    if([self isType:InAppSettingsPSSliderSpecifier]){
         if(![self hasKey]){
             return NO;
         }
@@ -87,18 +97,19 @@
             return NO;
         }
         
-        NSNumber *minValue = [self valueForKey:InAppSettingsSpecifierMinimumValue];
-        if(!minValue){
+        //The settings app allows min>max
+        if(![self valueForKey:InAppSettingsSpecifierMinimumValue]){
             return NO;
         }
         
-        NSNumber *maxValue = [self valueForKey:InAppSettingsSpecifierMaximumValue];
-        if(!maxValue){
+        if(![self valueForKey:InAppSettingsSpecifierMaximumValue]){
             return NO;
         }
+        
+        return YES;
     }
     
-    else if([type isEqualToString:InAppSettingsPSToggleSwitchSpecifier]){
+    if([self isType:InAppSettingsPSToggleSwitchSpecifier]){
         if(![self hasKey]){
             return NO;
         }
@@ -110,30 +121,51 @@
         if(![self hasTitle]){
             return NO;
         }
+        
+        return YES;
     }
     
-    else if([type isEqualToString:InAppSettingsPSTitleValueSpecifier]){
+    if([self isType:InAppSettingsPSTitleValueSpecifier]){
         if(![self hasKey]){
+            return NO;
+        }
+
+        if(![self hasTitle]){
             return NO;
         }
         
         if(![self hasDefaultValue]){
             return NO;
         }
+        
+        return YES;
     }
     
-    else if([type isEqualToString:InAppSettingsPSChildPaneSpecifier]){
+    if([self isType:InAppSettingsPSTextFieldSpecifier]){
+        if(![self hasKey]){
+            return NO;
+        }
+        
         if(![self hasTitle]){
             return NO;
         }
         
-        NSString *plistFile = [self valueForKey:InAppSettingsSpecifierFile];
-        if(!plistFile){
-            return NO;
-        }
+        return YES;
     }
     
-    return YES;
+    if([self isType:InAppSettingsPSChildPaneSpecifier]){
+        if(![self hasTitle]){
+            return NO;
+        }
+        
+        if(![self valueForKey:InAppSettingsSpecifierFile]){
+            return NO;
+        }
+        
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark init/dealloc

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
+#import "InAppSettingsReader.h"
+
+//@interface InAppSettings : NSObject {}
+//
+//+ (void)registerDefaults;
+//
+//@end
 
 @interface InAppSettingsModalViewController : UIViewController {}
 
@@ -17,13 +24,13 @@
     NSString *file;
     UITableView *settingsTableView;
     UIControl *firstResponder;
-    NSMutableArray *headers, *displayHeaders, *settings;
+    InAppSettingsReader *settingsReader;
 }
 
 @property (nonatomic, copy) NSString *file;
 @property (nonatomic, retain) UITableView *settingsTableView;
 @property (nonatomic, assign) UIControl *firstResponder;
-@property (nonatomic, retain) NSMutableArray *headers, *displayHeaders, *settings;
+@property (nonatomic, retain) InAppSettingsReader *settingsReader;
 
 // modal view
 - (void)dismissModalView;

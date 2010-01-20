@@ -161,6 +161,25 @@
 			<string>Default</string>
 		</dict>
 		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Title Values</string>
+		</dict>
+		<dict/>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Key</key>
+			<string>titleValue_notitle</string>
+			<key>DefaultValue</key>
+			<string>No title</string>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string>A</string>
 			<key>Key</key>
@@ -224,7 +243,6 @@
 				<string>Item 3</string>
 			</array>
 		</dict>
-		
 		<dict>
 			<key>Title</key>
 			<string>Not Enough Titles</string>
@@ -370,6 +388,18 @@
 			<string>DOG</string>
 			<key>FalseValue</key>
 			<string>CAT</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>sliderMinGreaterThenMax_key</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>MinimumValue</key>
+			<integer>10</integer>
+			<key>MaximumValue</key>
+			<integer>5</integer>
 		</dict>
 		<dict>
 			<key>Type</key>

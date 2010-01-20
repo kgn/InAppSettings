@@ -11,6 +11,22 @@
 #import "InAppSettingsConstants.h"
 #import "InAppSettingsPSMultiValueSpecifierTable.h"
 
+//@interface InAppSettings : NSObject {}
+//
+//+ (void)registerDefaults{
+//    //keep track of which files we haev read to avoid cervular references
+//    NSMutableArray *consumedFiles = [[NSMutableArray alloc] inti];
+//    
+//    NSString *file = InAppSettingsRootFile;
+//    NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:InAppSettingsFullPlistPath(file)];
+//    NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:InAppSettingsPreferenceSpecifiers];
+//    NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
+//    
+//    [consumedFiles release];
+//}
+//
+//@end
+
 @implementation InAppSettingsModalViewController
 
 - (id)init{
@@ -28,7 +44,7 @@
 @synthesize file;
 @synthesize settingsTableView;
 @synthesize firstResponder;
-@synthesize headers, displayHeaders, settings;
+@synthesize settingsReader;
 
 #pragma mark modal view
 
@@ -73,59 +89,7 @@
         self.file = InAppSettingsRootFile;
     }
     
-    //load plist
-    NSString *plistFile = [self.file stringByAppendingPathExtension:@"plist"];
-    NSString *settingsRootPlist = [InAppSettingsBundlePath stringByAppendingPathComponent:plistFile];
-    NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:settingsRootPlist];
-    NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:InAppSettingsPreferenceSpecifiers];
-    NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
-    
-    //create an array for headers(PSGroupSpecifier) and a dictonary to hold arrays of settings
-    self.headers = [[NSMutableArray alloc] init];
-    self.displayHeaders = [[NSMutableArray alloc] init];
-    self.settings = [[NSMutableArray alloc] init];
-    
-    //if the first item is not a PSGroupSpecifier create a header to store the settings
-    NSString *currentHeader = InAppSettingsNullHeader;
-    InAppSettingsSpecifier *firstSetting = [[InAppSettingsSpecifier alloc] initWithDictionary:[preferenceSpecifiers objectAtIndex:0] andStringsTable:stringsTable];
-    if(![firstSetting isType:InAppSettingsPSGroupSpecifier]){
-        [self.headers addObject:currentHeader];
-        [self.displayHeaders addObject:@""];
-        [self.settings addObject:[NSMutableArray array]];
-    }
-    [firstSetting release];
-    
-    //set the first value in the display header to "", while the real header is set to InAppSettingsNullHeader
-    //this way whats set in the first entry to headers will not be seen
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    for(NSDictionary *eachSetting in preferenceSpecifiers){
-        BOOL shouldAddSetting = YES;
-        InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
-        
-        //type is required
-        if(![setting getType]){
-            shouldAddSetting = NO;
-        }else if([setting isType:InAppSettingsPSGroupSpecifier]){
-            currentHeader = [setting localizedTitle];
-            [self.headers addObject:currentHeader];
-            [self.displayHeaders addObject:currentHeader];
-            [self.settings addObject:[NSMutableArray array]];
-            shouldAddSetting = NO;
-        }else{
-            shouldAddSetting = [setting isValid];
-        }
-        
-        if(shouldAddSetting){
-            NSInteger currentHeaderIndex = [self.headers indexOfObject:currentHeader];
-            if((currentHeaderIndex >= 0) && (currentHeaderIndex < (NSInteger)[self.headers count])){
-                NSMutableArray *currentArray = [self.settings objectAtIndex:currentHeaderIndex];
-                [currentArray addObject:setting];
-            }
-        }
-        [setting release];
-    }
-    [pool drain];
-    [settingsDictionary release];
+    self.settingsReader = [[InAppSettingsReader alloc] initWithFile:self.file];
     
     //setup keyboard notification
     self.firstResponder = nil;
@@ -151,9 +115,7 @@
     self.firstResponder = nil;
     [file release];
     [settingsTableView release];
-    [headers release];
-    [displayHeaders release];
-    [settings release];
+    [settingsReader release];
     [super dealloc];
 }
 
@@ -162,7 +124,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
     self.firstResponder = cellTextField;
     
-    //TODO: find a better way to get the cell
+    //TODO: find a better way to get the cell from the text view
     NSIndexPath *indexPath = [self.settingsTableView indexPathForCell:(UITableViewCell *)[[cellTextField superview] superview]];
     [self.settingsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
@@ -219,23 +181,23 @@
 #pragma mark Table view methods
 
 - (InAppSettingsSpecifier *)settingAtIndexPath:(NSIndexPath *)indexPath{
-    return [[self.settings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    return [[self.settingsReader.settings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.headers count];
+    return [self.settingsReader.headers count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.displayHeaders objectAtIndex:section];
+    return [self.settingsReader.headers objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[self.settings objectAtIndex:section] count];
+    return [[self.settingsReader.settings objectAtIndex:section] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
-    if(InAppSettingsDisplayPowered && [self.file isEqualToString:InAppSettingsRootFile] && section == (NSInteger)[self.headers count]-1){
+    if(InAppSettingsDisplayPowered && [self.file isEqualToString:InAppSettingsRootFile] && section == (NSInteger)[self.settingsReader.headers count]-1){
         return InAppSettingsPoweredBy;
     }
     
