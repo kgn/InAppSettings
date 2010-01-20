@@ -18,7 +18,7 @@
         if(([titles count] == 0) || ([values count] == 0) || ([titles count] != [values count])){
             return nil;
         }
-        NSInteger valueIndex = [values indexOfObject:[self getValue]];
+        NSInteger valueIndex = [values indexOfObject:[self.setting getValue]];
         if((valueIndex >= 0) && (valueIndex < (NSInteger)[titles count])){
             return [titles objectAtIndex:valueIndex];
         }
@@ -26,7 +26,7 @@
         return nil;
     }
     
-    return [self getValue];
+    return [self.setting getValue];
 }
 
 - (void)setUIValues{

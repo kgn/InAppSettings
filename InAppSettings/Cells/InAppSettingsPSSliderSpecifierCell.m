@@ -14,7 +14,7 @@
 @synthesize valueSlider;
 
 - (void)slideAction{
-    [self setValue:[NSNumber numberWithFloat:[self.valueSlider value]]];
+    [self.setting setValue:[NSNumber numberWithFloat:[self.valueSlider value]]];
 }
 
 - (void)setUIValues{
@@ -35,7 +35,7 @@
     valueSliderFrame.size.width = InAppSettingsScreenWidth-(InAppSettingsCellPadding*4);
     self.valueSlider.frame = valueSliderFrame;
     
-    self.valueSlider.value = [[self getValue] floatValue];
+    self.valueSlider.value = [[self.setting getValue] floatValue];
 }
 
 - (void)setupCell{

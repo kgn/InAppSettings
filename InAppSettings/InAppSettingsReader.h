@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@interface InAppSettingsReaderRegisterDefaults : NSObject {
+    //keep track of what files we've read to avoid circular references
+    NSMutableArray *files;
+    NSMutableDictionary *values;
+}
+
+@property (nonatomic, retain) NSMutableArray *files;
+@property (nonatomic, retain) NSMutableDictionary *values;
+
+@end
+
 @interface InAppSettingsReader : NSObject {
     NSString *file;
     NSMutableArray *headers, *settings;

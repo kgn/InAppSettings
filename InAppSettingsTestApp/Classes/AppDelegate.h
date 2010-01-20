@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InAppSettingsTestAppAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
+@interface AppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     UIWindow *window;
     UITabBarController *tabBarController;
 }

@@ -23,12 +23,9 @@
 
 - (void)setTitle;
 - (void)setDetail;
-- (void)setTitle:(NSString *)title;
 - (void)setDetail:(NSString *)detail;
 - (void)setDisclosure:(BOOL)disclosure;
 
-- (id)getValue;
-- (void)setValue:(id)newValue;
 - (void)setValueDelegate:(id)delegate;
 
 - (void)setupCell;

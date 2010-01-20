@@ -19,15 +19,7 @@
 #pragma mark Cell lables
 
 - (void)setTitle{
-    [self setTitle:[self.setting valueForKey:InAppSettingsSpecifierTitle]];
-}
-
-- (void)setDetail{
-    [self setDetail:[self getValue]];
-}
-
-- (void)setTitle:(NSString *)title{
-    self.titleLabel.text = InAppSettingsLocalize(title, self.setting.stringsTable);
+    self.titleLabel.text = [self.setting localizedTitle];
     
     CGFloat maxTitleWidth = InAppSettingsScreenWidth-(InAppSettingsCellPadding*4);
     CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
@@ -39,6 +31,10 @@
     titleFrame.origin.x = InAppSettingsCellPadding;
     titleFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f))-InAppSettingsOffsetY;
     self.titleLabel.frame = titleFrame;
+}
+
+- (void)setDetail{
+    [self setDetail:[self.setting getValue]];
 }
 
 - (void)setDetail:(NSString *)detail{
@@ -83,24 +79,6 @@
     canSelectCell = value;
 }
 
-#pragma mark Value
-
-- (id)getValue{
-    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
-    if(value == nil){
-        value = [self.setting valueForKey:InAppSettingsSpecifierDefaultValue];
-    }
-    return value;
-}
-
-- (void)setValue:(id)newValue{
-    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
-}
-
-- (void)setValueDelegate:(id)delegate{
-    //implement in cell
-}
-
 #pragma mark -
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier{
@@ -123,6 +101,10 @@
 
 - (void)setUIValues{
     //implement this per cell type
+}
+
+- (void)setValueDelegate:(id)delegate{
+    //implement in cell
 }
 
 - (void)setupCell{

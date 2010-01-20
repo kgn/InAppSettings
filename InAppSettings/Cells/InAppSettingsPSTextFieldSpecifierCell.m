@@ -68,7 +68,7 @@
 }
 
 - (void)textChangeAction{
-    [self setValue:self.textField.text];
+    [self.setting setValue:self.textField.text];
 }
 
 #pragma mark cell controlls
@@ -93,7 +93,7 @@
     textFieldFrame.size.width = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsCellPadding*3))-textFieldFrame.origin.x);
     textFieldFrame.size.height = titleSize.height;
     self.textField.frame = textFieldFrame;
-    self.textField.text = [self getValue];
+    self.textField.text = [self.setting getValue];
     
     //keyboard traits
     self.textField.secureTextEntry = [self isSecure];

@@ -33,6 +33,18 @@
     return [NSString stringWithFormat:@"%@%@Cell", InAppSettingsProjectName, [self getType]];
 }
 
+- (id)getValue{
+    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self valueForKey:InAppSettingsSpecifierKey]];
+    if(value == nil){
+        value = [self valueForKey:InAppSettingsSpecifierDefaultValue];
+    }
+    return value;
+}
+
+- (void)setValue:(id)newValue{
+    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self valueForKey:InAppSettingsSpecifierKey]];
+}
+
 #pragma mark validation
 
 - (BOOL)hasTitle{

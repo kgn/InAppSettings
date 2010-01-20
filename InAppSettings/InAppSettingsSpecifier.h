@@ -17,6 +17,8 @@
 
 - (NSString *)getType;
 - (BOOL)isType:(NSString *)type;
+- (id)getValue;
+- (void)setValue:(id)newValue;
 - (id)valueForKey:(NSString *)key;
 - (NSString *)localizedTitle;
 - (NSString *)cellName;

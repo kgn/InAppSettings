@@ -19,7 +19,7 @@
 //    If this key is not present, the default value type is a Boolean.
 
 - (BOOL)getBool{
-    id value = [self getValue];
+    id value = [self.setting getValue];
     id trueValue = [self.setting valueForKey:@"TrueValue"];
     id falseValue = [self.setting valueForKey:@"FalseValue"];
     
@@ -49,7 +49,7 @@
             value = falseValue;
         }
     }
-    [self setValue:value];
+    [self.setting setValue:value];
 }
 
 - (void)switchAction{

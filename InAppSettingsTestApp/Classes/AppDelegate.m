@@ -6,13 +6,19 @@
 //  Copyright InScopeApps{+} 2009. All rights reserved.
 //
 
-#import "InAppSettingsTestAppAppDelegate.h"
+#import "AppDelegate.h"
+#import "InAppSettings.h"
 
-@implementation InAppSettingsTestAppAppDelegate
+@implementation AppDelegate
 
 @synthesize window;
 @synthesize tabBarController;
 
++ (void)initialize{
+    if([self class] == [AppDelegate class]){
+		[InAppSettings registerDefaults];
+    }
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application{
     [window addSubview:tabBarController.view];

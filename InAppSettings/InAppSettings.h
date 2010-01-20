@@ -10,11 +10,11 @@
 #import "InAppSettingsTableCell.h"
 #import "InAppSettingsReader.h"
 
-//@interface InAppSettings : NSObject {}
-//
-//+ (void)registerDefaults;
-//
-//@end
+@interface InAppSettings : NSObject {}
+
++ (void)registerDefaults;
+
+@end
 
 @interface InAppSettingsModalViewController : UIViewController {}
 

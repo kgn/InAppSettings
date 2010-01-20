@@ -98,7 +98,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string></string>
+			<string>Circular Reference!</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Root Settings</string>
+			<key>File</key>
+			<string>Root</string>
 		</dict>
 		<dict>
 			<key>Type</key>

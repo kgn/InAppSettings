@@ -11,21 +11,13 @@
 #import "InAppSettingsConstants.h"
 #import "InAppSettingsPSMultiValueSpecifierTable.h"
 
-//@interface InAppSettings : NSObject {}
-//
-//+ (void)registerDefaults{
-//    //keep track of which files we haev read to avoid cervular references
-//    NSMutableArray *consumedFiles = [[NSMutableArray alloc] inti];
-//    
-//    NSString *file = InAppSettingsRootFile;
-//    NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:InAppSettingsFullPlistPath(file)];
-//    NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:InAppSettingsPreferenceSpecifiers];
-//    NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
-//    
-//    [consumedFiles release];
-//}
-//
-//@end
+@implementation InAppSettings
+
++ (void)registerDefaults{
+    [[[InAppSettingsReaderRegisterDefaults alloc] init] release];
+}
+
+@end
 
 @implementation InAppSettingsModalViewController
 

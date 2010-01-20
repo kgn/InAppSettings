@@ -14,7 +14,7 @@
 - (NSString *)getValueTitle{
     NSArray *titles = [self.setting valueForKey:InAppSettingsSpecifierTitles];
     NSArray *values = [self.setting valueForKey:InAppSettingsSpecifierValues];
-    NSInteger valueIndex = [values indexOfObject:[self getValue]];
+    NSInteger valueIndex = [values indexOfObject:[self.setting getValue]];
     if((valueIndex >= 0) && (valueIndex < (NSInteger)[titles count])){
         return [titles objectAtIndex:valueIndex]; 
     }
