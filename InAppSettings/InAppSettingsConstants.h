@@ -22,6 +22,7 @@
 #define InAppSettingsBoldFont [UIFont boldSystemFontOfSize:InAppSettingsFontSize]
 #define InAppSettingsNormalFont [UIFont systemFontOfSize:InAppSettingsFontSize]
 
+#define InAppSettingsOpenUrl(url) [[UIApplication sharedApplication] openURL:url];
 #define InAppSettingsBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
 #define InAppSettingsFullPlistPath(file) \
     [InAppSettingsBundlePath stringByAppendingPathComponent:[file stringByAppendingPathExtension:@"plist"]]
@@ -49,6 +50,8 @@
 #define InAppSettingsSpecifierDefaultValue @"DefaultValue"
 #define InAppSettingsSpecifierMinimumValue @"MinimumValue"
 #define InAppSettingsSpecifierMaximumValue @"MaximumValue"
+#define InAppSettingsSpecifierInAppURL @"InAppURL"
+#define InAppSettingsSpecifierInAppTitle @"InAppTitle"
 
 // test what cell init code should be used
 #define InAppSettingsUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0

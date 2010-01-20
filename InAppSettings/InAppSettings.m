@@ -233,6 +233,8 @@
         childPane.title = [setting localizedTitle];
         [self.navigationController pushViewController:childPane animated:YES];
         [childPane release];
+    }else if([setting isType:InAppSettingsPSTitleValueSpecifier]){
+        InAppSettingsOpenUrl([NSURL URLWithString:[setting valueForKey:InAppSettingsSpecifierInAppURL]]);
     }
 }
 

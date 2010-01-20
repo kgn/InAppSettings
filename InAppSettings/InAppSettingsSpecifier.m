@@ -26,7 +26,11 @@
 }
 
 - (NSString *)localizedTitle{
-    return InAppSettingsLocalize([self valueForKey:InAppSettingsSpecifierTitle], self.stringsTable);
+    NSString *title = [self valueForKey:InAppSettingsSpecifierTitle];
+    if([self valueForKey:InAppSettingsSpecifierInAppTitle]){
+        title = [self valueForKey:InAppSettingsSpecifierInAppTitle];
+    }
+    return InAppSettingsLocalize(title, self.stringsTable);
 }
 
 - (NSString *)cellName{

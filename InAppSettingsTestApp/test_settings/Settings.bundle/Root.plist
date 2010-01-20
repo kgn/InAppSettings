@@ -580,6 +580,14 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>InApp</string>
+			<key>File</key>
+			<string>InApp</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSSliderSpecifier</string>
 			<key>Key</key>
 			<string>slider_key</string>

@@ -33,6 +33,12 @@
     [super setUIValues];
     
     [self setTitle];
+    
+    if([self.setting valueForKey:InAppSettingsSpecifierInAppURL]){
+        [self setDisclosure:YES];
+        self.canSelectCell = YES;
+    }
+    
     [self setDetail:[self getValueTitle]];
 }
 

@@ -33,9 +33,11 @@
                 if([setting isType:InAppSettingsPSChildPaneSpecifier]){
                     [self loadFile:[setting valueForKey:InAppSettingsSpecifierFile]];
                 }else if([setting hasKey]){
-                    [self.values 
-                        setObject:[setting valueForKey:InAppSettingsSpecifierDefaultValue] 
-                        forKey:[setting valueForKey:InAppSettingsSpecifierKey]];
+                    if([setting valueForKey:InAppSettingsSpecifierDefaultValue]){
+                        [self.values 
+                            setObject:[setting valueForKey:InAppSettingsSpecifierDefaultValue] 
+                            forKey:[setting valueForKey:InAppSettingsSpecifierKey]];
+                    }
                 }
             }
             [setting release];
