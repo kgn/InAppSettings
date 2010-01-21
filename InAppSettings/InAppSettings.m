@@ -196,6 +196,10 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return InAppSettingsHeaderHeight;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSettingsSpecifier *setting = [self settingAtIndexPath:indexPath];
     

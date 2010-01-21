@@ -30,9 +30,9 @@
     self.valueSlider.minimumValueImage = [UIImage imageWithContentsOfFile:minImagePath];
     self.valueSlider.maximumValueImage = [UIImage imageWithContentsOfFile:maxImagePath];
     CGRect valueSliderFrame = self.valueSlider.frame;
-    valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f))-InAppSettingsOffsetY;
+    valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f));
     valueSliderFrame.origin.x = InAppSettingsCellPadding;
-    valueSliderFrame.size.width = InAppSettingsScreenWidth-(InAppSettingsCellPadding*4);
+    valueSliderFrame.size.width = InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding);
     self.valueSlider.frame = valueSliderFrame;
     
     self.valueSlider.value = [[self.setting getValue] floatValue];

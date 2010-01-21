@@ -145,10 +145,6 @@
         if(![self hasKey]){
             return NO;
         }
-
-        if(![self hasTitle]){
-            return NO;
-        }
         
         if(![self hasDefaultValue]){
             return NO;

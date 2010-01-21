@@ -85,12 +85,12 @@
     
     CGRect textFieldFrame = self.textField.frame;
     CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font];
-    textFieldFrame.origin.x = (CGFloat)round(titleSize.width+(InAppSettingsCellPadding*2));
+    textFieldFrame.origin.x = (CGFloat)round(titleSize.width+InAppSettingsTotalTablePadding);
     if(textFieldFrame.origin.x < InAppSettingsCellTextFieldMinX){
         textFieldFrame.origin.x = InAppSettingsCellTextFieldMinX;
     }
     textFieldFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f))-InAppSettingsOffsetY;
-    textFieldFrame.size.width = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsCellPadding*3))-textFieldFrame.origin.x);
+    textFieldFrame.size.width = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-textFieldFrame.origin.x);
     textFieldFrame.size.height = titleSize.height;
     self.textField.frame = textFieldFrame;
     self.textField.text = [self.setting getValue];

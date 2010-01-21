@@ -21,11 +21,18 @@
 - (void)setTitle{
     self.titleLabel.text = [self.setting localizedTitle];
     
-    CGFloat maxTitleWidth = InAppSettingsScreenWidth-(InAppSettingsCellPadding*4);
     CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+    
+    CGFloat maxTitleWidth = InAppSettingsCellTitleMaxWidth;
+    if([self.setting isType:InAppSettingsPSToggleSwitchSpecifier]){
+        maxTitleWidth = InAppSettingsCellTitleMaxWidth-(InAppSettingsCellToggleSwitchWidth+InAppSettingsCellPadding);
+    }else if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
+        maxTitleWidth = InAppSettingsCellTitleMaxWidth-(InAppSettingsCellDisclosureIndicatorWidth+InAppSettingsCellPadding);
+    }
     if(titleSize.width > maxTitleWidth){
         titleSize.width = maxTitleWidth;
     }
+
     CGRect titleFrame = self.titleLabel.frame;
     titleFrame.size = titleSize;
     titleFrame.origin.x = InAppSettingsCellPadding;
@@ -41,23 +48,34 @@
     //the detail is not localized
     self.valueLabel.text = detail;
 
-    NSUInteger disclosure = 0;
-    if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
-        disclosure = 2;
-    }
-    CGFloat maxValueWidth = (InAppSettingsScreenWidth-(InAppSettingsCellPadding*(4+disclosure)))-(self.titleLabel.frame.size.width+InAppSettingsCellPadding);
     CGSize valueSize = [self.valueLabel.text sizeWithFont:self.valueLabel.font];
-    if(valueSize.width > maxValueWidth){
-        valueSize.width = maxValueWidth;
-    }
+    
     CGRect valueFrame = self.valueLabel.frame;
-    valueFrame.size = valueSize;
+    CGFloat titleRightSide = self.titleLabel.frame.size.width+InAppSettingsTablePadding;
     if([self.setting isType:InAppSettingsPSMultiValueSpecifier] && [[self.setting localizedTitle] length] == 0){
-        valueFrame.origin.x = InAppSettingsCellPadding;
+            valueFrame.origin.x = InAppSettingsCellPadding;
     }else{
-        valueFrame.origin.x = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsCellPadding*(3+disclosure)))-valueFrame.size.width);
+        valueFrame.origin.x = (InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-valueSize.width;
+        if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
+            valueFrame.origin.x -= InAppSettingsCellDisclosureIndicatorWidth+InAppSettingsCellPadding;
+        }
+        if(titleRightSide >= valueFrame.origin.x){
+            valueFrame.origin.x = titleRightSide;
+        }
     }
     valueFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSize.height*0.5f))-InAppSettingsOffsetY;
+    valueFrame.size.width = InAppSettingsScreenWidth-(valueFrame.origin.x+InAppSettingsTotalTablePadding+InAppSettingsCellPadding);
+    if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
+        valueFrame.size.width -= InAppSettingsCellDisclosureIndicatorWidth+InAppSettingsCellPadding;
+    }
+    
+    //if the width is less then 0 just hide the label
+    if(valueFrame.size.width <= 0){
+        self.valueLabel.hidden = YES;
+    }else{
+        self.valueLabel.hidden = NO;
+    }
+    valueFrame.size.height = valueSize.height;
     self.valueLabel.frame = valueFrame;
 }
 

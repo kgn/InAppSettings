@@ -6,17 +6,25 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
+//TODO: organize these
 #define InAppSettingsProjectName @"InAppSettings"
 
 #define InAppSettingsRootFile @"Root"
 #define InAppSettingsNullHeader @"InAppSettingsNullHeader"
-#define InAppSettingsCellPadding 10.0f
+#define InAppSettingsCellPadding 9.0f
+#define InAppSettingsTotalCellPadding InAppSettingsCellPadding*2
+#define InAppSettingsTablePadding 10.0f
+#define InAppSettingsHeaderHeight 35.0f
+#define InAppSettingsTotalTablePadding InAppSettingsTablePadding*2
+#define InAppSettingsCellDisclosureIndicatorWidth 10.0f
+#define InAppSettingsCellToggleSwitchWidth 94.0f
 #define InAppSettingsCellTextFieldMinX 115.0f
 #define InAppSettingsKeyboardAnimation 0.3f
 #define InAppSettingsScreenBounds [[UIScreen mainScreen] bounds]
 #define InAppSettingsScreenWidth InAppSettingsScreenBounds.size.width
 #define InAppSettingsScreenHeight InAppSettingsScreenBounds.size.height
-#define InAppSettingsOffsetY 1.0f
+#define InAppSettingsCellTitleMaxWidth InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding)
+#define InAppSettingsOffsetY 2.0f
 #define InAppSettingsBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
 #define InAppSettingsFontSize 17.0f
 #define InAppSettingsBoldFont [UIFont boldSystemFontOfSize:InAppSettingsFontSize]

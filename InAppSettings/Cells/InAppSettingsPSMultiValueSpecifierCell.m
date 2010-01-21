@@ -16,7 +16,7 @@
     NSArray *values = [self.setting valueForKey:InAppSettingsSpecifierValues];
     NSInteger valueIndex = [values indexOfObject:[self.setting getValue]];
     if((valueIndex >= 0) && (valueIndex < (NSInteger)[titles count])){
-        return [titles objectAtIndex:valueIndex]; 
+        return InAppSettingsLocalize([titles objectAtIndex:valueIndex], self.setting.stringsTable); 
     }
     return nil;
 }
