@@ -42,3 +42,11 @@
 - (void)keyboardWillHide:(NSNotification*)notification;
 
 @end
+
+@interface InAppSettingsLightningBolt : UIView {
+    BOOL flip;
+}
+
+@property (nonatomic, assign) BOOL flip;
+
+@end

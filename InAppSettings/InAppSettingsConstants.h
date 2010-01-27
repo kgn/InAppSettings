@@ -6,29 +6,31 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
-//TODO: organize these
+#define InAppSettingsRootFile @"Root"
 #define InAppSettingsProjectName @"InAppSettings"
 
-#define InAppSettingsRootFile @"Root"
-#define InAppSettingsNullHeader @"InAppSettingsNullHeader"
+#define InAppSettingsOffsetY 2.0f
+#define InAppSettingsFontSize 17.0f
 #define InAppSettingsCellPadding 9.0f
-#define InAppSettingsTotalCellPadding InAppSettingsCellPadding*2
 #define InAppSettingsTablePadding 10.0f
 #define InAppSettingsHeaderHeight 35.0f
-#define InAppSettingsTotalTablePadding InAppSettingsTablePadding*2
-#define InAppSettingsCellDisclosureIndicatorWidth 10.0f
-#define InAppSettingsCellToggleSwitchWidth 94.0f
-#define InAppSettingsCellTextFieldMinX 115.0f
+#define InAppSettingsPowerFooterHeight 32.0f
+#define InAppSettingsLightingBoltSize 16.0f
 #define InAppSettingsKeyboardAnimation 0.3f
+#define InAppSettingsCellTextFieldMinX 115.0f
+#define InAppSettingsCellToggleSwitchWidth 94.0f
+#define InAppSettingsCellDisclosureIndicatorWidth 10.0f
+#define InAppSettingsTotalCellPadding InAppSettingsCellPadding*2
+#define InAppSettingsTotalTablePadding InAppSettingsTablePadding*2
 #define InAppSettingsScreenBounds [[UIScreen mainScreen] bounds]
 #define InAppSettingsScreenWidth InAppSettingsScreenBounds.size.width
 #define InAppSettingsScreenHeight InAppSettingsScreenBounds.size.height
 #define InAppSettingsCellTitleMaxWidth InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding)
-#define InAppSettingsOffsetY 2.0f
-#define InAppSettingsBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
-#define InAppSettingsFontSize 17.0f
+#define InAppSettingsFooterFont [UIFont systemFontOfSize:14.0f]
 #define InAppSettingsBoldFont [UIFont boldSystemFontOfSize:InAppSettingsFontSize]
 #define InAppSettingsNormalFont [UIFont systemFontOfSize:InAppSettingsFontSize]
+#define InAppSettingsBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
+#define InAppSettingsFooterBlue [UIColor colorWithRed:0.36f green:0.39f blue:0.45f alpha:1.0f]
 
 #define InAppSettingsOpenUrl(url) [[UIApplication sharedApplication] openURL:url];
 #define InAppSettingsBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
@@ -64,8 +66,5 @@
 // test what cell init code should be used
 #define InAppSettingsUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
 
-// if you dont want to display the 'Powered by' footer set this to NO
-#define InAppSettingsDisplayPowered YES 
-
-// please don't change this value
-#define InAppSettingsPoweredBy [NSString stringWithFormat:@"Powered by %@", InAppSettingsProjectName]
+// if you dont want to display the footer set this to NO
+#define InAppSettingsDisplayPowered YES

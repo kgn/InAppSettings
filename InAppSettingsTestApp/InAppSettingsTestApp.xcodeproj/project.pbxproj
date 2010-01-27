@@ -15,6 +15,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		7307FAA1110061CC000F65B6 /* 84-lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 7307FAA0110061CC000F65B6 /* 84-lightbulb.png */; };
+		7309ACC51110167B005C5A57 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7309ACC41110167B005C5A57 /* Settings.bundle */; };
 		7366576010BDDC4900C041F5 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7366575F10BDDC4900C041F5 /* 20-gear2.png */; };
 		736AA3A310BFA41400249911 /* InAppSettingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */; };
 		736AA3A410BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39110BFA41400249911 /* InAppSettingsPSChildPaneSpecifierCell.m */; };
@@ -26,7 +27,6 @@
 		736AA3AA10BFA41400249911 /* InAppSettingsSpecifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA39D10BFA41400249911 /* InAppSettingsSpecifier.m */; };
 		736AA3AB10BFA41400249911 /* InAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA3A010BFA41400249911 /* InAppSettings.m */; };
 		736AA3AC10BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 736AA3A210BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m */; };
-		737CCB611108667D0059A6B4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 737CCB601108667D0059A6B4 /* Settings.bundle */; };
 		73F8C3BC1106C8F500FA8408 /* InAppSettingsReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F8C3BB1106C8F500FA8408 /* InAppSettingsReader.m */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +43,7 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7307FAA0110061CC000F65B6 /* 84-lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "84-lightbulb.png"; sourceTree = "<group>"; };
+		7309ACC41110167B005C5A57 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = pretty_settings/Settings.bundle; sourceTree = "<group>"; };
 		7366575F10BDDC4900C041F5 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
 		736AA38E10BFA41400249911 /* InAppSettingsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsTableCell.h; sourceTree = "<group>"; };
 		736AA38F10BFA41400249911 /* InAppSettingsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsTableCell.m; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		736AA3A010BFA41400249911 /* InAppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettings.m; sourceTree = "<group>"; };
 		736AA3A110BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsPSMultiValueSpecifierTable.h; sourceTree = "<group>"; };
 		736AA3A210BFA41400249911 /* InAppSettingsPSMultiValueSpecifierTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsPSMultiValueSpecifierTable.m; sourceTree = "<group>"; };
-		737CCB601108667D0059A6B4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = test_settings/Settings.bundle; sourceTree = "<group>"; };
 		73F8C3BA1106C8F500FA8408 /* InAppSettingsReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsReader.h; sourceTree = "<group>"; };
 		73F8C3BB1106C8F500FA8408 /* InAppSettingsReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsReader.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* InAppSettingsTestApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "InAppSettingsTestApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				737CCB601108667D0059A6B4 /* Settings.bundle */,
+				7309ACC41110167B005C5A57 /* Settings.bundle */,
 				7307FAA0110061CC000F65B6 /* 84-lightbulb.png */,
 				7366575F10BDDC4900C041F5 /* 20-gear2.png */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
@@ -239,7 +239,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				7366576010BDDC4900C041F5 /* 20-gear2.png in Resources */,
 				7307FAA1110061CC000F65B6 /* 84-lightbulb.png in Resources */,
-				737CCB611108667D0059A6B4 /* Settings.bundle in Resources */,
+				7309ACC51110167B005C5A57 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
