@@ -235,10 +235,6 @@
     return nil;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return InAppSettingsHeaderHeight;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSettingsSpecifier *setting = [self settingAtIndexPath:indexPath];
     
@@ -311,7 +307,11 @@
 - (void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [InAppSettingsFooterBlue CGColor]);
+    #if __IPHONE_3_2
+    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 0.0f, [[UIColor whiteColor] CGColor]);
+    #else
     CGContextSetShadowWithColor(context, CGSizeMake(0.0f, -1.0f), 0.0f, [[UIColor whiteColor] CGColor]);
+    #endif
     if(self.flip){
         CGContextMoveToPoint(context, 4.0f, 1.0f);
         CGContextAddLineToPoint(context, 13.0f, 1.0f);

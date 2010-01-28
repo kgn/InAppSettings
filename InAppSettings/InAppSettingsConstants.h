@@ -6,6 +6,8 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
+#import <Availability.h>
+
 #define InAppSettingsRootFile @"Root"
 #define InAppSettingsProjectName @"InAppSettings"
 
@@ -13,7 +15,6 @@
 #define InAppSettingsFontSize 17.0f
 #define InAppSettingsCellPadding 9.0f
 #define InAppSettingsTablePadding 10.0f
-#define InAppSettingsHeaderHeight 35.0f
 #define InAppSettingsPowerFooterHeight 32.0f
 #define InAppSettingsLightingBoltSize 16.0f
 #define InAppSettingsKeyboardAnimation 0.3f
