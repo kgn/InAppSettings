@@ -130,6 +130,7 @@
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.font = InAppSettingsBoldFont;
     self.titleLabel.highlightedTextColor = [UIColor whiteColor];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
 //    self.titleLabel.backgroundColor = [UIColor greenColor];
     [self.contentView addSubview:self.titleLabel];
     
@@ -138,6 +139,7 @@
     self.valueLabel.font = InAppSettingsNormalFont;
     self.valueLabel.textColor = InAppSettingsBlue;
     self.valueLabel.highlightedTextColor = [UIColor whiteColor];
+    self.valueLabel.backgroundColor = [UIColor clearColor];
 //    self.valueLabel.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.valueLabel];
 }

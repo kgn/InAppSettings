@@ -23,9 +23,8 @@
 #define InAppSettingsCellDisclosureIndicatorWidth 10.0f
 #define InAppSettingsTotalCellPadding InAppSettingsCellPadding*2
 #define InAppSettingsTotalTablePadding InAppSettingsTablePadding*2
-#define InAppSettingsScreenBounds [[UIScreen mainScreen] bounds]
-#define InAppSettingsScreenWidth InAppSettingsScreenBounds.size.width
-#define InAppSettingsScreenHeight InAppSettingsScreenBounds.size.height
+#define InAppSettingsScreenWidth 320
+#define InAppSettingsScreenHeight 480
 #define InAppSettingsCellTitleMaxWidth InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding)
 #define InAppSettingsFooterFont [UIFont systemFontOfSize:14.0f]
 #define InAppSettingsBoldFont [UIFont boldSystemFontOfSize:InAppSettingsFontSize]
