@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 #import "InAppSettingsReader.h"
+#import "InAppSettingsSpecifier.h"
+
+@protocol InAppSettingsDelegate;
 
 @interface InAppSettings : NSObject {}
 
@@ -20,17 +23,19 @@
 
 @end
 
-@interface InAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+@interface InAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, InAppSettingsSpecifierDelegate> {
     NSString *file;
     UITableView *settingsTableView;
     UIControl *firstResponder;
     InAppSettingsReader *settingsReader;
+    id<InAppSettingsDelegate> delegate;
 }
 
 @property (nonatomic, copy) NSString *file;
 @property (nonatomic, retain) UITableView *settingsTableView;
 @property (nonatomic, assign) UIControl *firstResponder;
 @property (nonatomic, retain) InAppSettingsReader *settingsReader;
+@property (assign) id<InAppSettingsDelegate> delegate;
 
 // modal view
 - (void)dismissModalView;
@@ -48,5 +53,12 @@
 }
 
 @property (nonatomic, assign) BOOL flip;
+
+@end
+
+@protocol InAppSettingsDelegate <NSObject>
+
+@optional
+- (void)InAppSettingsValue:(id)value forKey:(NSString *)key;
 
 @end

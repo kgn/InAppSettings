@@ -12,6 +12,11 @@
 @implementation InAppSettingsSpecifier
 
 @synthesize stringsTable;
+@synthesize delegate;
+
+- (NSString *)getKey{
+    return [self valueForKey:InAppSettingsSpecifierKey];
+}
 
 - (NSString *)getType{
     return [self valueForKey:InAppSettingsSpecifierType];
@@ -38,7 +43,7 @@
 }
 
 - (id)getValue{
-    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self valueForKey:InAppSettingsSpecifierKey]];
+    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self getKey]];
     if(value == nil){
         value = [self valueForKey:InAppSettingsSpecifierDefaultValue];
     }
@@ -46,7 +51,9 @@
 }
 
 - (void)setValue:(id)newValue{
-    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self valueForKey:InAppSettingsSpecifierKey]];
+    NSString *key = [self getKey];
+    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:key];
+    [self.delegate settingsSpecifierUpdated:self];
 }
 
 #pragma mark validation
@@ -56,7 +63,7 @@
 }
 
 - (BOOL)hasKey{
-    NSString *key = [self valueForKey:InAppSettingsSpecifierKey];
+    NSString *key = [self getKey];
     return (key && (![key isEqualToString:@""]));
 }
 
@@ -198,6 +205,7 @@
 }
 
 - (void)dealloc{
+    self.delegate = nil;
     [stringsTable release];
     [settingDictionary release];
     [super dealloc];

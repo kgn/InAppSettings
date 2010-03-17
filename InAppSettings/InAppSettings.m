@@ -7,7 +7,6 @@
 //
 
 #import "InAppSettings.h"
-#import "InAppSettingsSpecifier.h"
 #import "InAppSettingsConstants.h"
 #import "InAppSettingsPSMultiValueSpecifierTable.h"
 
@@ -37,6 +36,7 @@
 @synthesize settingsTableView;
 @synthesize firstResponder;
 @synthesize settingsReader;
+@synthesize delegate;
 
 #pragma mark modal view
 
@@ -105,6 +105,8 @@
 
 - (void)dealloc{
     self.firstResponder = nil;
+    self.delegate = nil;
+    
     [file release];
     [settingsTableView release];
     [settingsReader release];
@@ -167,6 +169,14 @@
         self.settingsTableView.contentInset = UIEdgeInsetsZero;
         self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
         [UIView commitAnimations];
+    }
+}
+
+#pragma mark specifier delegate
+
+- (void)settingsSpecifierUpdated:(InAppSettingsSpecifier *)specifier{
+    if([self.delegate respondsToSelector:@selector(InAppSettingsValue:forKey:)]){
+        [self.delegate InAppSettingsValue:[specifier getValue] forKey:[specifier getKey]];
     }
 }
 
@@ -237,6 +247,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSettingsSpecifier *setting = [self settingAtIndexPath:indexPath];
+    setting.delegate = self;
     
     //get the NSClass for a specifier, if there is none use the base class InAppSettingsTableCell
     NSString *cellType = [setting cellName];

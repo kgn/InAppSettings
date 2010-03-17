@@ -39,7 +39,7 @@
 #pragma mark Value
 
 - (id)getValue{
-    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
+    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self.setting getKey]];
     if(value == nil){
         value = [self.setting valueForKey:InAppSettingsSpecifierDefaultValue];
     }
@@ -47,7 +47,7 @@
 }
 
 - (void)setValue:(id)newValue{
-    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting valueForKey:InAppSettingsSpecifierKey]];
+    [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:[self.setting getKey]];
 }
 
 #pragma mark Table view methods

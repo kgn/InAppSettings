@@ -6,19 +6,19 @@
 //  Copyright InScopeApps{+} 2009. All rights reserved.
 //
 
-@interface RootViewController : UIViewController {
+#import "InAppSettings.h"
+
+@interface RootViewController : UIViewController <InAppSettingsDelegate>{
     UILabel *userSettingsLabel1;
     UILabel *userSettingsLabel2;
     UILabel *userSettingsLabel3;
     UILabel *userSettingsLabel4;
-    UILabel *userSettingsLabel5;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel1;
 @property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel2;
 @property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel3;
 @property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel4;
-@property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel5;
 
 - (IBAction)showSettings;
 

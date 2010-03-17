@@ -36,7 +36,7 @@
                     if([setting valueForKey:InAppSettingsSpecifierDefaultValue]){
                         [self.values 
                             setObject:[setting valueForKey:InAppSettingsSpecifierDefaultValue] 
-                            forKey:[setting valueForKey:InAppSettingsSpecifierKey]];
+                            forKey:[setting getKey]];
                     }
                 }
             }
