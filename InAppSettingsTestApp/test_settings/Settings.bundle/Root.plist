@@ -452,9 +452,9 @@
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>Blue</string>
-				<string>Red</string>
-				<string>Green</string>
+				<string>VALUE_ONE</string>
+				<string>VALUE_TWO</string>
+				<string>VALUE_THREE</string>
 			</array>
 		</dict>
 		<dict>

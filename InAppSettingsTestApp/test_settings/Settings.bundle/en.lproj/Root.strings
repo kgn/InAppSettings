@@ -5,3 +5,7 @@
 "Cap Sentences, AC=YES" = "C4p S3nt3nc3s, AC=YES";
 "Colors" = "Co1or5";
 "NOLABEL" = "";
+
+"VALUE_ONE" = "Red1";
+"VALUE_TWO" = "Green2";
+"VALUE_THREE" = "Blue3";
