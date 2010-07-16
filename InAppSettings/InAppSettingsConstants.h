@@ -10,6 +10,7 @@
 
 #define InAppSettingsRootFile @"Root"
 #define InAppSettingsProjectName @"InAppSettings"
+#define InAppSettingsNotificationName @"InAppSettingsNotification"
 
 #define InAppSettingsOffsetY 2.0f
 #define InAppSettingsFontSize 17.0f
@@ -65,6 +66,9 @@
 
 // test what cell init code should be used
 #define InAppSettingsUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
+
+// test if the new keyboard calls should be used
+#define InAppSettingsUseNewKeyboard __IPHONE_3_2 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_2
 
 // if you dont want to display the footer set this to NO
 #define InAppSettingsDisplayPowered YES

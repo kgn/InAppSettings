@@ -102,7 +102,6 @@
     self.textField.autocorrectionType = [self getAutocorrectionType];
     
     //these are set here so they are set per cell
-    //self.textField.delegate = self;
     self.valueInput = self.textField;
 }
 

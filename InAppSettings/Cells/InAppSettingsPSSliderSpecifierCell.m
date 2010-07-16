@@ -13,6 +13,23 @@
 
 @synthesize valueSlider;
 
+- (NSString *)resolutionIndependentImagePath:(NSString *)path{
+    if([UIScreen instancesRespondToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2.0f){
+        NSString *path2x = [[path stringByDeletingLastPathComponent] 
+                            stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@2x.%@", 
+                                                            [[path lastPathComponent] stringByDeletingPathExtension], 
+                                                            [path pathExtension]]];
+        
+        if([[NSFileManager defaultManager] fileExistsAtPath:path2x]){
+            return path2x;
+        }
+    }
+    
+    return path;
+}
+
+#pragma mark -
+
 - (void)slideAction{
     [self.setting setValue:[NSNumber numberWithFloat:[self.valueSlider value]]];
 }
@@ -21,8 +38,8 @@
     [super setUIValues];
 
     //get the abolute path to the images
-    NSString *minImagePath = [InAppSettingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MinimumValueImage"]];
-    NSString *maxImagePath = [InAppSettingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MaximumValueImage"]];
+    NSString *minImagePath = [self resolutionIndependentImagePath:[InAppSettingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MinimumValueImage"]]];
+    NSString *maxImagePath = [self resolutionIndependentImagePath:[InAppSettingsBundlePath stringByAppendingPathComponent:[self.setting valueForKey:@"MaximumValueImage"]] ];
     
     //setup the slider
     self.valueSlider.minimumValue = [[self.setting valueForKey:InAppSettingsSpecifierMinimumValue] floatValue];

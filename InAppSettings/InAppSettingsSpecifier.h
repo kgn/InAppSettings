@@ -8,16 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol InAppSettingsSpecifierDelegate;
-
 @interface InAppSettingsSpecifier : NSObject {
     NSString *stringsTable;
     NSDictionary *settingDictionary;
-    id<InAppSettingsSpecifierDelegate> delegate;
 }
 
 @property (nonatomic, copy) NSString *stringsTable;
-@property (assign) id<InAppSettingsSpecifierDelegate> delegate;
 
 - (NSString *)getKey;
 - (NSString *)getType;
@@ -34,11 +30,5 @@
 - (BOOL)isValid;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary andStringsTable:(NSString *)table;
-
-@end
-
-@protocol InAppSettingsSpecifierDelegate <NSObject>
-
-- (void)settingsSpecifierUpdated:(InAppSettingsSpecifier *)specifier;
 
 @end

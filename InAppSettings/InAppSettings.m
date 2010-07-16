@@ -7,13 +7,45 @@
 //
 
 #import "InAppSettings.h"
-#import "InAppSettingsConstants.h"
 #import "InAppSettingsPSMultiValueSpecifierTable.h"
 
 @implementation InAppSettings
 
+static InAppSettings *sharedInstance = nil;
+
 + (void)registerDefaults{
     [[[InAppSettingsReaderRegisterDefaults alloc] init] release];
+}
+
+#pragma mark -
+#pragma mark Singleton
+
++ (void)initialize{
+    if(!sharedInstance){
+        [[[self alloc] init] release];
+    }
+}
+
++ (id)sharedManager{
+    return sharedInstance;
+}
+
++ (id)allocWithZone:(NSZone *)zone{
+    return [sharedInstance retain] ?: [super allocWithZone:zone];
+}
+
+- (id)init{
+    if(!sharedInstance){
+        if ((self = [super init])){
+            //initialize ivars
+        }
+        sharedInstance = [self retain];
+    }else if(self != sharedInstance){
+        [self release];
+        self = [sharedInstance retain];
+    }
+    
+    return self;
 }
 
 @end
@@ -36,7 +68,6 @@
 @synthesize settingsTableView;
 @synthesize firstResponder;
 @synthesize settingsReader;
-@synthesize delegate;
 
 #pragma mark modal view
 
@@ -105,7 +136,6 @@
 
 - (void)dealloc{
     self.firstResponder = nil;
-    self.delegate = nil;
     
     [file release];
     [settingsTableView release];
@@ -144,8 +174,11 @@
 - (void)keyboardWillShow:(NSNotification*)notification{
     if(self.firstResponder == nil){
         // get the keybaord rect
+#if InAppSettingsUseNewKeyboard
+        CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+#else
         CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue];
-        
+#endif
         // determin the bottom inset for the table view
         UIEdgeInsets settingsTableInset = self.settingsTableView.contentInset;
         CGPoint tableViewScreenSpace = [self.settingsTableView.superview convertPoint:self.settingsTableView.frame.origin toView:nil];
@@ -169,14 +202,6 @@
         self.settingsTableView.contentInset = UIEdgeInsetsZero;
         self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
         [UIView commitAnimations];
-    }
-}
-
-#pragma mark specifier delegate
-
-- (void)settingsSpecifierUpdated:(InAppSettingsSpecifier *)specifier{
-    if([self.delegate respondsToSelector:@selector(InAppSettingsValue:forKey:)]){
-        [self.delegate InAppSettingsValue:[specifier getValue] forKey:[specifier getKey]];
     }
 }
 
@@ -247,7 +272,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InAppSettingsSpecifier *setting = [self settingAtIndexPath:indexPath];
-    setting.delegate = self;
     
     //get the NSClass for a specifier, if there is none use the base class InAppSettingsTableCell
     NSString *cellType = [setting cellName];

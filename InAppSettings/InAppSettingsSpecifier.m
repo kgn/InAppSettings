@@ -6,13 +6,13 @@
 //  Copyright 2009 InScopeApps{+}. All rights reserved.
 //
 
+#import "InAppSettings.h"
 #import "InAppSettingsSpecifier.h"
 #import "InAppSettingsConstants.h"
 
 @implementation InAppSettingsSpecifier
 
 @synthesize stringsTable;
-@synthesize delegate;
 
 - (NSString *)getKey{
     return [self valueForKey:InAppSettingsSpecifierKey];
@@ -53,7 +53,9 @@
 - (void)setValue:(id)newValue{
     NSString *key = [self getKey];
     [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:key];
-    [self.delegate settingsSpecifierUpdated:self];
+
+    NSNotification *notification = [NSNotification notificationWithName:InAppSettingsNotificationName object:key];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 #pragma mark validation
@@ -205,7 +207,6 @@
 }
 
 - (void)dealloc{
-    self.delegate = nil;
     [stringsTable release];
     [settingDictionary release];
     [super dealloc];
