@@ -60,7 +60,7 @@
     
     //create the slider
     self.valueSlider = [[UISlider alloc] initWithFrame:CGRectZero];
-    [self.valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside+UIControlEventTouchUpOutside];
     [self.contentView addSubview:self.valueSlider];
 }
 
