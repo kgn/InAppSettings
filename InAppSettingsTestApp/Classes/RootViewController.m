@@ -22,6 +22,8 @@
     NSString *userDefaultsKey = [notification object];
     id userDefaultObject = [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultsKey];
     
+    NSLog(@"%@=%@", userDefaultsKey, userDefaultObject);
+    
     if([userDefaultsKey isEqualToString:@"textEntry_NumbersAndPunctuation"]){
         self.userSettingsLabel1.text = [NSString stringWithFormat:@"%@", userDefaultObject];
     }else if([userDefaultsKey isEqualToString:@"textEntry_URL"]){
