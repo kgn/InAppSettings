@@ -70,5 +70,8 @@
 // test if the new keyboard calls should be used
 #define InAppSettingsUseNewKeyboard __IPHONE_3_2 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_2
 
+// test if the value of PSMultiValueSpecifier should be on the right or left if there is no title
+#define InAppSettingsUseNewMultiValueLocation [[[UIDevice currentDevice] systemVersion] doubleValue] >= 4.0
+
 // if you dont want to display the footer set this to NO
 #define InAppSettingsDisplayPowered YES

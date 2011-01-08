@@ -60,8 +60,8 @@
         valueSize.width = valueMaxWidth;
     }
     
-    if([self.setting isType:InAppSettingsPSMultiValueSpecifier] && [[self.setting localizedTitle] length] == 0){
-            valueFrame.origin.x = InAppSettingsCellPadding;
+    if(!InAppSettingsUseNewMultiValueLocation && [self.setting isType:InAppSettingsPSMultiValueSpecifier] && [[self.setting localizedTitle] length] == 0){
+        valueFrame.origin.x = InAppSettingsCellPadding;
     }else{
         valueFrame.origin.x = (InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-valueSize.width;
         if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
