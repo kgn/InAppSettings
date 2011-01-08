@@ -52,6 +52,14 @@
     
     CGRect valueFrame = self.valueLabel.frame;
     CGFloat titleRightSide = self.titleLabel.frame.size.width+InAppSettingsTablePadding;
+    CGFloat valueMaxWidth = InAppSettingsScreenWidth-(titleRightSide+InAppSettingsTablePadding+InAppSettingsCellPadding*3);
+    if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
+        valueMaxWidth -= InAppSettingsCellDisclosureIndicatorWidth+InAppSettingsCellPadding;
+    }
+    if(valueSize.width > valueMaxWidth){
+        valueSize.width = valueMaxWidth;
+    }
+    
     if([self.setting isType:InAppSettingsPSMultiValueSpecifier] && [[self.setting localizedTitle] length] == 0){
             valueFrame.origin.x = InAppSettingsCellPadding;
     }else{
