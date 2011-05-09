@@ -42,15 +42,14 @@
 }
 
 - (UITextAutocapitalizationType)getAutocapitalizationType{
-    //this works, but the real settings don't seem to respect these values eventhough they are in the docs
-    NSString *autoCapitalizationType = [self.setting valueForKey:@"AutoCapitalizationType"];
-    if([autoCapitalizationType isEqualToString:@"Words"]){
+    NSString *autocapitalizationType = [self.setting valueForKey:@"AutocapitalizationType"];
+    if([autocapitalizationType isEqualToString:@"Words"]){
         return UITextAutocapitalizationTypeWords;
     }
-    else if([autoCapitalizationType isEqualToString:@"Sentences"]){
+    else if([autocapitalizationType isEqualToString:@"Sentences"]){
         return UITextAutocapitalizationTypeSentences;
     }
-    else if([autoCapitalizationType isEqualToString:@"AllCharacters"]){
+    else if([autocapitalizationType isEqualToString:@"AllCharacters"]){
         return UITextAutocapitalizationTypeAllCharacters;
     }
     return UITextAutocapitalizationTypeNone;
