@@ -4,7 +4,7 @@ InAppSettings
 **InAppSettings** is an open source iPhone and iPod touch framework for displaying an 
 in app version of the settings from the *Settings.bundle*. 
 
-![](https://github.com/InScopeApps/InAppSettings/raw/master/InAppSettings.png)
+![](https://github.com/InScopeApps/InAppSettings/raw/master/Images/InAppSettings.png)
 
 There has been a lot of debate over whether an app's settings should be in the 
 app or in the Settings app. **InAppSettings** is an open source framework determined 
@@ -42,7 +42,11 @@ How to add InAppSettings to Your App
 ========
 Drag **InAppSettings** into your project in Xcode. Make sure the dialog looks like this, then press 'Add'.
 
-If you will be using **InAppSettings** in multiple projects, and I hope you do:), add **InAppSettings** to your source trees in the Xcode preferences. If you do this the 'add' settings should look like this, then press 'Add'.
+![](https://github.com/InScopeApps/InAppSettings/raw/master/Images/xcodeadd.png)
+
+If you will be using **InAppSettings** in multiple projects, and I hope you do:), add **InAppSettings** to your *source trees* in the Xcode preferences. If you do this the 'add' settings should look like this, then press 'Add'.
+
+![](https://github.com/InScopeApps/InAppSettings/raw/master/Images/sourcetreeadd.png)
 
 InAppSettingsViewController
 --------
@@ -61,6 +65,8 @@ The `InAppSettingsViewController` is a subclass of the `UIViewController` that d
 **Using InAppSettingsViewController From Interface Builder**
 
 To use `InAppSettingsViewController` in Interface Builder, change the class type of any `UIViewController` to `InAppSettingsViewController`.
+
+![](https://github.com/InScopeApps/InAppSettings/raw/master/Images/ibadd.png)
 
 To work correctly the `InAppSettingsViewController` must be added to an existing `UINavigationController`.
 
