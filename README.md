@@ -13,9 +13,10 @@ InAppSettings to the app's project and call it's view controler from code or
 Interface Builder and you're done! The InAppSettings wiki contains a full guide, 
 including example code, for adding InAppSettings to an iPhone or iPod touch app. 
 
-By: David Keegan
+*By: David Keegan*
 
 With contributions from:
+
 * Shayne Sweeney
 * Hendrik Kueck
 * Peter Greis
@@ -33,22 +34,17 @@ Features
 
 License
 --------
-InAppSettings was developed by InScopeApps {+} and is distributed under the MIT license 
-so it can be used in free or comercial apps. See the LICENSE file for more information.
+InAppSettings was developed by InScopeApps {+} and is distributed under the MIT license so it can be used in free or comercial apps. See the [LICENSE file](https://github.com/InScopeApps/InAppSettings/blob/master/LICENSE) for more information.
 
 How to add InAppSettings to Your App
 --------
-Drag InAppSettings into your project in Xcode. Make sure the dialog looks like this, 
-then press 'Add'.
+Drag InAppSettings into your project in Xcode. Make sure the dialog looks like this, then press 'Add'.
 
-If you will be using InAppSettings in multiple projects, and I hope you do:), add 
-InAppSettings to your source trees in the Xcode preferences. If you do this the 
-'add' settings should look like this, then press 'Add'.
+If you will be using InAppSettings in multiple projects, and I hope you do:), add InAppSettings to your source trees in the Xcode preferences. If you do this the 'add' settings should look like this, then press 'Add'.
 
 InAppSettingsViewController
 --------
-The InAppSettingsViewController is a subclass of the UIViewController that displays 
-the settings from the Settings.bundle. It can be used from code and Interface Builder.
+The InAppSettingsViewController is a subclass of the UIViewController that displays the settings from the Settings.bundle. It can be used from code and Interface Builder.
 
 Using InAppSettingsViewController From Code
 
@@ -62,20 +58,15 @@ Using InAppSettingsViewController From Code
 
 Using InAppSettingsViewController From Interface Builder
 
-To use InAppSettingsViewController in Interface Builder, change the class type of any 
-UIViewController to InAppSettingsViewController.
+To use InAppSettingsViewController in Interface Builder, change the class type of any UIViewController to InAppSettingsViewController.
 
-To work correctly the InAppSettingsViewController must be added to an existing 
-UINavigationController.
+To work correctly the InAppSettingsViewController must be added to an existing UINavigationController.
 
-InAppSettingsTestApp demonstrates how to use InAppSettingsViewController from 
-code and Interface Builder.
+InAppSettingsTestApp demonstrates how to use InAppSettingsViewController from code and Interface Builder.
 
 InAppSettingsModalViewController
 --------
-The InAppSettingsModalViewController is a subclass of UIViewController that creates its 
-own UINavigationController. It is designed to be used as a modal view and is created 
-with a 'Done' button that will dismiss the view.
+The InAppSettingsModalViewController is a subclass of UIViewController that creates its own UINavigationController. It is designed to be used as a modal view and is created with a 'Done' button that will dismiss the view.
 
 How to use InAppSettingsModalViewController from code
 
@@ -93,9 +84,7 @@ InAppSettingsTestApp demonstrates how to use InAppSettingsModalViewController as
 
 [InAppSettings registerDefaults]
 --------
-The user defaults from the Settings.bundle are not initialized on startup, and are only initialized 
-when viewed in the Settings App. InAppSettings has a registerDefaults class method that can be 
-called to initialize all of the user defaults from the Settings.bundle.
+The user defaults from the Settings.bundle are not initialized on startup, and are only initialized when viewed in the Settings App. InAppSettings has a registerDefaults class method that can be called to initialize all of the user defaults from the Settings.bundle.
 
 How to use [InAppSettings registerDefaults] from code
 
@@ -115,8 +104,7 @@ Custom settings specifier keys
 --------
 **InAppTitle**
 
-InAppTitle is an optional settings specifier key that can be added to any settings specifier. 
-If present this title will be used in InAppSettings.
+InAppTitle is an optional settings specifier key that can be added to any settings specifier. If present this title will be used in InAppSettings.
     
     <dict>
         <key>Type</key>
@@ -127,14 +115,11 @@ If present this title will be used in InAppSettings.
         <string>Change the theme of the app, these changes will take effect the next time the app is launched</string>
     </dict>
 
-The Settings app will display: "Change the theme of the app", but InAppSettings will display: 
-"Change the theme of the app, these changes will take effect the next time the app is launched".
+The Settings app will display: "Change the theme of the app", but InAppSettings will display: "Change the theme of the app, these changes will take effect the next time the app is launched".
 
 **InAppURL**
 
-InAppTitle is an optional settings specifier key that can be added to PSTitleValueSpecifier. 
-If present a disclosure indicator will be added to the cell, and the specified url will be 
-opened when the cell is tapped.
+InAppTitle is an optional settings specifier key that can be added to PSTitleValueSpecifier. If present a disclosure indicator will be added to the cell, and the specified url will be opened when the cell is tapped.
 
     <dict>
         <key>Type</key>
@@ -148,10 +133,9 @@ opened when the cell is tapped.
         <key>InAppURL</key>
         <string>http://www.inscopeapps.com</string>
     </dict>
-    
+
 To open a webpage the url MUST startwith "http://".
 
 InAppSettingsTestApp
 --------
-The InAppSettingsTestApp is a Xcode project for testing InAppSettings. It also demonstrates all the 
-ways to use the InAppSettings view controllers and class methods.
+The InAppSettingsTestApp is a Xcode project for testing InAppSettings. It also demonstrates all the ways to use the InAppSettings view controllers and class methods.
