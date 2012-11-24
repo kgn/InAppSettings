@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsPSTextFieldSpecifierCell : InAppSettingsTableCell {
-    UITextField *textField;
-}
+@interface InAppSettingsPSTextFieldSpecifierCell : InAppSettingsTableCell
 
 @property (nonatomic, strong) UITextField *textField;
 

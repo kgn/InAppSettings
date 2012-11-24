@@ -12,16 +12,7 @@
 @implementation InAppSettings
 
 + (void)registerDefaults{
-    [[self class] sharedManager];
-}
-
-+ (id)sharedManager{
-    static id sharedManager;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedManager = [[self alloc] init];
-    });
-    return sharedManager;
+    id __unused defaults = [[InAppSettingsReaderRegisterDefaults alloc] init];
 }
 
 @end
@@ -38,11 +29,6 @@
 @end
 
 @implementation InAppSettingsViewController
-
-@synthesize file;
-@synthesize settingsTableView;
-@synthesize firstResponder;
-@synthesize settingsReader;
 
 #pragma mark modal view
 

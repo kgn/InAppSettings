@@ -11,8 +11,6 @@
 
 @implementation InAppSettingsPSTextFieldSpecifierCell
 
-@synthesize textField;
-
 #pragma mark helper methods
 
 - (BOOL)isSecure{

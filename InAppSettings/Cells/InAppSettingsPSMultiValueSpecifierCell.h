@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsPSMultiValueSpecifierCell : InAppSettingsTableCell {}
+@interface InAppSettingsPSMultiValueSpecifierCell : InAppSettingsTableCell
 
 - (NSString *)getValueTitle;
 

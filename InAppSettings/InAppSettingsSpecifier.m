@@ -12,8 +12,6 @@
 
 @implementation InAppSettingsSpecifier
 
-@synthesize stringsTable;
-
 - (NSString *)getKey{
     return [self valueForKey:InAppSettingsSpecifierKey];
 }
@@ -27,7 +25,7 @@
 }
 
 - (id)valueForKey:(NSString *)key{
-    return [settingDictionary objectForKey:key];
+    return [self.settingDictionary objectForKey:key];
 }
 
 - (NSString *)localizedTitle{
@@ -200,7 +198,7 @@
     if (self != nil){
         if(dictionary){
             self.stringsTable = table;
-            settingDictionary = dictionary;
+            self.settingDictionary = dictionary;
         }
     }
     return self;

@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsSpecifier.h"
 
-@interface InAppSettingsPSMultiValueSpecifierTable : UITableViewController {
-    InAppSettingsSpecifier *setting;
-}
+@interface InAppSettingsPSMultiValueSpecifierTable : UITableViewController
 
 @property (nonatomic, strong) InAppSettingsSpecifier *setting;
 

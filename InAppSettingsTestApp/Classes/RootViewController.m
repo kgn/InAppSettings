@@ -11,11 +11,6 @@
 
 @implementation RootViewController
 
-@synthesize userSettingsLabel1;
-@synthesize userSettingsLabel2;
-@synthesize userSettingsLabel3;
-@synthesize userSettingsLabel4;
-
 //this method is called by InAppSettingsNotification when a user default is changed by InAppSettings
 - (void)InAppSettingsNotificationHandler:(NSNotification*)notification{
     //the object of an InAppSettingsNotification is the user defaults key

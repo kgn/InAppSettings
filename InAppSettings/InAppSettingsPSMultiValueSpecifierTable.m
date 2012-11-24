@@ -11,8 +11,6 @@
 
 @implementation InAppSettingsPSMultiValueSpecifierTable
 
-@synthesize setting;
-
 - (id)initWithStyle:(UITableViewStyle)style{
     return [super initWithStyle:UITableViewStyleGrouped];
 }

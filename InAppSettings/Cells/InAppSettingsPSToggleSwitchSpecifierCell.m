@@ -11,8 +11,6 @@
 
 @implementation InAppSettingsPSToggleSwitchSpecifierCell
 
-@synthesize valueSwitch;
-
 //    The value associated with the preference when the toggle switch 
 //    is in the ON position. The value type for this key can be any 
 //    scalar type, including Boolean, String, Number, Date, or Data. 

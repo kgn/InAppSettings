@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface InAppSettingsSpecifier : NSObject {
-    NSString *stringsTable;
-    NSDictionary *settingDictionary;
-}
+@interface InAppSettingsSpecifier : NSObject
 
-@property (nonatomic, copy) NSString *stringsTable;
+@property (nonatomic, strong) NSDictionary *settingDictionary;
+@property (nonatomic, strong) NSString *stringsTable;
 
 - (NSString *)getKey;
 - (NSString *)getType;

@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsPSSliderSpecifierCell : InAppSettingsTableCell {
-    UISlider *valueSlider;
-}
+@interface InAppSettingsPSSliderSpecifierCell : InAppSettingsTableCell
 
 @property (nonatomic, strong) UISlider *valueSlider;
 

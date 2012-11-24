@@ -11,9 +11,6 @@
 
 @implementation AppDelegate
 
-@synthesize window;
-@synthesize tabBarController;
-
 + (void)initialize{
     if([self class] == [AppDelegate class]){
 		[InAppSettings registerDefaults];
@@ -21,7 +18,7 @@
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application{
-    [window addSubview:tabBarController.view];
+    [self.window addSubview:self.tabBarController.view];
 }
 
 

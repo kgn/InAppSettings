@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsPSToggleSwitchSpecifierCell : InAppSettingsTableCell {
-    UISwitch *valueSwitch;
-}
+@interface InAppSettingsPSToggleSwitchSpecifierCell : InAppSettingsTableCell
 
 @property (nonatomic, strong) UISwitch *valueSwitch;
 

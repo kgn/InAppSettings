@@ -12,9 +12,6 @@
 
 @implementation InAppSettingsReaderRegisterDefaults
 
-@synthesize files;
-@synthesize values;
-
 - (void)loadFile:(NSString *)file{
     //if the file is not in the files list we havn't read it yet
     NSInteger fileIndex = [self.files indexOfObject:file];
@@ -27,7 +24,7 @@
         NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
 
         for(NSDictionary *eachSetting in preferenceSpecifiers){
-            @autoreleasepool {            
+            @autoreleasepool{            
                 InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
                 if([setting isValid]){
                     if([setting isType:InAppSettingsPSChildPaneSpecifier]){
@@ -61,9 +58,6 @@
 @end
 
 @implementation InAppSettingsReader
-
-@synthesize file;
-@synthesize headers, settings;
 
 - (id)initWithFile:(NSString *)inputFile{
     self = [super init];

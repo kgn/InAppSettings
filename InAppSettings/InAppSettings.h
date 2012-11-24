@@ -17,7 +17,6 @@
 @interface InAppSettings : NSObject
 
 + (void)registerDefaults;
-+ (id)sharedManager;
 
 @end
 

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsTableCell.h"
 
-@interface InAppSettingsPSChildPaneSpecifierCell : InAppSettingsTableCell {}
+@interface InAppSettingsPSChildPaneSpecifierCell : InAppSettingsTableCell
 
 @end

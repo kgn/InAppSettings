@@ -6,12 +6,7 @@
 //  Copyright InScopeApps{+} 2009. All rights reserved.
 //
 
-@interface RootViewController : UIViewController {
-    UILabel *userSettingsLabel1;
-    UILabel *userSettingsLabel2;
-    UILabel *userSettingsLabel3;
-    UILabel *userSettingsLabel4;
-}
+@interface RootViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet UILabel *userSettingsLabel1;
 @property (nonatomic, strong) IBOutlet UILabel *userSettingsLabel2;

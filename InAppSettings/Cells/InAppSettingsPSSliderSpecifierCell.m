@@ -11,14 +11,16 @@
 
 @implementation InAppSettingsPSSliderSpecifierCell
 
-@synthesize valueSlider;
-
 - (NSString *)resolutionIndependentImagePath:(NSString *)path{
     if([UIScreen instancesRespondToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2.0f){
-        NSString *path2x = [[path stringByDeletingLastPathComponent] 
-                            stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@2x.%@", 
-                                                            [[path lastPathComponent] stringByDeletingPathExtension], 
-                                                            [path pathExtension]]];
+        NSString *extension  = [path pathExtension];
+        if([extension length] == 0){
+            extension = @"png";
+        }
+        NSString *path2x = [[path stringByDeletingLastPathComponent]
+                            stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@2x.%@",
+                                                            [[path lastPathComponent] stringByDeletingPathExtension],
+                                                            extension]];
         
         if([[NSFileManager defaultManager] fileExistsAtPath:path2x]){
             return path2x;
