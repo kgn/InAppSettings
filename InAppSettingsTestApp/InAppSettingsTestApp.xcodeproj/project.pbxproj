@@ -28,6 +28,7 @@
 		73E569AB11F00F9F000E3C3A /* InAppSettingsPSMultiValueSpecifierTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E5699C11F00F9F000E3C3A /* InAppSettingsPSMultiValueSpecifierTable.m */; };
 		73E569AC11F00F9F000E3C3A /* InAppSettingsReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E5699E11F00F9F000E3C3A /* InAppSettingsReader.m */; };
 		73E569AD11F00F9F000E3C3A /* InAppSettingsSpecifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E569A011F00F9F000E3C3A /* InAppSettingsSpecifier.m */; };
+		837D55CF16613E44003C7FBD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 837D55CE16613E44003C7FBD /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		73E5699E11F00F9F000E3C3A /* InAppSettingsReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsReader.m; sourceTree = "<group>"; };
 		73E5699F11F00F9F000E3C3A /* InAppSettingsSpecifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppSettingsSpecifier.h; sourceTree = "<group>"; };
 		73E569A011F00F9F000E3C3A /* InAppSettingsSpecifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppSettingsSpecifier.m; sourceTree = "<group>"; };
+		837D55CE16613E44003C7FBD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* InAppSettingsTestApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "InAppSettingsTestApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				837D55CE16613E44003C7FBD /* Default-568h@2x.png */,
 				730365A2126BBB4A00EFC68D /* Settings.bundle */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* InAppSettingsTestApp-Info.plist */,
@@ -241,6 +244,7 @@
 				73E569A911F00F9F000E3C3A /* InAppSettings.png in Resources */,
 				73E569AA11F00F9F000E3C3A /* InAppSettings@2x.png in Resources */,
 				730365A3126BBB4A00EFC68D /* Settings.bundle in Resources */,
+				837D55CF16613E44003C7FBD /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -289,6 +294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = InAppSettingsTestApp_Prefix.pch;

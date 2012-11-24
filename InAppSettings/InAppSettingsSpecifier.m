@@ -200,16 +200,11 @@
     if (self != nil){
         if(dictionary){
             self.stringsTable = table;
-            settingDictionary = [dictionary retain];
+            settingDictionary = dictionary;
         }
     }
     return self;
 }
 
-- (void)dealloc{
-    [stringsTable release];
-    [settingDictionary release];
-    [super dealloc];
-}
 
 @end

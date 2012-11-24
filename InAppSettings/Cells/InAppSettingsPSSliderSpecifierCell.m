@@ -64,9 +64,5 @@
     [self.contentView addSubview:self.valueSlider];
 }
 
-- (void)dealloc{
-    [valueSlider release];
-    [super dealloc];
-}
 
 @end

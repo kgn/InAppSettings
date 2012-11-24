@@ -11,41 +11,17 @@
 
 @implementation InAppSettings
 
-static InAppSettings *sharedInstance = nil;
-
 + (void)registerDefaults{
-    [[[InAppSettingsReaderRegisterDefaults alloc] init] release];
-}
-
-#pragma mark -
-#pragma mark Singleton
-
-+ (void)initialize{
-    if(!sharedInstance){
-        [[[self alloc] init] release];
-    }
+    [[self class] sharedManager];
 }
 
 + (id)sharedManager{
-    return sharedInstance;
-}
-
-+ (id)allocWithZone:(NSZone *)zone{
-    return [sharedInstance retain] ?: [super allocWithZone:zone];
-}
-
-- (id)init{
-    if(!sharedInstance){
-        if ((self = [super init])){
-            //initialize ivars
-        }
-        sharedInstance = [self retain];
-    }else if(self != sharedInstance){
-        [self release];
-        self = [sharedInstance retain];
-    }
-    
-    return self;
+    static id sharedManager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
 }
 
 @end
@@ -56,7 +32,6 @@ static InAppSettings *sharedInstance = nil;
     InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];
     self = (InAppSettingsModalViewController *)[[UINavigationController alloc] initWithRootViewController:settings];
     [settings addDoneButton];
-    [settings release];
     return self;
 }
 
@@ -72,7 +47,7 @@ static InAppSettings *sharedInstance = nil;
 #pragma mark modal view
 
 - (void)dismissModalView{
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addDoneButton{
@@ -81,7 +56,6 @@ static InAppSettings *sharedInstance = nil;
                                    target:self 
                                    action:@selector(dismissModalView)];
     self.navigationItem.rightBarButtonItem = doneButton;
-    [doneButton release];
 }
 
 #pragma mark setup view
@@ -137,10 +111,6 @@ static InAppSettings *sharedInstance = nil;
 - (void)dealloc{
     self.firstResponder = nil;
     
-    [file release];
-    [settingsTableView release];
-    [settingsReader release];
-    [super dealloc];
 }
 
 #pragma mark text field cell delegate
@@ -220,7 +190,7 @@ static InAppSettings *sharedInstance = nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[self.settingsReader.settings objectAtIndex:section] count];
+    return [(NSArray *)[self.settingsReader.settings objectAtIndex:section] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -246,7 +216,6 @@ static InAppSettings *sharedInstance = nil;
         InAppLabel.shadowColor = [UIColor whiteColor];
         InAppLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
         [powerView addSubview:InAppLabel];
-        [InAppLabel release];
         
         //lighting bolts
         CGPoint leftLightningBoltPos = CGPointMake(InAppSettingsPos.x-InAppSettingsLightingBoltSize,
@@ -255,7 +224,6 @@ static InAppSettings *sharedInstance = nil;
                                                          initWithFrame:CGRectMake(leftLightningBoltPos.x, leftLightningBoltPos.y, 
                                                                                   InAppSettingsLightingBoltSize, InAppSettingsLightingBoltSize)];
         [powerView addSubview:leftLightningBolt];
-        [leftLightningBolt release];
         
         CGPoint rightLightningBoltPos = CGPointMake((CGFloat)round(InAppSettingsPos.x+InAppSettingsSize.width), leftLightningBoltPos.y);
         InAppSettingsLightningBolt *rightLightningBolt = [[InAppSettingsLightningBolt alloc] 
@@ -263,9 +231,8 @@ static InAppSettings *sharedInstance = nil;
                                                                                    InAppSettingsLightingBoltSize, InAppSettingsLightingBoltSize)];
         rightLightningBolt.flip = YES;
         [powerView addSubview:rightLightningBolt];
-        [rightLightningBolt release];
         
-        return [powerView autorelease];
+        return powerView;
     }
     return nil;
 }
@@ -283,7 +250,7 @@ static InAppSettings *sharedInstance = nil;
     
     InAppSettingsTableCell *cell = ((InAppSettingsTableCell *)[tableView dequeueReusableCellWithIdentifier:cellType]);
     if (cell == nil){
-        cell = [[[nsclass alloc] initWithReuseIdentifier:cellType] autorelease];
+        cell = [[nsclass alloc] initWithReuseIdentifier:cellType];
         //setup the cells controlls
         [cell setupCell];
     }
@@ -301,12 +268,10 @@ static InAppSettings *sharedInstance = nil;
     if([setting isType:InAppSettingsPSMultiValueSpecifier]){
         InAppSettingsPSMultiValueSpecifierTable *multiValueSpecifier = [[InAppSettingsPSMultiValueSpecifierTable alloc] initWithSetting:setting];
         [self.navigationController pushViewController:multiValueSpecifier animated:YES];
-        [multiValueSpecifier release];
     }else if([setting isType:InAppSettingsPSChildPaneSpecifier]){
         InAppSettingsViewController *childPane = [[InAppSettingsViewController alloc] initWithFile:[setting valueForKey:InAppSettingsSpecifierFile]];
         childPane.title = [setting localizedTitle];
         [self.navigationController pushViewController:childPane animated:YES];
-        [childPane release];
     }else if([setting isType:InAppSettingsPSTitleValueSpecifier]){
         InAppSettingsOpenUrl([NSURL URLWithString:[setting valueForKey:InAppSettingsSpecifierInAppURL]]);
     }

@@ -13,10 +13,10 @@
     UILabel *userSettingsLabel4;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel1;
-@property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel2;
-@property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel3;
-@property (nonatomic, retain) IBOutlet UILabel *userSettingsLabel4;
+@property (nonatomic, strong) IBOutlet UILabel *userSettingsLabel1;
+@property (nonatomic, strong) IBOutlet UILabel *userSettingsLabel2;
+@property (nonatomic, strong) IBOutlet UILabel *userSettingsLabel3;
+@property (nonatomic, strong) IBOutlet UILabel *userSettingsLabel4;
 
 - (IBAction)showSettings;
 - (IBAction)presentSettings;

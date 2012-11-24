@@ -14,8 +14,8 @@
     NSMutableDictionary *values;
 }
 
-@property (nonatomic, retain) NSMutableArray *files;
-@property (nonatomic, retain) NSMutableDictionary *values;
+@property (nonatomic, strong) NSMutableArray *files;
+@property (nonatomic, strong) NSMutableDictionary *values;
 
 @end
 
@@ -25,7 +25,7 @@
 }
 
 @property (nonatomic, copy) NSString *file;
-@property (nonatomic, retain) NSMutableArray *headers, *settings;
+@property (nonatomic, strong) NSMutableArray *headers, *settings;
 
 - (id)initWithFile:(NSString *)inputFile;
 

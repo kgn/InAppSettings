@@ -13,7 +13,7 @@
     UITextField *textField;
 }
 
-@property (nonatomic, retain) UITextField *textField;
+@property (nonatomic, strong) UITextField *textField;
 
 - (BOOL)isSecure;
 - (UIKeyboardType)getKeyboardType;

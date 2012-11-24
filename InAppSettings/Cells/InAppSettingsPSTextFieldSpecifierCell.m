@@ -83,7 +83,7 @@
     [self setTitle];
     
     CGRect textFieldFrame = self.textField.frame;
-    CGSize titleSize = [titleLabel.text sizeWithFont:titleLabel.font];
+    CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
     textFieldFrame.origin.x = (CGFloat)round(titleSize.width+InAppSettingsTotalTablePadding);
     if(textFieldFrame.origin.x < InAppSettingsCellTextFieldMinX){
         textFieldFrame.origin.x = InAppSettingsCellTextFieldMinX;
@@ -120,9 +120,5 @@
     [self.contentView addSubview:self.textField];
 }
 
-- (void)dealloc{
-    [textField release];
-    [super dealloc];
-}
 
 @end

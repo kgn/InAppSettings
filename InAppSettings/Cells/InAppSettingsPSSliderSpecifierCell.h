@@ -13,7 +13,7 @@
     UISlider *valueSlider;
 }
 
-@property (nonatomic, retain) UISlider *valueSlider;
+@property (nonatomic, strong) UISlider *valueSlider;
 
 - (void)slideAction;
 

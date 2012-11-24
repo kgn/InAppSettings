@@ -49,23 +49,14 @@
 - (IBAction)showSettings{
     InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];
     [self.navigationController pushViewController:settings animated:YES];
-    [settings release];
 }
 
 //present InAppSettings as a modal view
 - (IBAction)presentSettings{
     InAppSettingsModalViewController *settings = [[InAppSettingsModalViewController alloc] init];
-    [self presentModalViewController:settings animated:YES];
-    [settings release];
+    [self presentViewController:settings animated:YES completion:nil];
 }
 
-- (void)dealloc{
-    [userSettingsLabel1 release];
-    [userSettingsLabel2 release];
-    [userSettingsLabel3 release];
-    [userSettingsLabel4 release];
-    [super dealloc];
-}
 
 @end
 

@@ -13,7 +13,7 @@
     InAppSettingsSpecifier *setting;
 }
 
-@property (nonatomic, retain) InAppSettingsSpecifier *setting;
+@property (nonatomic, strong) InAppSettingsSpecifier *setting;
 
 - (id)initWithSetting:(InAppSettingsSpecifier *)inputSetting;
 - (id)getValue;

@@ -9,17 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "InAppSettingsSpecifier.h"
 
-@interface InAppSettingsTableCell : UITableViewCell {
-    InAppSettingsSpecifier *setting;
-    UILabel *titleLabel, *valueLabel;
-    UIControl *valueInput;
-    BOOL canSelectCell;
-}
+@interface InAppSettingsTableCell : UITableViewCell
 
-@property (nonatomic, retain) InAppSettingsSpecifier *setting;
-@property (nonatomic, retain) UILabel *titleLabel, *valueLabel;
-@property (nonatomic, assign) UIControl *valueInput;
-@property (nonatomic, assign) BOOL canSelectCell;
+@property (nonatomic, strong) InAppSettingsSpecifier *setting;
+@property (nonatomic, strong) UILabel *titleLabel, *valueLabel;
+@property (nonatomic, weak) UIControl *valueInput;
+@property (nonatomic) BOOL canSelectCell;
 
 - (void)setTitle;
 - (void)setDetail;

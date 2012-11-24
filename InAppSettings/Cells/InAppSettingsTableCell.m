@@ -152,12 +152,4 @@
     [self.contentView addSubview:self.valueLabel];
 }
 
-- (void)dealloc{
-    [setting release];
-    [titleLabel release];
-    [valueLabel release];
-    self.valueInput = nil;
-    [super dealloc];
-}
-
 @end

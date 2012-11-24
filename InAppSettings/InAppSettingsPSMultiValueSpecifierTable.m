@@ -31,10 +31,6 @@
     self.title = [self.setting localizedTitle];
 }
 
-- (void)dealloc{
-    [setting release];
-    [super dealloc];
-}
 
 #pragma mark Value
 
@@ -57,7 +53,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[self.setting valueForKey:InAppSettingsSpecifierValues] count];
+    return [(NSArray *)[self.setting valueForKey:InAppSettingsSpecifierValues] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -66,7 +62,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
         #if InAppSettingsUseNewCells
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         #else
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
         #endif

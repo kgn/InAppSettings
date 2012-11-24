@@ -14,28 +14,23 @@
 
 #define InAppSettingsNotification InAppSettingsNotificationName
 
-@interface InAppSettings : NSObject {}
+@interface InAppSettings : NSObject
 
 + (void)registerDefaults;
 + (id)sharedManager;
 
 @end
 
-@interface InAppSettingsModalViewController : UIViewController {}
+@interface InAppSettingsModalViewController : UIViewController
 
 @end
 
-@interface InAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
-    NSString *file;
-    UITableView *settingsTableView;
-    UIControl *firstResponder;
-    InAppSettingsReader *settingsReader;
-}
+@interface InAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
-@property (nonatomic, copy) NSString *file;
-@property (nonatomic, retain) UITableView *settingsTableView;
-@property (nonatomic, assign) UIControl *firstResponder;
-@property (nonatomic, retain) InAppSettingsReader *settingsReader;
+@property (nonatomic, strong) NSString *file;
+@property (nonatomic, strong) UITableView *settingsTableView;
+@property (nonatomic, weak) UIControl *firstResponder;
+@property (nonatomic, strong) InAppSettingsReader *settingsReader;
 
 // modal view
 - (void)dismissModalView;
@@ -48,9 +43,7 @@
 
 @end
 
-@interface InAppSettingsLightningBolt : UIView {
-    BOOL flip;
-}
+@interface InAppSettingsLightningBolt : UIView
 
 @property (nonatomic, assign) BOOL flip;
 

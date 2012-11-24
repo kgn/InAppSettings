@@ -76,9 +76,5 @@
     [self.contentView addSubview:self.valueSwitch];
 }
 
-- (void)dealloc{
-    [valueSwitch release];
-    [super dealloc];
-}
 
 @end

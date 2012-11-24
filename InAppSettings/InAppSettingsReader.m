@@ -25,25 +25,23 @@
         NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:InAppSettingsFullPlistPath(file)];
         NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:InAppSettingsPreferenceSpecifiers];
         NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
-        
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
         for(NSDictionary *eachSetting in preferenceSpecifiers){
-            InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
-            if([setting isValid]){
-                if([setting isType:InAppSettingsPSChildPaneSpecifier]){
-                    [self loadFile:[setting valueForKey:InAppSettingsSpecifierFile]];
-                }else if([setting hasKey]){
-                    if([setting valueForKey:InAppSettingsSpecifierDefaultValue]){
-                        [self.values 
-                            setObject:[setting valueForKey:InAppSettingsSpecifierDefaultValue] 
-                            forKey:[setting getKey]];
+            @autoreleasepool {            
+                InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
+                if([setting isValid]){
+                    if([setting isType:InAppSettingsPSChildPaneSpecifier]){
+                        [self loadFile:[setting valueForKey:InAppSettingsSpecifierFile]];
+                    }else if([setting hasKey]){
+                        if([setting valueForKey:InAppSettingsSpecifierDefaultValue]){
+                            [self.values 
+                                setObject:[setting valueForKey:InAppSettingsSpecifierDefaultValue] 
+                                forKey:[setting getKey]];
+                        }
                     }
                 }
             }
-            [setting release];
         }
-        [pool drain];
-        [settingsDictionary release];
     }
 }
 
@@ -59,11 +57,6 @@
 }
 
 
-- (void)dealloc{
-    [files release];
-    [values release];
-    [super dealloc];
-}
 
 @end
 
@@ -87,35 +80,27 @@
         self.settings = [[NSMutableArray alloc] init];
         
         //load the data
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-        for(NSDictionary *eachSetting in preferenceSpecifiers){
-            InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
-            if([setting isValid]){
-                if([setting isType:InAppSettingsPSGroupSpecifier]){
-                    [self.headers addObject:[setting localizedTitle]];
-                    [self.settings addObject:[NSMutableArray array]];
-                }else{
-                    //if there are no settings make an initial container
-                    if([self.settings count] < 1){
-                        [self.headers addObject:@""];
+        @autoreleasepool {
+            for(NSDictionary *eachSetting in preferenceSpecifiers){
+                InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
+                if([setting isValid]){
+                    if([setting isType:InAppSettingsPSGroupSpecifier]){
+                        [self.headers addObject:[setting localizedTitle]];
                         [self.settings addObject:[NSMutableArray array]];
+                    }else{
+                        //if there are no settings make an initial container
+                        if([self.settings count] < 1){
+                            [self.headers addObject:@""];
+                            [self.settings addObject:[NSMutableArray array]];
+                        }
+                        [[self.settings lastObject] addObject:setting];
                     }
-                    [[self.settings lastObject] addObject:setting];
                 }
             }
-            [setting release];
         }
-        [pool drain];
-        [settingsDictionary release];
     }
     return self;
 }
 
-- (void)dealloc{
-    [file release];
-    [headers release];
-    [settings release];
-    [super dealloc];
-}
 
 @end
