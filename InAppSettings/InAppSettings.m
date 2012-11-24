@@ -32,15 +32,16 @@
 
 #pragma mark modal view
 
-- (void)dismissModalView{
+- (IBAction)dismissModalView:(id)sender{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addDoneButton{
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] 
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
-                                   target:self 
-                                   action:@selector(dismissModalView)];
+    UIBarButtonItem *doneButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+     target:self
+     action:@selector(dismissModalView:)];
     self.navigationItem.rightBarButtonItem = doneButton;
 }
 

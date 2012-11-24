@@ -32,7 +32,7 @@
 @property (nonatomic, strong) InAppSettingsReader *settingsReader;
 
 // modal view
-- (void)dismissModalView;
+- (IBAction)dismissModalView:(id)sender;
 - (void)addDoneButton;
 
 //keyboard notification
