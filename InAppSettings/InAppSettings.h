@@ -14,6 +14,8 @@
 
 #define InAppSettingsNotification InAppSettingsNotificationName
 
+extern NSString *const InAppSettingsViewControllerDelegateDismissedNotification;
+
 @interface InAppSettings : NSObject
 
 + (void)registerDefaults;
