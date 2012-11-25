@@ -9,7 +9,8 @@
 #import "InAppSettings.h"
 #import "InAppSettingsPSMultiValueSpecifierTable.h"
 
-NSString *const InAppSettingsViewControllerDelegateDismissedNotification = @"InAppSettingsViewControllerDelegateDismissedNotification";
+NSString *const InAppSettingsViewControllerDelegateWillDismissedNotification = @"InAppSettingsViewControllerDelegateWillDismissedNotification";
+NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"InAppSettingsViewControllerDelegateDidDismissedNotification";
 
 @implementation InAppSettings
 
@@ -35,8 +36,10 @@ NSString *const InAppSettingsViewControllerDelegateDismissedNotification = @"InA
 #pragma mark modal view
 
 - (IBAction)dismissModalView:(id)sender{
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:InAppSettingsViewControllerDelegateDismissedNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:InAppSettingsViewControllerDelegateWillDismissedNotification object:self];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:InAppSettingsViewControllerDelegateDidDismissedNotification object:self];
+    }];
 }
 
 - (void)addDoneButton{
