@@ -44,9 +44,3 @@ extern NSString *const InAppSettingsViewControllerDelegateDidDismissedNotificati
 - (void)keyboardWillHide:(NSNotification*)notification;
 
 @end
-
-@interface InAppSettingsLightningBolt : UIView
-
-@property (nonatomic, assign) BOOL flip;
-
-@end

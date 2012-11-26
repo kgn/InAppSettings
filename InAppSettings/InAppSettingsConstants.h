@@ -54,6 +54,7 @@
 #define InAppSettingsSpecifierType @"Type"
 #define InAppSettingsSpecifierFile @"File"
 #define InAppSettingsSpecifierTitle @"Title"
+#define InAppSettingsSpecifierFooterText @"FooterText"
 #define InAppSettingsSpecifierTitles @"Titles"
 #define InAppSettingsSpecifierValues @"Values"
 #define InAppSettingsSpecifierDefaultValue @"DefaultValue"
@@ -70,6 +71,3 @@
 
 // test if the value of PSMultiValueSpecifier should be on the right or left if there is no title
 #define InAppSettingsUseNewMultiValueLocation [[[UIDevice currentDevice] systemVersion] doubleValue] >= 4.0
-
-// if you dont want to display the footer set this to NO
-#define InAppSettingsDisplayPowered NO

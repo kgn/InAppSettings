@@ -18,7 +18,7 @@
 @interface InAppSettingsReader : NSObject
 
 @property (nonatomic, copy) NSString *file;
-@property (nonatomic, strong) NSMutableArray *headers, *settings;
+@property (nonatomic, strong) NSMutableArray *headersAndFooters, *settings;
 
 - (id)initWithFile:(NSString *)inputFile;
 

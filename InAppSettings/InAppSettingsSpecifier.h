@@ -20,6 +20,7 @@
 - (void)setValue:(id)newValue;
 - (id)valueForKey:(NSString *)key;
 - (NSString *)localizedTitle;
+- (NSString *)localizedFooterText;
 - (NSString *)cellName;
 
 - (BOOL)hasTitle;

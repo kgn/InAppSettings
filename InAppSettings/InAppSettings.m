@@ -178,59 +178,19 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.settingsReader.headers count];
+    return [self.settingsReader.headersAndFooters count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.settingsReader.headers objectAtIndex:section];
+    return [self.settingsReader.headersAndFooters objectAtIndex:section][0];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return [self.settingsReader.headersAndFooters objectAtIndex:section][1];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [(NSArray *)[self.settingsReader.settings objectAtIndex:section] count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if(InAppSettingsDisplayPowered && [self.file isEqualToString:InAppSettingsRootFile] && section == (NSInteger)[self.settingsReader.headers count]-1){
-        return InAppSettingsPowerFooterHeight;
-    }
-    return 0.0f;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if(InAppSettingsDisplayPowered && [self.file isEqualToString:InAppSettingsRootFile] && section == (NSInteger)[self.settingsReader.headers count]-1){
-        UIView *powerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), InAppSettingsPowerFooterHeight)];
-        
-        //InAppSettings label
-        CGSize InAppSettingsSize = [InAppSettingsProjectName sizeWithFont:InAppSettingsFooterFont];
-        CGPoint InAppSettingsPos = CGPointMake((CGFloat)round((CGRectGetWidth(self.view.bounds)*0.5f)-(InAppSettingsSize.width*0.5f)), 
-                                               (CGFloat)round((InAppSettingsPowerFooterHeight*0.5f)-(InAppSettingsSize.height*0.5f))-1);
-        UILabel *InAppLabel = [[UILabel alloc] initWithFrame:CGRectMake(InAppSettingsPos.x, InAppSettingsPos.y, InAppSettingsSize.width, InAppSettingsSize.height)];
-        InAppLabel.text = InAppSettingsProjectName;
-        InAppLabel.font = InAppSettingsFooterFont;
-        InAppLabel.backgroundColor = [UIColor clearColor];
-        InAppLabel.textColor = InAppSettingsFooterBlue;
-        InAppLabel.shadowColor = [UIColor whiteColor];
-        InAppLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-        [powerView addSubview:InAppLabel];
-        
-        //lighting bolts
-        CGPoint leftLightningBoltPos = CGPointMake(InAppSettingsPos.x-InAppSettingsLightingBoltSize,
-                                               (CGFloat)round((InAppSettingsPowerFooterHeight*0.5f)-(InAppSettingsLightingBoltSize*0.5f)));
-        InAppSettingsLightningBolt *leftLightningBolt = [[InAppSettingsLightningBolt alloc] 
-                                                         initWithFrame:CGRectMake(leftLightningBoltPos.x, leftLightningBoltPos.y, 
-                                                                                  InAppSettingsLightingBoltSize, InAppSettingsLightingBoltSize)];
-        [powerView addSubview:leftLightningBolt];
-        
-        CGPoint rightLightningBoltPos = CGPointMake((CGFloat)round(InAppSettingsPos.x+InAppSettingsSize.width), leftLightningBoltPos.y);
-        InAppSettingsLightningBolt *rightLightningBolt = [[InAppSettingsLightningBolt alloc] 
-                                                          initWithFrame:CGRectMake(rightLightningBoltPos.x, rightLightningBoltPos.y, 
-                                                                                   InAppSettingsLightingBoltSize, InAppSettingsLightingBoltSize)];
-        rightLightningBolt.flip = YES;
-        [powerView addSubview:rightLightningBolt];
-        
-        return powerView;
-    }
-    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -283,49 +243,6 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
         return indexPath;
     }
     return nil;
-}
-
-@end
-
-@implementation InAppSettingsLightningBolt
-
-@synthesize flip;
-
-- (id)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if (self != nil) {
-        self.flip = NO;
-        self.backgroundColor = [UIColor clearColor];
-    }
-    return self;
-}
-
-- (void)drawRect:(CGRect)rect{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [InAppSettingsFooterBlue CGColor]);
-    #if __IPHONE_3_2
-    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, 1.0f), 0.0f, [[UIColor whiteColor] CGColor]);
-    #else
-    CGContextSetShadowWithColor(context, CGSizeMake(0.0f, -1.0f), 0.0f, [[UIColor whiteColor] CGColor]);
-    #endif
-    if(self.flip){
-        CGContextMoveToPoint(context, 4.0f, 1.0f);
-        CGContextAddLineToPoint(context, 13.0f, 1.0f);
-        CGContextAddLineToPoint(context, 10.0f, 5.0f);
-        CGContextAddLineToPoint(context, 12.0f, 7.0f);
-        CGContextAddLineToPoint(context, 2.0f, 15.0f);
-        CGContextAddLineToPoint(context, 5.0f, 7.0f);
-        CGContextAddLineToPoint(context, 3.0f, 5.0f);
-    }else{
-        CGContextMoveToPoint(context, 3.0f, 1.0f);
-        CGContextAddLineToPoint(context, 12.0f, 1.0f);
-        CGContextAddLineToPoint(context, 13.0f, 5.0f);
-        CGContextAddLineToPoint(context, 11.0f, 7.0f);
-        CGContextAddLineToPoint(context, 14.0f, 15.0f);
-        CGContextAddLineToPoint(context, 4.0f, 7.0f);
-        CGContextAddLineToPoint(context, 6.0f, 5.0f); 
-    }
-    CGContextFillPath(context);
 }
 
 @end

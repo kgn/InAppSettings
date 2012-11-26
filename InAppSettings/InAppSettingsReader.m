@@ -70,7 +70,7 @@
         NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
         
         //initialize the arrays
-        self.headers = [[NSMutableArray alloc] init];
+        self.headersAndFooters = [[NSMutableArray alloc] init];
         self.settings = [[NSMutableArray alloc] init];
         
         //load the data
@@ -79,12 +79,12 @@
                 InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
                 if([setting isValid]){
                     if([setting isType:InAppSettingsPSGroupSpecifier]){
-                        [self.headers addObject:[setting localizedTitle]];
+                        [self.headersAndFooters addObject:@[[setting localizedTitle], [setting localizedFooterText]]];
                         [self.settings addObject:[NSMutableArray array]];
                     }else{
                         //if there are no settings make an initial container
                         if([self.settings count] < 1){
-                            [self.headers addObject:@""];
+                            [self.headersAndFooters addObject:@[@"", @""]];
                             [self.settings addObject:[NSMutableArray array]];
                         }
                         [[self.settings lastObject] addObject:setting];

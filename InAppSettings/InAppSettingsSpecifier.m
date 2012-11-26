@@ -36,6 +36,11 @@
     return InAppSettingsLocalize(title, self.stringsTable);
 }
 
+- (NSString *)localizedFooterText{
+    NSString *footerText = [self valueForKey:InAppSettingsSpecifierFooterText];
+    return InAppSettingsLocalize(footerText, self.stringsTable);
+}
+
 - (NSString *)cellName{
     return [NSString stringWithFormat:@"%@%@Cell", InAppSettingsProjectName, [self getType]];
 }
