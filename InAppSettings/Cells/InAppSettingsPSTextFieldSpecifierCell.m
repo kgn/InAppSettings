@@ -87,7 +87,7 @@
         textFieldFrame.origin.x = InAppSettingsCellTextFieldMinX;
     }
     textFieldFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f))-InAppSettingsOffsetY;
-    textFieldFrame.size.width = (CGFloat)round((InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-textFieldFrame.origin.x);
+    textFieldFrame.size.width = (CGFloat)round((CGRectGetWidth(self.bounds)-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-textFieldFrame.origin.x);
     textFieldFrame.size.height = titleSize.height;
     self.textField.frame = textFieldFrame;
     self.textField.text = [self.setting getValue];
@@ -106,9 +106,10 @@
     [super setupCell];
     
     //create text field
-    self.textField =[[UITextField alloc] initWithFrame:CGRectZero];
+    self.textField = [[UITextField alloc] initWithFrame:CGRectZero];
     self.textField.textColor = InAppSettingsBlue;
     self.textField.adjustsFontSizeToFitWidth = YES;
+    self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     //THIS IS NOT THE BEHAVIOR OF THE SETTINGS APP
     //but we need a way to dismiss the keyboard

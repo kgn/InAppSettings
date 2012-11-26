@@ -52,7 +52,7 @@
     
     CGRect valueFrame = self.valueLabel.frame;
     CGFloat titleRightSide = self.titleLabel.frame.size.width+InAppSettingsTablePadding;
-    CGFloat valueMaxWidth = InAppSettingsScreenWidth-(titleRightSide+InAppSettingsTablePadding+InAppSettingsCellPadding*3);
+    CGFloat valueMaxWidth = CGRectGetWidth(self.bounds)-(titleRightSide+InAppSettingsTablePadding+InAppSettingsCellPadding*3);
     if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
         valueMaxWidth -= InAppSettingsCellDisclosureIndicatorWidth+InAppSettingsCellPadding;
     }
@@ -63,7 +63,7 @@
     if(!InAppSettingsUseNewMultiValueLocation && [self.setting isType:InAppSettingsPSMultiValueSpecifier] && [[self.setting localizedTitle] length] == 0){
         valueFrame.origin.x = InAppSettingsCellPadding;
     }else{
-        valueFrame.origin.x = (InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-valueSize.width;
+        valueFrame.origin.x = (CGRectGetWidth(self.bounds)-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-valueSize.width;
         if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
             valueFrame.origin.x -= InAppSettingsCellDisclosureIndicatorWidth+InAppSettingsCellPadding;
         }
@@ -72,7 +72,7 @@
         }
     }
     valueFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSize.height*0.5f))-InAppSettingsOffsetY;
-    valueFrame.size.width = InAppSettingsScreenWidth-(valueFrame.origin.x+InAppSettingsTotalTablePadding+InAppSettingsCellPadding);
+    valueFrame.size.width = CGRectGetWidth(self.bounds)-(valueFrame.origin.x+InAppSettingsTotalTablePadding+InAppSettingsCellPadding);
     if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
         valueFrame.size.width -= InAppSettingsCellDisclosureIndicatorWidth+InAppSettingsCellPadding;
     }
@@ -148,6 +148,7 @@
     self.valueLabel.textColor = InAppSettingsBlue;
     self.valueLabel.highlightedTextColor = [UIColor whiteColor];
     self.valueLabel.backgroundColor = [UIColor clearColor];
+    self.valueLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
 //    self.valueLabel.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.valueLabel];
 }

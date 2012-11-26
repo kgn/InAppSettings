@@ -12,7 +12,7 @@
 #define InAppSettingsProjectName @"InAppSettings"
 #define InAppSettingsNotificationName @"InAppSettingsNotification"
 
-#define InAppSettingsOffsetY 2.0f
+#define InAppSettingsOffsetY 1.0f
 #define InAppSettingsFontSize 17.0f
 #define InAppSettingsCellPadding 9.0f
 #define InAppSettingsTablePadding 10.0f
@@ -24,9 +24,7 @@
 #define InAppSettingsCellDisclosureIndicatorWidth 10.0f
 #define InAppSettingsTotalCellPadding InAppSettingsCellPadding*2
 #define InAppSettingsTotalTablePadding InAppSettingsTablePadding*2
-#define InAppSettingsScreenWidth 320
-#define InAppSettingsScreenHeight 480
-#define InAppSettingsCellTitleMaxWidth InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding)
+#define InAppSettingsCellTitleMaxWidth CGRectGetWidth(self.bounds)-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding)
 #define InAppSettingsFooterFont [UIFont systemFontOfSize:14.0f]
 #define InAppSettingsBoldFont [UIFont boldSystemFontOfSize:InAppSettingsFontSize]
 #define InAppSettingsNormalFont [UIFont systemFontOfSize:InAppSettingsFontSize]
@@ -74,4 +72,4 @@
 #define InAppSettingsUseNewMultiValueLocation [[[UIDevice currentDevice] systemVersion] doubleValue] >= 4.0
 
 // if you dont want to display the footer set this to NO
-#define InAppSettingsDisplayPowered YES
+#define InAppSettingsDisplayPowered NO

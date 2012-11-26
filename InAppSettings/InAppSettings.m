@@ -62,6 +62,8 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
 }
 
 - (void)viewDidLoad{
+    [super viewDidLoad];
+    
     //setup the table
     self.settingsTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.settingsTableView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
@@ -87,18 +89,19 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
     self.firstResponder = nil;
     
     self.settingsTableView.contentInset = UIEdgeInsetsZero;
     self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
     
     [self.settingsTableView reloadData];
-    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    self.firstResponder = nil;
     [super viewWillDisappear:animated];
+    self.firstResponder = nil;
 }
 
 - (void)dealloc{
@@ -145,7 +148,7 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
         // determin the bottom inset for the table view
         UIEdgeInsets settingsTableInset = self.settingsTableView.contentInset;
         CGPoint tableViewScreenSpace = [self.settingsTableView.superview convertPoint:self.settingsTableView.frame.origin toView:nil];
-        CGFloat tableViewBottomOffset = InAppSettingsScreenHeight-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
+        CGFloat tableViewBottomOffset = CGRectGetHeight(self.view.bounds)-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
         settingsTableInset.bottom = keyboardRect.size.height-tableViewBottomOffset;
         
         [UIView beginAnimations:nil context:nil];
@@ -195,11 +198,11 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if(InAppSettingsDisplayPowered && [self.file isEqualToString:InAppSettingsRootFile] && section == (NSInteger)[self.settingsReader.headers count]-1){
-        UIView *powerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, InAppSettingsScreenWidth, InAppSettingsPowerFooterHeight)];
+        UIView *powerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), InAppSettingsPowerFooterHeight)];
         
         //InAppSettings label
         CGSize InAppSettingsSize = [InAppSettingsProjectName sizeWithFont:InAppSettingsFooterFont];
-        CGPoint InAppSettingsPos = CGPointMake((CGFloat)round((InAppSettingsScreenWidth*0.5f)-(InAppSettingsSize.width*0.5f)), 
+        CGPoint InAppSettingsPos = CGPointMake((CGFloat)round((CGRectGetWidth(self.view.bounds)*0.5f)-(InAppSettingsSize.width*0.5f)), 
                                                (CGFloat)round((InAppSettingsPowerFooterHeight*0.5f)-(InAppSettingsSize.height*0.5f))-1);
         UILabel *InAppLabel = [[UILabel alloc] initWithFrame:CGRectMake(InAppSettingsPos.x, InAppSettingsPos.y, InAppSettingsSize.width, InAppSettingsSize.height)];
         InAppLabel.text = InAppSettingsProjectName;

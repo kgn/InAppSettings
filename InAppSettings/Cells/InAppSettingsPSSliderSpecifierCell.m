@@ -26,7 +26,12 @@
             return path2x;
         }
     }
-    
+
+    NSString *extension  = [path pathExtension];
+    if([extension length] == 0){
+        return [NSString stringWithFormat:@"%@.png", path];
+    }
+
     return path;
 }
 
@@ -51,7 +56,7 @@
     CGRect valueSliderFrame = self.valueSlider.frame;
     valueSliderFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(valueSliderFrame.size.height*0.5f));
     valueSliderFrame.origin.x = InAppSettingsCellPadding;
-    valueSliderFrame.size.width = InAppSettingsScreenWidth-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding);
+    valueSliderFrame.size.width = CGRectGetWidth(self.bounds)-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding);
     self.valueSlider.frame = valueSliderFrame;
     
     self.valueSlider.value = [[self.setting getValue] floatValue];
@@ -62,6 +67,7 @@
     
     //create the slider
     self.valueSlider = [[UISlider alloc] initWithFrame:CGRectZero];
+    self.valueSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside+UIControlEventTouchUpOutside];
     [self.contentView addSubview:self.valueSlider];
 }
