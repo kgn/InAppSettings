@@ -48,9 +48,8 @@
     //the detail is not localized
     self.valueLabel.text = detail;
 
-    CGSize valueSize = [self.valueLabel.text sizeWithFont:self.valueLabel.font];
-    
     CGRect valueFrame = self.valueLabel.frame;
+    CGSize valueSize = [self.valueLabel.text sizeWithFont:self.valueLabel.font];    
     CGFloat titleRightSide = self.titleLabel.frame.size.width+InAppSettingsTablePadding;
     CGFloat valueMaxWidth = CGRectGetWidth(self.bounds)-(titleRightSide+InAppSettingsTablePadding+InAppSettingsCellPadding*3);
     if(self.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
@@ -148,8 +147,8 @@
     self.valueLabel.textColor = InAppSettingsBlue;
     self.valueLabel.highlightedTextColor = [UIColor whiteColor];
     self.valueLabel.backgroundColor = [UIColor clearColor];
+//    self.valueLabel.backgroundColor = [UIColor redColor];    
     self.valueLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-//    self.valueLabel.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.valueLabel];
 }
 
