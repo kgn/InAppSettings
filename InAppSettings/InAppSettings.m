@@ -97,16 +97,6 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
     self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-
-    [self.settingsTableView reloadData];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    [self.settingsTableView reloadData];    
-}
-
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.firstResponder = nil;
@@ -114,7 +104,6 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
 
 - (void)dealloc{
     self.firstResponder = nil;
-    
 }
 
 #pragma mark text field cell delegate
