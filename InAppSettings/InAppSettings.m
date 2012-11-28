@@ -95,6 +95,8 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
     
     self.settingsTableView.contentInset = UIEdgeInsetsZero;
     self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+    
+    [self.settingsTableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
