@@ -26,6 +26,15 @@
     
     [self setTitle];
     [self setDetail:[self getValueTitle]];
+
+    if([[self.setting valueForKey:InAppSettingsSpecifierInAppMultiType] isEqualToString:@"fonts"]){
+        NSString *cellValue = [self.setting getValue];
+        if([cellValue isEqualToString:@"system"]){
+            self.valueLabel.font = [UIFont systemFontOfSize:InAppSettingsFontSize];
+        }else{
+            self.valueLabel.font = [UIFont fontWithName:cellValue size:InAppSettingsFontSize];
+        }
+    }
 }
 
 - (void)setupCell{
