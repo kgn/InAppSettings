@@ -71,7 +71,6 @@
     #if InAppSettingsUseNewCells
     cell.textLabel.text = cellTitle;
     if([[self.setting valueForKey:InAppSettingsSpecifierInAppMultiType] isEqualToString:@"fonts"]){
-        NSString *cellValue = [[self.setting valueForKey:InAppSettingsSpecifierValues] objectAtIndex:indexPath.row];
         if([cellValue isEqualToString:@"system"]){
             cell.textLabel.font = [UIFont systemFontOfSize:InAppSettingsFontSize];
         }else{
