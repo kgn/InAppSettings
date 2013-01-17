@@ -79,13 +79,4 @@
     [self.contentView addSubview:self.valueSwitch];
 }
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
-
-    CGRect valueSwitchFrame = self.valueSwitch.frame;
-    valueSwitchFrame.origin.y = (CGFloat)round(CGRectGetMidY(self.contentView.bounds)-CGRectGetMidY(self.valueSwitch.bounds))-InAppSettingsOffsetY;
-    valueSwitchFrame.origin.x = (CGFloat)round(CGRectGetWidth(self.contentView.bounds)-CGRectGetWidth(self.valueSwitch.bounds))-InAppSettingsCellPadding;
-    self.valueSwitch.frame = valueSwitchFrame;
-}
-
 @end
