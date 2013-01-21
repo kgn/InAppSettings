@@ -12,10 +12,10 @@
 #import "InAppSettingsSpecifier.h"
 #import "InAppSettingsConstants.h"
 
-#define InAppSettingsNotification InAppSettingsNotificationName
-
 extern NSString *const InAppSettingsViewControllerDelegateWillDismissedNotification;
 extern NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification;
+extern NSString *const InAppSettingsValueChangeNotification;
+extern NSString *const InAppSettingsTapNotification;
 
 @interface InAppSettings : NSObject
 

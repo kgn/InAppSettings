@@ -56,8 +56,7 @@
 - (void)setValue:(id)newValue{
     NSString *key = [self getKey];
     [[NSUserDefaults standardUserDefaults] setObject:newValue forKey:key];
-
-    NSNotification *notification = [NSNotification notificationWithName:InAppSettingsNotificationName object:key];
+    NSNotification *notification = [NSNotification notificationWithName:InAppSettingsValueChangeNotification object:key];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 

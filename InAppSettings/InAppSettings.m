@@ -11,6 +11,8 @@
 
 NSString *const InAppSettingsViewControllerDelegateWillDismissedNotification = @"InAppSettingsViewControllerDelegateWillDismissedNotification";
 NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"InAppSettingsViewControllerDelegateDidDismissedNotification";
+NSString *const InAppSettingsValueChangeNotification = @"InAppSettingsValueChangeNotification";
+NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 
 @implementation InAppSettings
 
@@ -228,7 +230,18 @@ NSString *const InAppSettingsViewControllerDelegateDidDismissedNotification = @"
         childPane.title = [setting localizedTitle];
         [self.navigationController pushViewController:childPane animated:YES];
     }else if([setting isType:InAppSettingsPSTitleValueSpecifier]){
-        InAppSettingsOpenUrl([NSURL URLWithString:[setting valueForKey:InAppSettingsSpecifierInAppURL]]);
+        NSString *InAppURL = [setting valueForKey:InAppSettingsSpecifierInAppURL];
+        NSString *InAppTwitter = [setting valueForKey:InAppSettingsSpecifierInAppTwitter];
+        if(InAppURL){
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InAppURL]];
+        }else if(InAppTwitter){
+            if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter:"]]){
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"twitter://user?screen_name=%@", InAppTwitter]]];
+            }else{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/%@", InAppTwitter]]];
+            }
+        }
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 

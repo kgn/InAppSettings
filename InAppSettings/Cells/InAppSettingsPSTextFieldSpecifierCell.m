@@ -86,7 +86,7 @@
     if(textFieldFrame.origin.x < InAppSettingsCellTextFieldMinX){
         textFieldFrame.origin.x = InAppSettingsCellTextFieldMinX;
     }
-    textFieldFrame.origin.y = (CGFloat)round((self.contentView.frame.size.height*0.5f)-(titleSize.height*0.5f))-InAppSettingsOffsetY;
+    textFieldFrame.origin.y = (CGFloat)round(CGRectGetMidY(self.contentView.bounds)-(titleSize.height*0.5f));
     textFieldFrame.size.width = (CGFloat)round((CGRectGetWidth(self.bounds)-(InAppSettingsTotalTablePadding+InAppSettingsCellPadding))-textFieldFrame.origin.x);
     textFieldFrame.size.height = titleSize.height;
     self.textField.frame = textFieldFrame;

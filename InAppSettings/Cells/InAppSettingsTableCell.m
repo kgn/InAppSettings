@@ -68,7 +68,7 @@
     CGRect titleFrame = self.titleLabel.frame;
     titleFrame.size = titleSize;
     titleFrame.origin.x = InAppSettingsCellPadding;
-    titleFrame.origin.y = (CGFloat)round(CGRectGetMidY(self.contentView.bounds)-(titleSize.height*0.5f))-InAppSettingsOffsetY;
+    titleFrame.origin.y = (CGFloat)round(CGRectGetMidY(self.contentView.bounds)-(titleSize.height*0.5f));
     self.titleLabel.frame = titleFrame;
 
     // detail view
@@ -88,7 +88,7 @@
             valueFrame.origin.x = titleRightSide;
         }
     }
-    valueFrame.origin.y = (CGFloat)round(CGRectGetMidY(self.contentView.bounds)-(valueSize.height*0.5f))-InAppSettingsOffsetY;
+    valueFrame.origin.y = (CGFloat)round(CGRectGetMidY(self.contentView.bounds)-(valueSize.height*0.5f));
     valueFrame.size.width = CGRectGetWidth(self.contentView.bounds)-valueFrame.origin.x-InAppSettingsCellPadding;
 
     //if the width is less then 0 just hide the label

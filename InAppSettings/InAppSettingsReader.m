@@ -22,29 +22,23 @@
         NSDictionary *settingsDictionary = [[NSDictionary alloc] initWithContentsOfFile:InAppSettingsFullPlistPath(file)];
         NSArray *preferenceSpecifiers = [settingsDictionary objectForKey:InAppSettingsPreferenceSpecifiers];
         NSString *stringsTable = [settingsDictionary objectForKey:InAppSettingsStringsTable];
-
-        for(NSDictionary *eachSetting in preferenceSpecifiers){
-            @autoreleasepool{            
-                InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
-                if([setting isValid]){
-                    if([setting isType:InAppSettingsPSChildPaneSpecifier]){
-                        [self loadFile:[setting valueForKey:InAppSettingsSpecifierFile]];
-                    }else if([setting hasKey]){
-                        if([setting valueForKey:InAppSettingsSpecifierDefaultValue]){
-                            [self.values 
-                                setObject:[setting valueForKey:InAppSettingsSpecifierDefaultValue] 
-                                forKey:[setting getKey]];
-                        }
+        [preferenceSpecifiers enumerateObjectsUsingBlock:^(NSDictionary *setting, NSUInteger idx, BOOL *stop) {
+            InAppSettingsSpecifier *settingsSpecifier = [[InAppSettingsSpecifier alloc] initWithDictionary:setting andStringsTable:stringsTable];
+            if([settingsSpecifier isValid]){
+                if([settingsSpecifier isType:InAppSettingsPSChildPaneSpecifier]){
+                    [self loadFile:[settingsSpecifier valueForKey:InAppSettingsSpecifierFile]];
+                }else if([settingsSpecifier hasKey]){
+                    if([settingsSpecifier valueForKey:InAppSettingsSpecifierDefaultValue]){
+                        [self.values setObject:[settingsSpecifier valueForKey:InAppSettingsSpecifierDefaultValue] forKey:[settingsSpecifier getKey]];
                     }
                 }
             }
-        }
+        }];
     }
 }
 
 - (id)init{
-    self = [super init];
-    if (self != nil) {
+    if((self = [super init])){
         self.files = [[NSMutableArray alloc] init];
         self.values = [[NSMutableDictionary alloc] init];
         [self loadFile:InAppSettingsRootFile];
@@ -60,8 +54,7 @@
 @implementation InAppSettingsReader
 
 - (id)initWithFile:(NSString *)inputFile{
-    self = [super init];
-    if(self != nil){
+    if((self = [super init])){
         self.file = inputFile;
         
         //load plist
@@ -74,24 +67,22 @@
         self.settings = [[NSMutableArray alloc] init];
         
         //load the data
-        @autoreleasepool {
-            for(NSDictionary *eachSetting in preferenceSpecifiers){
-                InAppSettingsSpecifier *setting = [[InAppSettingsSpecifier alloc] initWithDictionary:eachSetting andStringsTable:stringsTable];
-                if([setting isValid]){
-                    if([setting isType:InAppSettingsPSGroupSpecifier]){
-                        [self.headersAndFooters addObject:@[[setting localizedTitle], [setting localizedFooterText]]];
+        [preferenceSpecifiers enumerateObjectsUsingBlock:^(NSDictionary *setting, NSUInteger idx, BOOL *stop) {
+            InAppSettingsSpecifier *settingsSpecifier = [[InAppSettingsSpecifier alloc] initWithDictionary:setting andStringsTable:stringsTable];
+            if([settingsSpecifier isValid]){
+                if([settingsSpecifier isType:InAppSettingsPSGroupSpecifier]){
+                    [self.headersAndFooters addObject:@[[settingsSpecifier localizedTitle], [settingsSpecifier localizedFooterText]]];
+                    [self.settings addObject:[NSMutableArray array]];
+                }else{
+                    //if there are no settings make an initial container
+                    if([self.settings count] < 1){
+                        [self.headersAndFooters addObject:@[@"", @""]];
                         [self.settings addObject:[NSMutableArray array]];
-                    }else{
-                        //if there are no settings make an initial container
-                        if([self.settings count] < 1){
-                            [self.headersAndFooters addObject:@[@"", @""]];
-                            [self.settings addObject:[NSMutableArray array]];
-                        }
-                        [[self.settings lastObject] addObject:setting];
                     }
+                    [[self.settings lastObject] addObject:settingsSpecifier];
                 }
             }
-        }
+        }];
     }
     return self;
 }

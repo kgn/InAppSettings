@@ -34,7 +34,8 @@
     
     [self setTitle];
     
-    if([self.setting valueForKey:InAppSettingsSpecifierInAppURL]){
+    if([self.setting valueForKey:InAppSettingsSpecifierInAppURL] ||
+       [self.setting valueForKey:InAppSettingsSpecifierInAppTwitter]){
         [self setDisclosure:YES];
         self.canSelectCell = YES;
     }

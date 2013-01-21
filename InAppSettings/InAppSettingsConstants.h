@@ -10,9 +10,7 @@
 
 #define InAppSettingsRootFile @"Root"
 #define InAppSettingsProjectName @"InAppSettings"
-#define InAppSettingsNotificationName @"InAppSettingsNotification"
 
-#define InAppSettingsOffsetY 1.0f
 #define InAppSettingsFontSize 17.0f
 #define InAppSettingsCellPadding 9.0f
 #define InAppSettingsTablePadding 10.0f
@@ -31,7 +29,6 @@
 #define InAppSettingsBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
 #define InAppSettingsFooterBlue [UIColor colorWithRed:0.36f green:0.39f blue:0.45f alpha:1.0f]
 
-#define InAppSettingsOpenUrl(url) [[UIApplication sharedApplication] openURL:url];
 #define InAppSettingsBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
 #define InAppSettingsFullPlistPath(file) \
     [InAppSettingsBundlePath stringByAppendingPathComponent:[file stringByAppendingPathExtension:@"plist"]]
@@ -61,8 +58,10 @@
 #define InAppSettingsSpecifierMinimumValue @"MinimumValue"
 #define InAppSettingsSpecifierMaximumValue @"MaximumValue"
 #define InAppSettingsSpecifierInAppURL @"InAppURL"
+#define InAppSettingsSpecifierInAppTwitter @"InAppTwitter"
 #define InAppSettingsSpecifierInAppTitle @"InAppTitle"
 #define InAppSettingsSpecifierInAppMultiType @"InAppMultiType"
+#define InAppSettingsSpecifierTap @"InAppTap"
 
 // test what cell init code should be used
 #define InAppSettingsUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
