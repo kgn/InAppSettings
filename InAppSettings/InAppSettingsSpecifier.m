@@ -46,7 +46,10 @@
 }
 
 - (id)getValue{
-    id value = [[NSUserDefaults standardUserDefaults] valueForKey:[self getKey]];
+    id value = nil;
+    if([self getKey]){
+        value = [[NSUserDefaults standardUserDefaults] valueForKey:[self getKey]];
+    }
     if(value == nil){
         value = [self valueForKey:InAppSettingsSpecifierDefaultValue];
     }
@@ -73,6 +76,10 @@
 
 - (BOOL)hasDefaultValue{
     return ([self valueForKey:InAppSettingsSpecifierDefaultValue]) ? YES:NO;
+}
+
+- (BOOL)isTwitterOrURL{
+    return ([self valueForKey:InAppSettingsSpecifierInAppTwitter] || [self valueForKey:InAppSettingsSpecifierInAppURL]) ? YES:NO;
 }
 
 - (BOOL)isValid{
@@ -153,12 +160,14 @@
     }
     
     if([self isType:InAppSettingsPSTitleValueSpecifier]){
-        if(![self hasKey]){
-            return NO;
-        }
-        
-        if(![self hasDefaultValue]){
-            return NO;
+        if(![self isTwitterOrURL]){
+            if(![self hasKey]){
+                return NO;
+            }
+            
+            if(![self hasDefaultValue]){
+                return NO;
+            }
         }
         
         return YES;
