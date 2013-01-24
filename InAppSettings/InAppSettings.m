@@ -108,6 +108,7 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 
 - (void)dealloc{
     self.firstResponder = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];    
 }
 
 #pragma mark text field cell delegate
@@ -129,13 +130,13 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 #pragma mark keyboard notification
 
 - (void)registerForKeyboardNotifications{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(keyboardWillShow:)
+     name:UIKeyboardWillShowNotification object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(keyboardWillHide:)
+     name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification*)notification{
