@@ -14,20 +14,14 @@
 #define InAppSettingsFontSize 17.0f
 #define InAppSettingsCellPadding 9.0f
 #define InAppSettingsTablePadding 10.0f
-#define InAppSettingsPowerFooterHeight 32.0f
-#define InAppSettingsLightingBoltSize 16.0f
-#define InAppSettingsKeyboardAnimation 0.3f
 #define InAppSettingsCellTextFieldMinX 115.0f
 #define InAppSettingsCellToggleSwitchWidth 94.0f
-#define InAppSettingsCellDisclosureIndicatorWidth 10.0f
 #define InAppSettingsTotalCellPadding InAppSettingsCellPadding*2
 #define InAppSettingsTotalTablePadding InAppSettingsTablePadding*2
 #define InAppSettingsCellTitleMaxWidth CGRectGetWidth(self.bounds)-(InAppSettingsTotalTablePadding+InAppSettingsTotalCellPadding)
-#define InAppSettingsFooterFont [UIFont systemFontOfSize:14.0f]
 #define InAppSettingsBoldFont [UIFont boldSystemFontOfSize:InAppSettingsFontSize]
 #define InAppSettingsNormalFont [UIFont systemFontOfSize:InAppSettingsFontSize]
 #define InAppSettingsBlue [UIColor colorWithRed:0.22f green:0.33f blue:0.53f alpha:1.0f];
-#define InAppSettingsFooterBlue [UIColor colorWithRed:0.36f green:0.39f blue:0.45f alpha:1.0f]
 
 #define InAppSettingsBundlePath [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"bundle"]
 #define InAppSettingsFullPlistPath(file) \
@@ -62,12 +56,6 @@
 #define InAppSettingsSpecifierInAppTitle @"InAppTitle"
 #define InAppSettingsSpecifierInAppMultiType @"InAppMultiType"
 #define InAppSettingsSpecifierTap @"InAppTap"
-
-// test what cell init code should be used
-#define InAppSettingsUseNewCells __IPHONE_3_0 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_0
-
-// test if the new keyboard calls should be used
-#define InAppSettingsUseNewKeyboard __IPHONE_3_2 && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_2
 
 // test if the value of PSMultiValueSpecifier should be on the right or left if there is no title
 #define InAppSettingsUseNewMultiValueLocation [[[UIDevice currentDevice] systemVersion] doubleValue] >= 4.0

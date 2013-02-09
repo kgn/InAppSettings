@@ -106,12 +106,7 @@
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     //the docs say UITableViewCellStyleValue1 is used for settings, 
     //but it doesn't look 100% the same so we will just draw our own UILabels
-    #if InAppSettingsUseNewCells
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-    #else
-    self = [super initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier];
-    #endif
-    
     if(self != nil){
         self.canSelectCell = NO;
     }

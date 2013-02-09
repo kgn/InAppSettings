@@ -129,6 +129,10 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 
 #pragma mark keyboard notification
 
+// TODO: handle the case where the settings are in a popover or sheet modal
+// The offset amount will not be the same as on iPhone
+// Maybe bring in KGKeyboardChangeManager?
+
 - (void)registerForKeyboardNotifications{
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(keyboardWillShow:)
@@ -141,20 +145,22 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 
 - (void)keyboardWillShow:(NSNotification*)notification{
     if(self.firstResponder == nil){
-        // get the keybaord rect
-#if InAppSettingsUseNewKeyboard
-        CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-#else
-        CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue];
-#endif
-        // determin the bottom inset for the table view
+        CGRect keyboardEndFrame;
+        NSTimeInterval animationDuration;
+        UIViewAnimationCurve animationCurve;
+        NSDictionary *userInfo = [notification userInfo];
+        [userInfo[UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+        [userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+        [userInfo[UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+
         UIEdgeInsets settingsTableInset = self.settingsTableView.contentInset;
         CGPoint tableViewScreenSpace = [self.settingsTableView.superview convertPoint:self.settingsTableView.frame.origin toView:nil];
         CGFloat tableViewBottomOffset = CGRectGetHeight(self.view.bounds)-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
-        settingsTableInset.bottom = keyboardRect.size.height-tableViewBottomOffset;
+        settingsTableInset.bottom = CGRectGetHeight(keyboardEndFrame)-tableViewBottomOffset;
         
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:InAppSettingsKeyboardAnimation];
+        [UIView setAnimationCurve:animationCurve];        
+        [UIView setAnimationDuration:animationDuration];
         [UIView setAnimationBeginsFromCurrentState:YES];
         self.settingsTableView.contentInset = settingsTableInset;
         self.settingsTableView.scrollIndicatorInsets = settingsTableInset;
@@ -164,8 +170,15 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 
 - (void)keyboardWillHide:(NSNotification*)notification{
     if(self.firstResponder == nil){
+        NSTimeInterval animationDuration;
+        UIViewAnimationCurve animationCurve;
+        NSDictionary *userInfo = [notification userInfo];
+        [userInfo[UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+        [userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+        
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:InAppSettingsKeyboardAnimation];
+        [UIView setAnimationCurve:animationCurve];
+        [UIView setAnimationDuration:animationDuration];
         [UIView setAnimationBeginsFromCurrentState:YES];
         self.settingsTableView.contentInset = UIEdgeInsetsZero;
         self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;

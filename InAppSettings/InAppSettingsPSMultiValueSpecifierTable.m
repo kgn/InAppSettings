@@ -59,16 +59,11 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
-        #if InAppSettingsUseNewCells
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        #else
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-        #endif
     }
 	
     NSString *cellTitle = InAppSettingsLocalize([[self.setting valueForKey:InAppSettingsSpecifierTitles] objectAtIndex:indexPath.row], self.setting.stringsTable);
     id cellValue = [[self.setting valueForKey:InAppSettingsSpecifierValues] objectAtIndex:indexPath.row];
-    #if InAppSettingsUseNewCells
     cell.textLabel.text = cellTitle;
     if([[self.setting valueForKey:InAppSettingsSpecifierInAppMultiType] isEqualToString:@"fonts"]){
         if([cellValue isEqualToString:@"system"]){
@@ -77,24 +72,13 @@
             cell.textLabel.font = [UIFont fontWithName:cellValue size:InAppSettingsFontSize];
         }
     }
-    #else
-    cell.text = cellTitle;
-    #endif
 	if([cellValue isEqual:[self getValue]]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        #if InAppSettingsUseNewCells
         cell.textLabel.textColor = InAppSettingsBlue;
-        #else
-        cell.textColor = InAppSettingsBlue;
-        #endif
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryNone;
-        #if InAppSettingsUseNewCells
         cell.textLabel.textColor = [UIColor blackColor];
-        #else
-        cell.textColor = [UIColor blackColor];
-        #endif
     }
     
     return cell;
