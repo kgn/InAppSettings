@@ -289,6 +289,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = InAppSettingsTestApp_Prefix.pch;
 				INFOPLIST_FILE = "InAppSettingsTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = InAppSettingsTestApp;
 			};
 			name = Debug;
@@ -302,6 +303,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = InAppSettingsTestApp_Prefix.pch;
 				INFOPLIST_FILE = "InAppSettingsTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = InAppSettingsTestApp;
 			};
 			name = Release;

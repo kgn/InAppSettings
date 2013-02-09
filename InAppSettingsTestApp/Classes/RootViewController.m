@@ -37,7 +37,7 @@
     self.userSettingsLabel4.text = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"slider_key"]];
     
     //setup InAppSettings notifications of then user defaults change
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InAppSettingsNotificationHandler:) name:InAppSettingsNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InAppSettingsNotificationHandler:) name:InAppSettingsValueChangeNotification object:nil];
 }
 
 //push InAppSettings onto the navigation stack
