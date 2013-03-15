@@ -36,7 +36,7 @@ Features
 
 License
 --------
-**InAppSettings** was developed by [David Keegan](http://kgn.com/) and is distributed under the [MIT license](http://www.opensource.org/licenses/mit-license.php) so it can be used in free or commercial apps. See the [LICENSE file](https://github.com/kgn/InAppSettings/blob/master/LICENSE) for more information.
+**InAppSettings** was developed by [David Keegan](http://davidkeegan.com) and is distributed under the [MIT license](http://www.opensource.org/licenses/mit-license.php) so it can be used in free or commercial apps. See the [LICENSE file](https://github.com/kgn/InAppSettings/blob/master/LICENSE) for more information.
 
 How to add InAppSettings to Your App
 ========
