@@ -66,7 +66,7 @@
     [super setupCell];
     
     //create the slider
-    self.valueSlider = [[UISlider alloc] initWithFrame:CGRectZero];
+    self.valueSlider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];  //Fix required for iOS7    
     self.valueSlider.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.valueSlider addTarget:self action:@selector(slideAction) forControlEvents:UIControlEventTouchUpInside+UIControlEventTouchUpOutside];
     [self.contentView addSubview:self.valueSlider];
