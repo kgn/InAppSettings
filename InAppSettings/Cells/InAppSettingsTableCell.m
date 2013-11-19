@@ -140,7 +140,11 @@
 - (void)setupCell{
     //setup title label
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.titleLabel.font = InAppSettingsBoldFont;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.titleLabel.font = InAppSettingsNormalFont;                 //changed from Bold to Normal for iOS7
+    } else {
+        self.titleLabel.font = InAppSettingsBoldFont;
+    }
     self.titleLabel.highlightedTextColor = [UIColor whiteColor];
     self.titleLabel.backgroundColor = [UIColor clearColor];
 //    self.titleLabel.backgroundColor = [UIColor greenColor];
