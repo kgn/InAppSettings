@@ -81,7 +81,14 @@
     [self setTitle];
     
     CGRect textFieldFrame = self.textField.frame;
+//iOS7: Updating sizeWithFont (depreciated) to sizeWithAttributes
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+    CGSize titleSize = [self.titleLabel.text sizeWithAttributes:
+                        @{NSFontAttributeName:[UIFont systemFontOfSize:InAppSettingsFontSize]}];
+#else
     CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+#endif
+
     textFieldFrame.origin.x = (CGFloat)round(titleSize.width+InAppSettingsTotalTablePadding);
     if(textFieldFrame.origin.x < InAppSettingsCellTextFieldMinX){
         textFieldFrame.origin.x = InAppSettingsCellTextFieldMinX;

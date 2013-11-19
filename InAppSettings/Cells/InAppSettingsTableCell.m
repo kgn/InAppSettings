@@ -55,7 +55,13 @@
 //    self.contentView.backgroundColor = [UIColor blueColor];
 
     // title view
-    CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+//iOS7: Updating sizeWithFont (depreciated) to sizeWithAttributes
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+        CGSize titleSize = [self.titleLabel.text sizeWithAttributes:
+                             @{NSFontAttributeName:[UIFont systemFontOfSize:InAppSettingsFontSize]}];
+#else
+        CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+#endif
 
     CGFloat maxTitleWidth = InAppSettingsCellTitleMaxWidth;
     if([self.setting isType:InAppSettingsPSToggleSwitchSpecifier]){
@@ -73,7 +79,14 @@
 
     // detail view
     CGRect valueFrame = self.valueLabel.frame;
+    //iOS7: Updating sizeWithFont (depreciated) to sizeWithAttributes
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+    CGSize valueSize = [self.valueLabel.text sizeWithAttributes:
+                        @{NSFontAttributeName:[UIFont systemFontOfSize:InAppSettingsFontSize]}];
+#else
     CGSize valueSize = [self.valueLabel.text sizeWithFont:self.valueLabel.font];
+#endif
+
     CGFloat titleRightSide = CGRectGetWidth(self.titleLabel.bounds)+InAppSettingsTablePadding;
     CGFloat valueMaxWidth = CGRectGetWidth(self.contentView.bounds)-(titleRightSide+InAppSettingsTablePadding+InAppSettingsCellPadding*3);
     if(valueSize.width > valueMaxWidth){
