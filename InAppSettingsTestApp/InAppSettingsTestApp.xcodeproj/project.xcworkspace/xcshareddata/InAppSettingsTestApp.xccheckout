@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>900A50FA-12FB-432F-B29D-3DC4E77CB594</string>
+	<key>IDESourceControlProjectName</key>
+	<string>InAppSettingsTestApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FDF0D77A-BD47-4D67-B0B1-3B659787681D</key>
+		<string>https://github.com/kgn/InAppSettings.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>InAppSettingsTestApp/InAppSettingsTestApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FDF0D77A-BD47-4D67-B0B1-3B659787681D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kgn/InAppSettings.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FDF0D77A-BD47-4D67-B0B1-3B659787681D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FDF0D77A-BD47-4D67-B0B1-3B659787681D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>InAppSettings</string>
+		</dict>
+	</array>
+</dict>
+</plist>
