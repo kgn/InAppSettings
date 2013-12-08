@@ -23,7 +23,7 @@ extern NSString *const InAppSettingsTapNotification;
 
 @end
 
-@interface InAppSettingsModalViewController : UIViewController
+@interface InAppSettingsModalViewController : UINavigationController
 
 @end
 

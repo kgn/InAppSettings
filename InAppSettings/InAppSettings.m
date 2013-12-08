@@ -26,9 +26,8 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 
 - (id)init{
     InAppSettingsViewController *settings = [[InAppSettingsViewController alloc] init];
-    self = (InAppSettingsModalViewController *)[[UINavigationController alloc] initWithRootViewController:settings];
     [settings addDoneButton];
-    return self;
+    return [[InAppSettingsModalViewController alloc] initWithRootViewController:settings];
 }
 
 @end
