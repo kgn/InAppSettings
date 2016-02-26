@@ -55,7 +55,7 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 #pragma mark setup view
 
 - (id)initWithFile:(NSString *)inputFile{
-    self = [super init];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self != nil){
         self.file = inputFile;
     }
@@ -64,13 +64,6 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    //setup the table
-    self.settingsTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.settingsTableView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
-    self.settingsTableView.delegate = self;
-    self.settingsTableView.dataSource = self;
-    [self.view addSubview:self.settingsTableView];
     
     //if the title is nil set it to Settings
     if(!self.title){
@@ -83,106 +76,49 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
     }
     
     self.settingsReader = [[InAppSettingsReader alloc] initWithFile:self.file];
-    
-    //setup keyboard notification
-    self.firstResponder = nil;
-    [self registerForKeyboardNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.firstResponder = nil;
+    // Get indexpath for highlighted cell, to re-highlight
+    NSIndexPath *selectedIndex = [self.tableView indexPathForSelectedRow];
     
-    self.settingsTableView.contentInset = UIEdgeInsetsZero;
-    self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+    [self.tableView reloadData];
     
-    [self.settingsTableView reloadData];
+    // Re-select cell
+    [self.tableView selectRowAtIndexPath:selectedIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.firstResponder = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+-(void)applicationWillEnterForeground:(NSNotification*)notify{
+    // reload in settings in case they were changed in the prefs app.
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    // show any changes if they happened in the background.
+    [self.tableView reloadData];
 }
 
 - (void)dealloc{
-    self.firstResponder = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];    
 }
 
 #pragma mark text field cell delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)cellTextField{
-    self.firstResponder = cellTextField;
-    
     //TODO: find a better way to get the cell from the text view
-    NSIndexPath *indexPath = [self.settingsTableView indexPathForCell:(UITableViewCell *)[[cellTextField superview] superview]];
-    [self.settingsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)[[cellTextField superview] superview]];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)cellTextField{
-    self.firstResponder = nil;
     [cellTextField resignFirstResponder];
     return YES;
-}
-
-#pragma mark keyboard notification
-
-// TODO: handle the case where the settings are in a popover or sheet modal
-// The offset amount will not be the same as on iPhone
-// Maybe bring in KGKeyboardChangeManager?
-
-- (void)registerForKeyboardNotifications{
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(keyboardWillShow:)
-     name:UIKeyboardWillShowNotification object:nil];
-
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(keyboardWillHide:)
-     name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)keyboardWillShow:(NSNotification*)notification{
-    if(self.firstResponder == nil){
-        CGRect keyboardEndFrame;
-        NSTimeInterval animationDuration;
-        UIViewAnimationCurve animationCurve;
-        NSDictionary *userInfo = [notification userInfo];
-        [userInfo[UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-        [userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-        [userInfo[UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
-
-        UIEdgeInsets settingsTableInset = self.settingsTableView.contentInset;
-        CGPoint tableViewScreenSpace = [self.settingsTableView.superview convertPoint:self.settingsTableView.frame.origin toView:nil];
-        CGFloat tableViewBottomOffset = CGRectGetHeight(self.view.bounds)-(tableViewScreenSpace.y+self.settingsTableView.frame.size.height);
-        settingsTableInset.bottom = CGRectGetHeight(keyboardEndFrame)-tableViewBottomOffset;
-        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationCurve:animationCurve];        
-        [UIView setAnimationDuration:animationDuration];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        self.settingsTableView.contentInset = settingsTableInset;
-        self.settingsTableView.scrollIndicatorInsets = settingsTableInset;
-        [UIView commitAnimations];
-    }
-}
-
-- (void)keyboardWillHide:(NSNotification*)notification{
-    if(self.firstResponder == nil){
-        NSTimeInterval animationDuration;
-        UIViewAnimationCurve animationCurve;
-        NSDictionary *userInfo = [notification userInfo];
-        [userInfo[UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-        [userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationCurve:animationCurve];
-        [UIView setAnimationDuration:animationDuration];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        self.settingsTableView.contentInset = UIEdgeInsetsZero;
-        self.settingsTableView.scrollIndicatorInsets = UIEdgeInsetsZero;
-        [UIView commitAnimations];
-    }
 }
 
 #pragma mark Table view methods
@@ -264,7 +200,6 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
     if([cell.setting isType:@"PSTextFieldSpecifier"]){
         [cell.valueInput becomeFirstResponder];
     }else if(cell.canSelectCell){
-        [self.firstResponder resignFirstResponder];
         return indexPath;
     }
     return nil;

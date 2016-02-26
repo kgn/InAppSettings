@@ -27,20 +27,13 @@ extern NSString *const InAppSettingsTapNotification;
 
 @end
 
-@interface InAppSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface InAppSettingsViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSString *file;
-@property (nonatomic, strong) UITableView *settingsTableView;
-@property (nonatomic, weak) UIControl *firstResponder;
 @property (nonatomic, strong) InAppSettingsReader *settingsReader;
 
 // modal view
 - (IBAction)dismissModalView:(id)sender;
 - (void)addDoneButton;
-
-//keyboard notification
-- (void)registerForKeyboardNotifications;
-- (void)keyboardWillShow:(NSNotification*)notification;
-- (void)keyboardWillHide:(NSNotification*)notification;
 
 @end
