@@ -200,7 +200,6 @@ NSString *const InAppSettingsTapNotification = @"InAppSettingsTapNotification";
     if([cell.setting isType:@"PSTextFieldSpecifier"]){
         [cell.valueInput becomeFirstResponder];
     }else if(cell.canSelectCell){
-        [self.firstResponder resignFirstResponder];
         return indexPath;
     }
     return nil;

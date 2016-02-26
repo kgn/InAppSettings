@@ -30,7 +30,6 @@ extern NSString *const InAppSettingsTapNotification;
 @interface InAppSettingsViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSString *file;
-@property (nonatomic, weak) UIControl *firstResponder;
 @property (nonatomic, strong) InAppSettingsReader *settingsReader;
 
 // modal view
